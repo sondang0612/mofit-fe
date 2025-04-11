@@ -1,0 +1,56 @@
+.sidebar {
+  width: 14rem;
+  min-width: 14rem;
+  height: 100vh;
+  background-color: white;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+
+  .logo {
+    width: 80%;
+    margin: 10px auto;
+    display: block;
+  }
+
+  .nav-link {
+    font-size: 16px;
+    padding: 12px 16px;
+    color: #333;
+    transition: 0.3s;
+    font-size: 0.75rem;
+
+    &:hover {
+      background-color: #d2d3d4;
+      color: #333;
+    }
+
+    &.active {
+      background-color: #007bff !important;
+      color: white !important;
+
+      svg {
+        fill: white !important;
+        stroke: white !important;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 10rem;
+    min-width: 10rem;
+
+    .nav-link {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    width: 8rem;
+    .nav-link {
+      font-size: 12px;
+    }
+  }
+}
+
+.content {
+  padding: 20px;
+}
