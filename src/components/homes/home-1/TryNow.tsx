@@ -18,12 +18,12 @@ const TryNow = () => {
         sizes="100vw"
         className="w-full h-full"
       />
-      <span className="try-now__text">Bạn đã thử chưa</span>
+      <span className="try-now__text">Bạn đã <br /> thử chưa</span>
       <button
-        className="try-now__play-video px-3 py-1 rounded-10"
+        className="try-now__play-video px-3 py-1 text-uppercase rounded-10"
         onClick={() => setShowVideo(true)}
       >
-        Xem video
+        Play video
       </button>
 
       {showVideo && (

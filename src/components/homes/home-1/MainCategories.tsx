@@ -17,15 +17,15 @@ const swiperOptions = {
   slidesPerGroup: 4,
   effect: "none",
   loop: true,
-  pagination: {
-    el: "#product_carousel .products-pagination",
-    type: "bullets",
-    clickable: true,
-  },
-  navigation: {
-    nextEl: "#product_carousel .products-carousel__next",
-    prevEl: "#product_carousel .products-carousel__prev",
-  },
+  // pagination: {
+  //   el: "#product_carousel .products-pagination",
+  //   type: "bullets",
+  //   clickable: true,
+  // },
+  // navigation: {
+  //   nextEl: "#product_carousel .products-carousel__next",
+  //   prevEl: "#product_carousel .products-carousel__prev",
+  // },
   breakpoints: {
     320: {
       slidesPerView: 2,
@@ -50,7 +50,7 @@ const MainCategories = () => {
 
   return (
     <div className="products-carousel mx-4">
-      <h2 className="section-title mb-4 pb-xl-2 mb-xl-2">
+      <h2 className="section-title text-uppercase mb-4 pb-xl-2 mb-xl-2">
         Dòng sản phẩm chính
       </h2>
 
@@ -89,7 +89,7 @@ const MainCategories = () => {
         <div className="products-pagination mt-4 mb-4 d-flex align-items-center justify-content-center"></div>
         <div className="d-flex align-items-center justify-content-center w-full">
           <button
-            className="rounded-10 px-3 py-1"
+            className="rounded-10 px-3 py-1 text-uppercase"
             onClick={() => router.push(pathNames.STORE)}
           >
             Xem tất cả
