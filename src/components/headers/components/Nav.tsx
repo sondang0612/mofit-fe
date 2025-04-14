@@ -80,27 +80,32 @@ export default function Nav() {
            ${pathname?.includes("product") ? "menu-active" : ""}
           `}
         >
-          Cửa hàng
+          Sản phẩm
         </Link>
         <div className="mega-menu">
           <div className="container d-flex">
-            <div className="col pe-4">
-              <a href="#" className="sub-menu__title">
-                Dòng sản phẩm chính
-              </a>
-              <ul className="sub-menu__list list-unstyled">
-                {categories?.map((elm, i) => (
-                  <li key={i} className="sub-menu__item">
-                    <Link
-                      href={`${pathNames.STORE}?activeCategory=${elm?.id}`}
-                      className={`menu-link menu-link_us-s`}
-                    >
-                      {elm.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {categories?.map((elm, i) => (
+              <div className="col pe-4">
+                <Link
+                  href={`${pathNames.STORE}?activeCategory=${elm?.id}`}
+                  className="sub-menu__title"
+                >
+                  {elm?.name}
+                </Link>
+                <ul className="sub-menu__list list-unstyled">
+                  {elm?.subCategories?.map((sub, i) => (
+                    <li key={i} className="sub-menu__item">
+                      <Link
+                        href={`${pathNames.STORE}?activeCategory=${sub?.id}`}
+                        className={`menu-link menu-link_us-s`}
+                      >
+                        {sub.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
 
             <div className="col pe-4">
               <a href="#" className="sub-menu__title">

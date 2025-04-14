@@ -162,7 +162,7 @@ export default function MobileNav() {
             pathname == pathNames.STORE ? "menu-active" : ""
           }`}
         >
-          Cửa hàng
+          Sản phẩm
         </Link>
       </li>
 

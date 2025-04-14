@@ -18,7 +18,9 @@ const TryNow = () => {
         sizes="100vw"
         className="w-full h-full"
       />
-      <span className="try-now__text">Bạn đã <br /> thử chưa</span>
+      <h4 className="try-now__text">
+        Bạn đã <br /> thử chưa
+      </h4>
       <button
         className="try-now__play-video px-3 py-1 text-uppercase rounded-10"
         onClick={() => setShowVideo(true)}

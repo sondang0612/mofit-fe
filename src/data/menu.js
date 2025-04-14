@@ -1,7 +1,14 @@
 import { pathNames } from "@/utils/constants/paths";
 import { FaHeart, FaUser } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
+import { GoBellFill } from "react-icons/go";
 import { RiFileListFill } from "react-icons/ri";
+import PaymentIcon from "@/components/icons/PaymentIcon";
+import ProfileIcon from "@/components/icons/ProfileIcon";
+import BellIcon from "@/components/icons/BellIcon";
+import OrderIcon from "@/components/icons/OrderIcon";
+import AddressIcon from "@/components/icons/AddressIcon";
+import LikeIcon from "@/components/icons/LikeIcon";
 
 export const homePages = [{ id: 1, title: "Home 1", href: "/" }];
 
@@ -116,29 +123,50 @@ export const dashboardMenuItems = [
     href: "/account_edit",
     title: "Thông tin tài khoản",
     value: "account_edit",
-    Icon: FaUser,
+    Icon: ProfileIcon,
   },
   {
     id: 2,
-    href: "/account_orders",
-    title: "Quản lý đơn hàng",
-    value: "account_orders",
-    Icon: RiFileListFill,
+    href: "/#",
+    title: "Thông báo của tôi",
+    value: "account_notification",
+    Icon: BellIcon,
   },
   {
     id: 3,
+    href: "/account_orders",
+    title: "Quản lý đơn hàng",
+    value: "account_orders",
+    Icon: OrderIcon,
+  },
+  {
+    id: 4,
     href: "/account_edit_address",
     title: "Sổ địa chỉ",
     value: "account_edit_address",
-    Icon: FaLocationDot,
+    Icon: AddressIcon,
   },
-  // {
-  //   id: 4,
-  //   href: "/account_wishlist",
-  //   title: "Sản phẩm yêu thích",
-  //   value: "account_wishlist",
-  //   Icon: FaHeart,
-  // },
+  {
+    id: 5,
+    href: "/account_payment",
+    title: "Thông tin thanh toán",
+    value: "account_payment",
+    Icon: PaymentIcon,
+  },
+  {
+    id: 4,
+    href: "/account_wishlist",
+    title: "Sản phẩm yêu thích",
+    value: "account_wishlist",
+    Icon: LikeIcon,
+  },
+  {
+    id: 5,
+    href: "/account_support",
+    title: "Hỗ trợ khách hàng",
+    value: "account_support",
+    Icon: null,
+  },
   {
     id: 5,
     href: "/login_register",

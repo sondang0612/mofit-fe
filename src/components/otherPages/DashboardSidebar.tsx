@@ -20,26 +20,27 @@ export default function DashboardSidebar() {
     <div className="col-lg-3">
       <UserInfo />
       <ul className="account-nav">
-        {dashboardMenuItems.map((elm, i) => (
-          <li key={i} className="cursor-pointer">
-            <span
-              onClick={() => handleNavigate(elm.href, elm.value)}
-              className={`menu-link ${
-                pathname == elm.href ? "menu-link_active" : ""
-              } `}
-            >
-              {elm.Icon ? (
-                elm.Icon({
-                  size: 18,
-                  color: pathname == elm.href ? "#000" : "#9B9B9B",
-                })
-              ) : (
-                <div style={{ width: 18, height: 18 }} />
-              )}
-              {elm.title}
-            </span>
-          </li>
-        ))}
+        {dashboardMenuItems.map((elm, i) => {
+          const Icon = elm.Icon;
+          return (
+            <li key={i} className="cursor-pointer">
+              <span
+                onClick={() => handleNavigate(elm.href, elm.value)}
+                className={`menu-link ${
+                  pathname == elm.href ? "menu-link_active" : ""
+                } `}
+              >
+                <div
+                  style={{ width: 24, height: 25, marginRight: 22 }}
+                  className="d-flex align-items-center"
+                >
+                  {Icon && <Icon />}
+                </div>
+                {elm.title}
+              </span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
