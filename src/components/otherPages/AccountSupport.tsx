@@ -26,27 +26,35 @@ const AccountSupport = () => {
           <div className="bg-gray-100 p-3 h-100 rounded text-center">
             <div className="mb-1">
               <Image
-                src="/assets/images/support/avatar.png"
+                src="/assets/images/agent.png"
                 alt="Support Staff"
-                width={50}
-                height={50}
+                width={40}
+                height={43}
                 className="rounded-circle"
               />
             </div>
             <div className="mb-2">Gặp Trợ lý cá nhân</div>
-            <button className="btn btn-primary px-4">Chat ngay</button>
+            <button
+              className="btn btn-primary btn-sm rounded-3 bg-blue-500 px-4"
+              style={{ outline: "none", border: "none" }}
+            >
+              Chat ngay
+            </button>
             <p className="text-muted small mt-1 mb-0">8h-21h kể cả thứ 7, CN</p>
           </div>
         </div>
 
         {/* Submit Request */}
         <div className="col-md-4 mb-2 mb-md-0">
-          <div className="bg-gray-100 p-3 h-100 rounded">
-            <div className="mb-2">Gửi yêu cầu hỗ trợ</div>
-            <button className="btn btn-primary mb-1 px-4">
+          <div className="bg-gray-100 p-3 h-100 rounded d-flex flex-column align-items-center justify-content-end rounded-4">
+            <div className="mb-2 fw-bold">Gửi yêu cầu hỗ trợ</div>
+            <button
+              className="btn btn-primary btn-sm rounded-3 bg-blue-500 px-4"
+              style={{ outline: "none", border: "none" }}
+            >
               Tạo đơn yêu cầu
             </button>
-            <p className="text-muted small mb-0">
+            <p className="text-muted small mb-0 mt-2">
               Hoặc email đến hotro@tiki.vn
             </p>
           </div>
