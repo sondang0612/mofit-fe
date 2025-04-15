@@ -12,6 +12,8 @@ export enum QueryParam {
   MAX_PRICE = "maxPrice",
   ID = "id",
   TXN_REF = "txnRef",
+  STATUS = "status",
+  QUERY_TEXT = "q",
 }
 
 export enum QueryValue {

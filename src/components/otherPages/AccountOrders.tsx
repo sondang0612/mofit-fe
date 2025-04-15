@@ -17,7 +17,7 @@ import Pagination from "../shoplist/Pagination";
 import Link from "next/link";
 
 const orderStatusTabs = [
-  { key: "", label: "Tất cả đơn" },
+  { key: "all", label: "Tất cả đơn" },
   { key: "pending", label: "Chờ thanh toán" },
   { key: "processing", label: "Đang xử lý" },
   { key: "shipped", label: "Đang vận chuyển" },
@@ -25,10 +25,20 @@ const orderStatusTabs = [
   { key: "canceled", label: "Đã huỷ" },
 ];
 
+const translateStatus = {
+  draft: "Đơn nháp",
+  pending: "Đang xử lý",
+  processing: "Đang giao",
+  shipped: "Giao hàng thành công",
+  delivered: "Đã giao",
+  canceled: "Đã huỷ",
+};
+
 const AccountOrders = () => {
   const [page, setPage] = React.useState(1);
-  const [activeStatus, setActiveStatus] = React.useState("");
+  const [activeStatus, setActiveStatus] = React.useState("all");
   const [searchTerm, setSearchTerm] = React.useState("");
+  const [queryText, setQueryText] = React.useState("");
 
   const {
     data: orders,
@@ -38,13 +48,24 @@ const AccountOrders = () => {
     page: page,
     endpoint: `${apiEndpoints.ORDERS}`,
     limit: ITEMS_PER_PAGE,
-    queryParams: [QueryParam.SORT_BY, QueryParam.SORT],
-    queryValues: [QueryValue.CREATED_AT, QueryValue.DESC],
+    queryParams: [
+      QueryParam.SORT_BY,
+      QueryParam.SORT,
+      QueryParam.STATUS,
+      QueryParam.QUERY_TEXT,
+    ],
+    queryValues: [
+      QueryValue.CREATED_AT,
+      QueryValue.DESC,
+      activeStatus,
+      queryText,
+    ],
   });
 
   const handleTabChange = (status: string) => {
     setActiveStatus(status);
     setPage(1);
+    setQueryText("");
   };
 
   const onPageChange = (page: number) => {
@@ -53,8 +74,7 @@ const AccountOrders = () => {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    // Implement search functionality
-    console.log("Searching for:", searchTerm);
+    setQueryText(searchTerm);
   };
 
   return (
@@ -93,7 +113,7 @@ const AccountOrders = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Tìm đơn hàng theo Mã đơn hàng, Nhà bán hoặc Tên sản phẩm"
+              placeholder="Tìm đơn hàng theo Mã đơn hàng hoặc Tên sản phẩm"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -115,17 +135,18 @@ const AccountOrders = () => {
           </div>
         ) : orders && orders.length > 0 ? (
           <div className="orders-list">
-            <div className="order-success-label mb-3">
-              <i className="fa fa-check-circle me-2"></i>
-              Giao hàng thành công
-            </div>
-
             <div className="order-items">
               {orders.map((order) => (
-                <div key={order.id} className="order-item mb-4">
+                <div key={order.id} className="order-item ">
+                  <div className="order-item-status fw-medium mb-4">
+                    {translateStatus?.[order.status]}
+                  </div>
                   {order.orderItems &&
                     order.orderItems.map((item, index) => (
-                      <div key={index} className="d-flex mb-3">
+                      <div
+                        key={index}
+                        className="order-product-item d-flex mb-3"
+                      >
                         <div className="order-product-image me-3">
                           <Image
                             width={80}
@@ -136,7 +157,7 @@ const AccountOrders = () => {
                           />
                         </div>
                         <div className="order-product-details flex-grow-1">
-                          <h6 className="mb-1">{item.product?.title}</h6>
+                          <div className="mb-1">{item.product?.title}</div>
                           <p className="text-muted mb-1">x{item.quantity}</p>
                         </div>
                         <div className="order-product-price text-end">
@@ -151,23 +172,25 @@ const AccountOrders = () => {
             </div>
 
             <div className="order-summary">
-              <div className="d-flex justify-content-between align-items-center">
+              <div className="">
                 <div className="order-total">
                   Tổng tiền:{" "}
                   <span className="text-danger fw-bold">
                     {formatPrice(
                       orders.reduce(
-                        (sum, order) => sum + (order.totalPrice || 0),
+                        (sum, order) => sum + +(order.totalPrice || 0),
                         0
                       )
                     )}
                   </span>
                 </div>
                 <div className="order-actions">
-                  <button className="btn btn-outline-primary me-2">
+                  <button className="btn btn-sm btn-outline-primary me-2">
                     Mua lại
                   </button>
-                  <button className="btn btn-primary">Xem chi tiết</button>
+                  <button className="btn btn-sm btn-primary">
+                    Xem chi tiết
+                  </button>
                 </div>
               </div>
             </div>

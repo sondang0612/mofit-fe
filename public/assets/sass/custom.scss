@@ -445,6 +445,20 @@ body {
       border-radius: 4px;
       padding: 15px;
 
+      .order-item-status {
+        color: #808089;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #ebebf0;
+      }
+
+      .order-product-item {
+        border-bottom: 1px solid #ebebf0;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
       .order-product-image img {
         object-fit: cover;
         border-radius: 4px;
@@ -470,9 +484,15 @@ body {
     padding: 15px;
     border-radius: 4px;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 
     .order-total {
       font-weight: 500;
+      text-align: right;
+      font-size: 17px;
+      margin-bottom: 8px;
 
       .text-danger {
         color: #0a68ff !important;
