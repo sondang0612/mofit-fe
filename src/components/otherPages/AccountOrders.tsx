@@ -1,5 +1,4 @@
 "use client";
-import Table, { Column } from "@/components/Table";
 import { QueryParam, QueryValue, useFetch } from "@/hooks/react-query/useFetch";
 import { Order as IOrder, OrderItem } from "@/types/api";
 import { ITEMS_PER_PAGE } from "@/utils/constants";
@@ -10,72 +9,27 @@ import {
   EOrderStatusLabel,
   EPaymentMethod,
   EPaymentMethodLabel,
-  EShippingMethod,
-  EShippingMethodLabel,
 } from "@/utils/constants/order.enum";
 import { formatPrice } from "@/utils/formatPrice";
 import Image from "next/image";
 import React from "react";
-import { FiEye } from "react-icons/fi";
 import Pagination from "../shoplist/Pagination";
+import Link from "next/link";
 
-const columns: Column<IOrder>[] = [
-  {
-    title: "ID",
-    dataIndex: "id",
-    width: 50,
-  },
-  {
-    title: "Hình ảnh",
-    dataIndex: "orderItems",
-    renderItem: (value: OrderItem[]) => {
-      return (
-        <Image
-          width={80}
-          height={80}
-          style={{ height: "fit-content" }}
-          src={value[0] ? `${value[0].product?.imgSrc}` : EDefaultValue.IMAGE}
-          alt={
-            value[0] ? `${value[0].product?.title}` : EDefaultValue.ALT_IMAGE
-          }
-        />
-      );
-    },
-  },
-  {
-    title: "Trạng thái",
-    dataIndex: "status",
-    renderItem: (value) => EOrderStatusLabel[value as EOrderStatus],
-  },
-  {
-    title: "Thanh toán",
-    dataIndex: "paymentMethod",
-    renderItem: (value) => EPaymentMethodLabel[value as EPaymentMethod],
-  },
-  {
-    title: "Vận chuyển",
-    dataIndex: "shippingMethod",
-    renderItem: (value) => EShippingMethodLabel[value as EShippingMethod],
-  },
-  {
-    title: "Thành tiền",
-    dataIndex: "totalPrice",
-    renderItem: (value) => formatPrice(value),
-  },
-  {
-    title: "",
-    renderItem: () => {
-      return (
-        <div data-toggle="tooltip" data-placement="top" title="Chi tiết">
-          <FiEye size={18} className="cursor-pointer" />
-        </div>
-      );
-    },
-  },
+const orderStatusTabs = [
+  { key: "", label: "Tất cả đơn" },
+  { key: "pending", label: "Chờ thanh toán" },
+  { key: "processing", label: "Đang xử lý" },
+  { key: "shipped", label: "Đang vận chuyển" },
+  { key: "delivered", label: "Đã giao" },
+  { key: "canceled", label: "Đã huỷ" },
 ];
 
-const Page = () => {
+const AccountOrders = () => {
   const [page, setPage] = React.useState(1);
+  const [activeStatus, setActiveStatus] = React.useState("");
+  const [searchTerm, setSearchTerm] = React.useState("");
+
   const {
     data: orders,
     isFetching,
@@ -88,22 +42,149 @@ const Page = () => {
     queryValues: [QueryValue.CREATED_AT, QueryValue.DESC],
   });
 
+  const handleTabChange = (status: string) => {
+    setActiveStatus(status);
+    setPage(1);
+  };
+
   const onPageChange = (page: number) => {
     setPage(page);
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Implement search functionality
+    console.log("Searching for:", searchTerm);
   };
 
   return (
     <div className="col-lg-9">
       <div className="page-content my-account__order">
-        <p className="notice">Quản lý đơn hàng</p>
-
-        <div>
-          <Table columns={columns} data={orders} loading={isFetching} />
-          <Pagination totalItems={totalElements} onChange={onPageChange} />
+        <div
+          className="mb-3"
+          style={{
+            fontSize: "19px",
+          }}
+        >
+          Đơn hàng của tôi
         </div>
+
+        {/* Order status tabs */}
+        <div className="order-tabs mb-3">
+          <ul className="nav nav-tabs border-0">
+            {orderStatusTabs.map((tab) => (
+              <li className="nav-item" key={tab.key}>
+                <a
+                  className={`nav-link ${
+                    activeStatus === tab.key ? "active" : ""
+                  }`}
+                  onClick={() => handleTabChange(tab.key)}
+                >
+                  {tab.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Search box */}
+        <div className="order-search mb-4">
+          <form onSubmit={handleSearch} className="position-relative">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Tìm đơn hàng theo Mã đơn hàng, Nhà bán hoặc Tên sản phẩm"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="btn btn-primary position-absolute order-search-btn"
+            >
+              Tìm đơn hàng
+            </button>
+          </form>
+        </div>
+
+        {/* Orders list */}
+        {isFetching ? (
+          <div className="text-center py-5">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        ) : orders && orders.length > 0 ? (
+          <div className="orders-list">
+            <div className="order-success-label mb-3">
+              <i className="fa fa-check-circle me-2"></i>
+              Giao hàng thành công
+            </div>
+
+            <div className="order-items">
+              {orders.map((order) => (
+                <div key={order.id} className="order-item mb-4">
+                  {order.orderItems &&
+                    order.orderItems.map((item, index) => (
+                      <div key={index} className="d-flex mb-3">
+                        <div className="order-product-image me-3">
+                          <Image
+                            width={80}
+                            height={80}
+                            src={item.product?.imgSrc || EDefaultValue.IMAGE}
+                            alt={item.product?.title || "Product"}
+                            className="border"
+                          />
+                        </div>
+                        <div className="order-product-details flex-grow-1">
+                          <h6 className="mb-1">{item.product?.title}</h6>
+                          <p className="text-muted mb-1">x{item.quantity}</p>
+                        </div>
+                        <div className="order-product-price text-end">
+                          <div className="fw-bold">
+                            {formatPrice(item.product?.price || 0)}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              ))}
+            </div>
+
+            <div className="order-summary">
+              <div className="d-flex justify-content-between align-items-center">
+                <div className="order-total">
+                  Tổng tiền:{" "}
+                  <span className="text-danger fw-bold">
+                    {formatPrice(
+                      orders.reduce(
+                        (sum, order) => sum + (order.totalPrice || 0),
+                        0
+                      )
+                    )}
+                  </span>
+                </div>
+                <div className="order-actions">
+                  <button className="btn btn-outline-primary me-2">
+                    Mua lại
+                  </button>
+                  <button className="btn btn-primary">Xem chi tiết</button>
+                </div>
+              </div>
+            </div>
+
+            <Pagination
+              totalItems={totalElements || 0}
+              onChange={onPageChange}
+            />
+          </div>
+        ) : (
+          <div className="text-center py-5">
+            <p>Không có đơn hàng nào</p>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default Page;
+export default AccountOrders;
