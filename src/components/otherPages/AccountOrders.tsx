@@ -139,7 +139,9 @@ const AccountOrders = () => {
               {orders.map((order) => (
                 <div key={order.id} className="order-item ">
                   <div className="order-item-status fw-medium mb-4">
-                    {translateStatus?.[order.status]}
+                    {translateStatus?.[
+                      order.status as keyof typeof translateStatus
+                    ] ?? order.status}
                   </div>
                   {order.orderItems &&
                     order.orderItems.map((item, index) => (
