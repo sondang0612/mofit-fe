@@ -96,6 +96,8 @@ export interface Order {
   subTotal?: number | undefined;
   totalPrice?: number | undefined;
   txnRef?: string | undefined;
+  user?: User | undefined;
+  address?: Address | undefined;
 }
 
 export interface Category {
@@ -119,4 +121,11 @@ export interface Attribute {
   id?: number | undefined;
   label?: string | undefined;
   value?: string | undefined;
+}
+
+export interface OrderStatusLog {
+  order?: Order | undefined;
+  previousStatus?: EOrderStatus | undefined;
+  currentStatus?: EOrderStatus | undefined;
+  time?: string;
 }

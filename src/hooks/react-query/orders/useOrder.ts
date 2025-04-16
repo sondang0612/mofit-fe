@@ -1,33 +1,33 @@
 import axiosInstance from "@/libs/axiosInstance";
-import { Address, ApiResponse, Order } from "@/types/api";
+import { ApiResponse, Order } from "@/types/api";
 import { asyncAuth } from "@/utils/asyncAuth";
+import { ERole } from "@/utils/constants/role.enum";
 import { useQuery } from "@tanstack/react-query";
 import { queryKey } from "../queryKey";
-import { ERole } from "@/utils/constants/role.enum";
 
 type Params = {
-  page: number;
-  limit: number;
+  id?: number;
 };
 
 const fetchData = asyncAuth(
   async (params?: Params) => {
-    const response = await axiosInstance.get("orders/me", { params });
+    const response = await axiosInstance.get(`orders/${params?.id}`);
     return response?.data?.data;
   },
   { roles: [ERole.ADMIN, ERole.USER] }
 );
 
-const useMyOrder = (params: Params) => {
-  const { data, ...query } = useQuery<ApiResponse<Order[]>>({
-    queryKey: [queryKey.ORDERS, params],
+const useOrder = (params: Params) => {
+  const { data, ...query } = useQuery<Order>({
+    queryKey: [queryKey.ORDERS, params.id],
     queryFn: () => fetchData(params),
+    enabled: !!params.id,
   });
 
   return {
     ...query,
-    data: data?.data,
+    data: data,
   };
 };
 
-export { useMyOrder };
+export { useOrder };

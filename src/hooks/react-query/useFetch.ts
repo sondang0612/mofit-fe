@@ -14,6 +14,8 @@ export enum QueryParam {
   TXN_REF = "txnRef",
   STATUS = "status",
   QUERY_TEXT = "q",
+  ORDER_PRODUCT_TITLE = "productTitle",
+  ORDER_ID = "orderId",
 }
 
 export enum QueryValue {

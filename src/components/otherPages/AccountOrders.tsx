@@ -15,6 +15,8 @@ import Image from "next/image";
 import React from "react";
 import Pagination from "../shoplist/Pagination";
 import Link from "next/link";
+import { useOrderTimeLine } from "@/hooks/react-query/orders/useOrderTimeLine";
+import { useOrder } from "@/hooks/react-query/orders/useOrder";
 
 const orderStatusTabs = [
   { key: "all", label: "Tất cả đơn" },
@@ -39,6 +41,8 @@ const AccountOrders = () => {
   const [activeStatus, setActiveStatus] = React.useState("all");
   const [searchTerm, setSearchTerm] = React.useState("");
   const [queryText, setQueryText] = React.useState("");
+  const { data: orderTimeline } = useOrderTimeLine({ id: 1 });
+  const { data: order } = useOrder({ id: 1 });
 
   const {
     data: orders,
