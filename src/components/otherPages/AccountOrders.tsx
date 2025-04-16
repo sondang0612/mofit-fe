@@ -1,48 +1,36 @@
 "use client";
 import { QueryParam, QueryValue, useFetch } from "@/hooks/react-query/useFetch";
-import { Order as IOrder, OrderItem } from "@/types/api";
+import { Order as IOrder } from "@/types/api";
 import { ITEMS_PER_PAGE } from "@/utils/constants";
 import { apiEndpoints } from "@/utils/constants/apiEndpoints";
 import { EDefaultValue } from "@/utils/constants/default-value.enum";
-import {
-  EOrderStatus,
-  EOrderStatusLabel,
-  EPaymentMethod,
-  EPaymentMethodLabel,
-} from "@/utils/constants/order.enum";
+import { EOrderStatus, EOrderStatusLabel } from "@/utils/constants/order.enum";
+import { pathNames } from "@/utils/constants/paths";
 import { formatPrice } from "@/utils/formatPrice";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
+import Spinner from "../loading/Spinner";
 import Pagination from "../shoplist/Pagination";
-import Link from "next/link";
-import { useOrderTimeLine } from "@/hooks/react-query/orders/useOrderTimeLine";
-import { useOrder } from "@/hooks/react-query/orders/useOrder";
 
 const orderStatusTabs = [
-  { key: "all", label: "Tất cả đơn" },
-  { key: "pending", label: "Chờ thanh toán" },
-  { key: "processing", label: "Đang xử lý" },
-  { key: "shipped", label: "Đang vận chuyển" },
-  { key: "delivered", label: "Đã giao" },
-  { key: "canceled", label: "Đã huỷ" },
+  { key: "", label: "Tất cả đơn" },
+  { key: EOrderStatus.PENDING, label: "Chờ thanh toán" },
+  { key: EOrderStatus.PROCESSING, label: "Đang xử lý" },
+  { key: EOrderStatus.DELIVERED, label: "Đang vận chuyển" },
+  { key: EOrderStatus.SHIPPED, label: "Đã giao" },
+  { key: EOrderStatus.CANCELED, label: "Đã huỷ" },
+  { key: EOrderStatus.DRAFT, label: "Đơn nháp" },
 ];
-
-const translateStatus = {
-  draft: "Đơn nháp",
-  pending: "Đang xử lý",
-  processing: "Đang giao",
-  shipped: "Giao hàng thành công",
-  delivered: "Đã giao",
-  canceled: "Đã huỷ",
-};
 
 const AccountOrders = () => {
   const [page, setPage] = React.useState(1);
-  const [activeStatus, setActiveStatus] = React.useState("all");
+  const [activeStatus, setActiveStatus] = React.useState("");
   const [searchTerm, setSearchTerm] = React.useState("");
   const [queryText, setQueryText] = React.useState("");
-  const { data: orderTimeline } = useOrderTimeLine({ id: 1 });
-  const { data: order } = useOrder({ id: 1 });
+  // const { data: orderTimeline } = useOrderTimeLine({ id: 1 });
+  // const { data: order } = useOrder({ id: 1 });
+  const router = useRouter();
 
   const {
     data: orders,
@@ -55,14 +43,14 @@ const AccountOrders = () => {
     queryParams: [
       QueryParam.SORT_BY,
       QueryParam.SORT,
-      QueryParam.STATUS,
-      QueryParam.QUERY_TEXT,
+      ...(activeStatus ? [QueryParam.STATUS] : []),
+      ...(queryText ? [QueryParam.ORDER_PRODUCT_TITLE] : []),
     ],
     queryValues: [
       QueryValue.CREATED_AT,
       QueryValue.DESC,
-      activeStatus,
-      queryText,
+      ...(activeStatus ? [activeStatus] : []),
+      ...(queryText ? [queryText] : []),
     ],
   });
 
@@ -117,7 +105,7 @@ const AccountOrders = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Tìm đơn hàng theo Mã đơn hàng hoặc Tên sản phẩm"
+              placeholder="Tìm đơn hàng tên sản phẩm"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -132,19 +120,15 @@ const AccountOrders = () => {
 
         {/* Orders list */}
         {isFetching ? (
-          <div className="text-center py-5">
-            <div className="spinner-border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          </div>
+          <Spinner />
         ) : orders && orders.length > 0 ? (
           <div className="orders-list">
             <div className="order-items">
               {orders.map((order) => (
                 <div key={order.id} className="order-item ">
                   <div className="order-item-status fw-medium mb-4">
-                    {translateStatus?.[
-                      order.status as keyof typeof translateStatus
+                    {EOrderStatusLabel?.[
+                      order.status as keyof typeof EOrderStatusLabel
                     ] ?? order.status}
                   </div>
                   {order.orderItems &&
@@ -173,32 +157,47 @@ const AccountOrders = () => {
                         </div>
                       </div>
                     ))}
+
+                  <div className="order-summary">
+                    <div className="">
+                      <div className="order-total">
+                        Tổng tiền:{" "}
+                        <span className="text-danger fw-bold">
+                          {formatPrice(
+                            order?.orderItems?.reduce(
+                              (sum, order) =>
+                                sum +
+                                +(
+                                  +(order?.product?.price || 0) *
+                                    (order?.quantity || 1) || 0
+                                ),
+                              0
+                            )
+                          )}
+                        </span>
+                      </div>
+                      <div className="order-actions">
+                        <button className="btn btn-sm btn-outline-primary me-2 tw-rounded">
+                          Mua lại
+                        </button>
+                        <button
+                          className="btn btn-sm btn-primary tw-rounded"
+                          onClick={() =>
+                            router.push(
+                              `${pathNames.ORDER_DETAIL.replace(
+                                ":id",
+                                String(order.id)
+                              )}`
+                            )
+                          }
+                        >
+                          Xem chi tiết
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ))}
-            </div>
-
-            <div className="order-summary">
-              <div className="">
-                <div className="order-total">
-                  Tổng tiền:{" "}
-                  <span className="text-danger fw-bold">
-                    {formatPrice(
-                      orders.reduce(
-                        (sum, order) => sum + +(order.totalPrice || 0),
-                        0
-                      )
-                    )}
-                  </span>
-                </div>
-                <div className="order-actions">
-                  <button className="btn btn-sm btn-outline-primary me-2">
-                    Mua lại
-                  </button>
-                  <button className="btn btn-sm btn-primary">
-                    Xem chi tiết
-                  </button>
-                </div>
-              </div>
             </div>
 
             <Pagination

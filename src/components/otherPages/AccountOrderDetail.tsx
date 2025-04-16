@@ -1,6 +1,20 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useOrder } from "@/hooks/react-query/orders/useOrder";
+import { useParams } from "next/navigation";
+import {
+  EOrderStatus,
+  EOrderStatusLabel,
+  EPaymentMethodLabel,
+} from "@/utils/constants/order.enum";
+import { formatPrice } from "@/utils/formatPrice";
+import { useOrderTimeLine } from "@/hooks/react-query/orders/useOrderTimeLine";
+import { formatDate } from "@/utils/constants/formatDate";
+import { time } from "console";
+import Spinner from "../loading/Spinner";
+import OrderTimeline from "../timeline/OrderTimeline";
 
 const mockOrder = {
   id: "#250406517",
@@ -40,160 +54,137 @@ const mockOrder = {
 };
 
 const AccountOrderDetail = () => {
-  const order = mockOrder;
+  // const order = mockOrder;
+  const { id } = useParams();
+  const { data, isLoading } = useOrder({ id: Number(id) });
+  const { data: timeline } = useOrderTimeLine({ id: Number(id) });
+  console.log("data", data);
+  console.log("timeline", timeline);
   return (
-    <div className="container order-detail-page py-4">
-      <div className="order-header mb-3">
-        <div className="row align-items-start">
-          <div className="col-md-7">
-            <div className="d-flex align-items-center mb-2">
-              <h4 className="mb-0 me-2">Mã đơn hàng: {order.id}</h4>
-              <span className="text-secondary">
-                ({order.items.length} sản phẩm/ {order.views} kiện)
-              </span>
-            </div>
-            <div className="text-secondary">Ngày đặt: {order.createdAt}</div>
-          </div>
-          <div className="col-md-5">
-            <div className="row">
-              <div className="col-6 text-md-end">
-                <div className="text-secondary mb-2">Hình thức thanh toán</div>
+    <div className="container col-lg-9 bg-white order-detail-page py-4 tw-text-text">
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <div className="tw-flex tw-flex-col lg:tw-flex-row tw-gap-y-4 tw-pb-[40px] tw-border-b tw-border-dashed tw-border-[#D9D9D9]">
+            <div className="tw-w-full lg:tw-w-[55%]">
+              <div className="">
+                Mã đơn hàng:{" "}
+                <span className="tw-font-bold tw-text-textBlack">
+                  #{data?.id}
+                </span>{" "}
+                {`(${data?.cart?.reduce(
+                  (acc, item) => acc + (item.quantity || 0),
+                  0
+                )} sản phẩm/ ${data?.cart?.length} kiện)`}
               </div>
-              <div className="col-6">
-                <div className="mb-2">{order.paymentMethod}</div>
+              <div className="">
+                Ngày đặt:{" "}
+                <span className="tw-text-textBlack">
+                  {formatDate(timeline?.pending || "", "DD/MM/YYYY, HH:mm")}
+                </span>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="row g-4 mb-4">
-        <div className="col-md-7">
-          <div className="order-address bg-white p-3 rounded shadow-sm h-100">
-            <h5 className="mb-3">Địa chỉ nhận hàng</h5>
-            <div className="d-flex align-items-start">
-              <span className="address-badge me-2">{order.address.type}</span>
-              <div>
-                <div className="fw-medium">
-                  {order.address.name} - {order.address.phone}
+              <div className="tw-mt-4">
+                <div className="tw-font-bold tw-text-textBlack">
+                  Địa chỉ nhận hàng
                 </div>
-                <div className="text-secondary">{order.address.detail}</div>
+                <div className="tw-mt-2 tw-text-textBlack">
+                  {data?.address?.lastName} {data?.address?.firstName} -{" "}
+                  {data?.address?.phoneNumber}
+                </div>
+                <div>
+                  {data?.address?.district}, {data?.address?.city},{" "}
+                  {data?.address?.streetAddress}
+                </div>
+              </div>
+            </div>
+            <div className="tw-flex-1 lg:tw-pl-4 tw-pl-0 lg:tw-border-l tw-border-none">
+              <div className="tw-flex tw-ítems-center tw-justify-between">
+                <div className="tw-font-bold">Hình thức thanh toán</div>
+                <div className="tw-text-[#1890FF] tw-bg-[#F0F8FF] tw-px-2 tw-rounded-md tw-py-1">
+                  Thanh toán khi nhận hàng
+                </div>
+              </div>
+              <div className="tw-flex tw-ítems-center tw-justify-between tw-mt-4">
+                <div>Tạm tính (1)</div>
+                <div>{formatPrice(data?.totalPrice)}</div>
+              </div>
+              <div className="tw-flex tw-ítems-center tw-justify-between tw-mt-4">
+                <div>Giảm giá</div>
+                <div>-{formatPrice(data?.discount)}</div>
+              </div>
+              <div className="tw-flex tw-ítems-center tw-justify-between tw-mt-4">
+                <div>Phí vận chuyển</div>
+                <div>{formatPrice(data?.shippingPrice)}</div>
+              </div>
+              <div className="tw-flex tw-ítems-center tw-justify-between tw-mt-4">
+                <div>Thành tiền (Đã VAT)</div>
+                <div className="tw-text-red-500 tw-text-lg tw-font-bold">
+                  {formatPrice(data?.subTotal)}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="col-md-5">
-          <div className="order-delivery bg-white p-3 rounded shadow-sm h-100">
-            <div className="d-flex mb-2">
-              <h5 className="mb-0 me-2">Kiện 1/1</h5>
-              <span className="delivery-status badge bg-success">
-                Giao: {order.deliveryDate}
-              </span>
-              <span className="ms-auto text-success">{order.status}</span>
-            </div>
+          <div className="tw-py-4">
+            <div className="tw-flex tw-items-center tw-gap-2">
+              <div>Kiện 1/1</div>
+              {data?.status === EOrderStatus.SHIPPED && timeline?.shipped && (
+                <div className=" tw-border-l tw-pl-2">
+                  Giao:{" "}
+                  <span className="tw-text-primary tw-font-bold">
+                    {formatDate(timeline?.shipped)}
+                  </span>
+                </div>
+              )}
 
-            <div className="order-timeline mt-4">
-              {order.timeline.map((step, index) => (
+              <div className="tw-text-primary tw-border-l tw-pl-2">
+                {
+                  EOrderStatusLabel[
+                    data?.status as keyof typeof EOrderStatusLabel
+                  ]
+                }
+              </div>
+            </div>
+            <div className="tw-mt-4">
+              {data?.cart?.map((item, index) => (
                 <div
                   key={index}
-                  className={`order-timeline-step ${
-                    step.completed ? "completed" : ""
-                  } ${index === order.timeline.length - 1 ? "last" : ""}`}
+                  className="tw-flex tw-items-center tw-justify-between"
                 >
-                  <div className="timeline-icon-container">
-                    <div className="timeline-icon"></div>
+                  <div className="tw-flex tw-gap-2 tw-max-w-[70%]">
+                    <Image
+                      width={80}
+                      height={80}
+                      src={item?.product?.imgSrc || ""}
+                      alt={item?.product?.title || "Product"}
+                      className="tw-border tw-mr-3"
+                    />
+                    <div>
+                      <div className="tw-text-textBlack">
+                        {item?.product?.title}
+                      </div>
+                      <div className="tw-line-clamp-1">
+                        {item?.product?.shortDescription}
+                      </div>
+                    </div>
                   </div>
-                  <div className="timeline-content">
-                    <div className="fw-medium">{step.status}</div>
-                    <div className="text-secondary small">{step.time}</div>
+                  <div>
+                    {item.quantity}{" "}
+                    <span className="tw-px-2 tw-font-bold">X</span>
+                    <span className="tw-font-bold tw-text-textBlack">
+                      {formatPrice(item?.product?.price)}
+                    </span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="order-products bg-white rounded shadow-sm mb-4">
-        {order.items.map((item, index) => (
-          <div key={index} className="order-product-item p-3 border-bottom">
-            <div className="row align-items-center">
-              <div className="col-md-8">
-                <div className="d-flex">
-                  <div className="position-relative me-3">
-                    <Image
-                      src={item.imgSrc}
-                      alt={item.title}
-                      width={80}
-                      height={80}
-                      className="rounded border"
-                    />
-                    {item.discount && (
-                      <div className="product-discount-badge">
-                        -{item.discount}
-                      </div>
-                    )}
-                  </div>
-                  <div>
-                    <div className="text-secondary small mb-1">
-                      {item.brand}
-                    </div>
-                    <h6 className="mb-1">{item.title}</h6>
-                    <div className="text-secondary small">
-                      {item.size && <span className="me-2">{item.size}</span>}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-6 col-md-2 text-md-center">
-                <div className="text-secondary small d-md-none mt-2">
-                  Số lượng
-                </div>
-                <div>{item.quantity}</div>
-              </div>
-              <div className="col-6 col-md-2 text-end">
-                <div className="text-secondary small d-md-none mt-2">
-                  Đơn giá
-                </div>
-                <div className="fw-medium">{item.price.toLocaleString()}₫</div>
-              </div>
-            </div>
+          <div className="tw-mt-8">
+            <OrderTimeline timeline={timeline as any} />
           </div>
-        ))}
-
-        <div className="order-summary p-3">
-          <div className="row justify-content-end">
-            <div className="col-md-4">
-              <div className="d-flex justify-content-between mb-2">
-                <span>Tạm tính ({order.items.length})</span>
-                <span>{order.total.toLocaleString()}₫</span>
-              </div>
-              <div className="d-flex justify-content-between mb-2">
-                <span>Giảm giá</span>
-                <span>-{order.discount}₫</span>
-              </div>
-              <div className="d-flex justify-content-between mb-2">
-                <span>Phí vận chuyển</span>
-                <span>{order.shippingFee}₫</span>
-              </div>
-              <div className="d-flex justify-content-between total-amount">
-                <span>Thành tiền (Đã VAT)</span>
-                <span className="text-danger fw-bold">
-                  {order.total.toLocaleString()}₫
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="text-center mt-4">
-        <Link href="/account_orders" className="btn btn-outline-secondary me-2">
-          <i className="fa fa-arrow-left me-2"></i>
-          Quay lại
-        </Link>
-        <button className="btn btn-primary px-4">Mua lại</button>
-      </div>
+        </>
+      )}
     </div>
   );
 };

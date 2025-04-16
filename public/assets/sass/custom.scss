@@ -453,7 +453,7 @@ body {
 
       .order-product-item {
         border-bottom: 1px solid #ebebf0;
-
+        padding-bottom: 8px;
         &:last-child {
           border-bottom: none;
         }
@@ -526,13 +526,17 @@ body {
 .order-detail-page {
   max-width: 1000px;
   margin: 0 auto;
-  
+
+  .order-delivery {
+    border-left: 1px solid #d9d9d9;
+  }
+
   .order-header {
     h4 {
       font-weight: 500;
     }
   }
-  
+
   .address-badge {
     background-color: #5a5a8e;
     color: white;
@@ -541,7 +545,7 @@ body {
     font-size: 0.85rem;
     display: inline-block;
   }
-  
+
   .delivery-status {
     font-weight: 400;
     background-color: #e6f4ea;
@@ -550,35 +554,25 @@ body {
     font-size: 0.85rem;
     padding: 3px 8px;
   }
-  
+
   .order-timeline {
     margin-left: 15px;
     position: relative;
-    
-    &:before {
-      content: '';
-      position: absolute;
-      left: 7px;
-      top: 0;
-      height: 100%;
-      width: 2px;
-      background-color: #ebebeb;
-    }
-    
+
     .order-timeline-step {
       display: flex;
       position: relative;
       padding-bottom: 20px;
-      
+
       &.last {
         padding-bottom: 0;
       }
-      
+
       .timeline-icon-container {
         position: relative;
         min-width: 30px;
       }
-      
+
       .timeline-icon {
         width: 16px;
         height: 16px;
@@ -589,11 +583,11 @@ body {
         top: 4px;
         z-index: 2;
       }
-      
+
       .timeline-content {
         padding-left: 10px;
       }
-      
+
       &.completed {
         .timeline-icon {
           background-color: #26aa99;
@@ -601,10 +595,10 @@ body {
       }
     }
   }
-  
+
   .order-products {
     overflow: hidden;
-    
+
     .product-discount-badge {
       position: absolute;
       bottom: 0;
@@ -614,39 +608,39 @@ body {
       font-size: 0.75rem;
       padding: 0 4px;
     }
-    
+
     .order-product-item {
       &:last-child {
         border-bottom: none;
       }
     }
-    
+
     .order-summary {
       background-color: #f8f9fa;
-      
+
       .total-amount {
         margin-top: 10px;
         padding-top: 10px;
         border-top: 1px solid #dee2e6;
         font-size: 1.1rem;
-        
+
         .text-danger {
           color: #ee4d2d !important;
         }
       }
     }
   }
-  
+
   .btn-primary {
     background-color: #ee4d2d;
     border-color: #ee4d2d;
-    
+
     &:hover {
       background-color: darken(#ee4d2d, 10%);
       border-color: darken(#ee4d2d, 10%);
     }
   }
-  
+
   .order-detail-card {
     max-width: 700px;
     margin: 0 auto;

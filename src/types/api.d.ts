@@ -98,6 +98,7 @@ export interface Order {
   txnRef?: string | undefined;
   user?: User | undefined;
   address?: Address | undefined;
+  cart?: CartItem[] | undefined;
 }
 
 export interface Category {
