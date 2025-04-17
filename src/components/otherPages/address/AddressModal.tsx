@@ -1,4 +1,6 @@
 import { useCreateAddress } from "@/hooks/react-query/addresses/useCreateAddress";
+import { useUpdateAddress } from "@/hooks/react-query/addresses/useUpdateAddress";
+import { Address } from "@/types/address";
 import { isValidPhoneNumber } from "@/utils/isValidPhoneNumber";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -29,13 +31,30 @@ const defaultValues: Form = {
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  isAdd?: boolean;
+  address?: Address;
 }
 
 const AddressModal = (props: Props) => {
-  const { isOpen, onClose } = props;
+  const { isOpen, onClose, isAdd = true, address } = props;
 
-  const { register, handleSubmit, reset } = useForm<Form>({ defaultValues });
-  const { mutate: createAddress, isSuccess } = useCreateAddress();
+  const { register, handleSubmit, reset } = useForm<Form>({
+    defaultValues: address && !isAdd
+      ? {
+        firstName: address.firstName,
+        lastName: address.lastName,
+        city: address.city,
+        district: address.district,
+        streetAddress: address.streetAddress,
+        note: address.note,
+        phoneNumber: address.phoneNumber,
+        isDefault: address.isDefault,
+      }
+      : defaultValues,
+  });
+
+  const { mutate: createAddress, isSuccess: isCreateSuccess } = useCreateAddress();
+  const { mutate: updateAddress, isSuccess: isUpdateSuccess } = useUpdateAddress();
 
   const ref = React.useRef<HTMLDivElement | null>(null);
 
@@ -54,7 +73,11 @@ const AddressModal = (props: Props) => {
 
     if (!isValid) return;
 
-    createAddress(data);
+    if (isAdd) {
+      createAddress(data);
+    } else if (address) {
+      updateAddress({ id: address.id, ...data });
+    }
   };
 
   React.useEffect(() => {
@@ -76,18 +99,36 @@ const AddressModal = (props: Props) => {
   }, [isOpen, onClose]);
 
   React.useEffect(() => {
-    if (isSuccess) {
+    if (isCreateSuccess || isUpdateSuccess) {
       reset();
       onClose();
     }
-  }, [isSuccess]);
+  }, [isCreateSuccess, isUpdateSuccess]);
+
+  React.useEffect(() => {
+    // Reset form when address changes or modal opens
+    if (address && !isAdd) {
+      reset({
+        firstName: address.firstName,
+        lastName: address.lastName,
+        city: address.city,
+        district: address.district,
+        streetAddress: address.streetAddress,
+        note: address.note,
+        phoneNumber: address.phoneNumber,
+        isDefault: address.isDefault,
+      });
+    } else {
+      reset(defaultValues);
+    }
+  }, [address, isOpen, isAdd]);
 
   return (
     <div className="address-modal-component">
       <div className={`modal ${isOpen ? "is-active" : ""}`}>
         <div className="modal__container slide-up" ref={ref}>
           <div className="modal__header">
-            <h3>Thêm địa chỉ mới</h3>
+            <h3>{isAdd ? "Thêm địa chỉ mới" : "Cập nhật địa chỉ"}</h3>
             <button className="modal__close" onClick={onClose}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -196,7 +237,7 @@ const AddressModal = (props: Props) => {
                   className="btn btn--primary btn--md"
                   form="address-modal"
                 >
-                  Lưu địa chỉ
+                  {isAdd ? "Lưu địa chỉ" : "Cập nhật"}
                 </button>
               </div>
             </form>

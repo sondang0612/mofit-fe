@@ -12,7 +12,7 @@ const NewArrivals = () => {
 
   return (
     <div className="products-carousel mx-4">
-      <h2 className="section-title mb-4 pb-xl-2 mb-xl-2 text-center text-text-uppercase">
+      <h2 className="tw-font-anton section-title tw-text-black mb-4 pb-xl-2 mb-xl-2 text-center text-text-uppercase">
         Mới ra mắt
       </h2>
 
@@ -25,7 +25,7 @@ const NewArrivals = () => {
           >
             <div className="absolute insets-0 z-100 bg-overlay-20">
               <h5
-                className="absolute top-4 text-10 text-white text-right uppercase font-bold"
+                className="absolute tw-font-anton top-4 text-10 text-white text-right uppercase font-bold"
                 style={{ right: "20%" }}
               >
                 {elm?.name?.split(" ").map((word, index, array) => (

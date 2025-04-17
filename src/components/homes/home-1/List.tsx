@@ -7,6 +7,7 @@ interface Props {
   n?: number;
   renderItem: ({ data }: { data: any }) => React.ReactNode;
   skeleton?: React.ElementType;
+  className?: string;
 }
 
 const List: React.FC<Props> = (props: Props) => {
@@ -16,9 +17,10 @@ const List: React.FC<Props> = (props: Props) => {
     skeleton: Skeleton,
     isFetching,
     renderItem,
+    className = ''
   } = props;
   return (
-    <>
+    <div className={className}>
       {isFetching ? (
         Skeleton &&
         Array.from({ length: n }).map((_, index) => (
@@ -33,7 +35,7 @@ const List: React.FC<Props> = (props: Props) => {
       ) : (
         <p className="text-center text-gray-500">Chưa có dữ liệu.</p>
       )}
-    </>
+    </div>
   );
 };
 

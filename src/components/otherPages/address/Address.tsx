@@ -6,28 +6,35 @@ import { FaLocationDot } from "react-icons/fa6";
 import { AiOutlineDelete } from "react-icons/ai";
 import { getFullAddress } from "@/utils/getAddress";
 import { MdOutlineAddLocation } from "react-icons/md";
+import EditIcon from "@/components/icons/EditIcon";
 
 interface Props {
   data?: IAddress;
   onRemove?: (id?: number) => void;
   onSetDefault?: (id?: number) => void;
   canEdit?: boolean;
+  onUpdate?: () => void;
 }
 
 const Address = (props: Props) => {
-  const { data, canEdit = true, onRemove, onSetDefault } = props;
+  const { data, canEdit = true, onRemove, onSetDefault, onUpdate } = props;
   return (
-    <div className="my-account__address-item relative mb-2">
+    <div className="my-account__address-item relative">
       <div className="my-account__address-item__title">
         <div className="my-account__address-item__title-wrapper">
-          <h5>Địa chỉ nhận hàng</h5>
+          <div className="tw-text-textBlack tw-font-bold">Địa chỉ nhận hàng</div>
           {data?.isDefault && <p>Mặc Định</p>}
         </div>
-        <div className="d-flex gap-1">
+        <div className="d-flex gap-2">
+          {canEdit && onUpdate && (
+            <div className="hover:tw-cursor-pointer" onClick={onUpdate} data-toggle="tooltip" data-placement="top" title="Chỉnh sửa">
+              <EditIcon />
+            </div>
+          )}
           {canEdit && onRemove && (
             <div data-toggle="tooltip" data-placement="top" title="Xoá">
               <AiOutlineDelete
-                size={20}
+                size={24}
                 color="red"
                 className="cursor-pointer"
                 onClick={() => onRemove(data?.id)}
@@ -50,17 +57,14 @@ const Address = (props: Props) => {
           )}
         </div>
       </div>
-      <div className="my-account__address-item__detail">
+      <div className="tw-text-text">
         <div>
-          <FaUser size={18} color="#333333" />
           {getFullName(data?.firstName, data?.lastName)}
         </div>
         <div>
-          <FaPhoneAlt size={18} color="#333333" />
           {data?.streetAddress}
         </div>
         <div>
-          <FaLocationDot size={18} color="#333333" />
           {getFullAddress(data)}
         </div>
       </div>

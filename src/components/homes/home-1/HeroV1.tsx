@@ -40,7 +40,7 @@ const HeroV1 = () => {
           ease: "linear",
           repeat: Infinity,
         }}
-        className="moving-text"
+        className="moving-text tw-font-anton"
         ref={textRef}
       >
         THỂ THAO TỰ DO NIỀM VUI CỘNG ĐỒNG

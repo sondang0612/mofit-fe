@@ -8,6 +8,9 @@ module.exports = {
         text: "#787878",
         textBlack: "#333333",
       },
+      fontFamily: {
+        anton: ["Anton"],
+      },
     },
   },
   plugins: [],

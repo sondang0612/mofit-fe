@@ -18,7 +18,7 @@ const TryNow = () => {
         sizes="100vw"
         className="w-full h-full"
       />
-      <h4 className="try-now__text">
+      <h4 className="try-now__text tw-font-anton">
         Bạn đã <br /> thử chưa
       </h4>
       <button

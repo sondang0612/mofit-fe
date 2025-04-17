@@ -77,8 +77,25 @@ export default function FilterAll() {
   return (
     <>
       <div className="accordion" id="categories-list">
+        <div>
+          <h5 className="tw-text-textBlack tw-font-bold text-uppercase tw-text-sm">Bộ lọc được áp dụng</h5>
+          <div className="filter-active-tags pt-2">
+            {filterFacts.map((filter, index) => (
+              <button
+                key={index}
+                onClick={() =>
+                  removeParams([{ key: filter?.key, value: `${filter?.id}` }])
+                }
+                className="filter-tag d-inline-flex align-items-center mb-3 me-3 text-uppercase js-filter"
+              >
+                <i className="btn-close-xs d-inline-block" />
+                <span className="ms-2">{filter.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
         <div className="accordion-item mb-4">
-          <h5 className="accordion-header" id="accordion-heading-11">
+          <h5 className="accordion-header tw-text-sm" id="accordion-heading-11" >
             <button
               className="accordion-button p-0 border-0 fs-5 text-uppercase"
               type="button"
@@ -182,11 +199,10 @@ export default function FilterAll() {
                           shouldReset: true,
                         });
                       }}
-                      className={`search-suggestion__item multi-select__item text-primary js-search-select js-multi-select ${
-                        activeBrands?.includes(`${elm?.id}`)
-                          ? "mult-select__item_selected"
-                          : ""
-                      }`}
+                      className={`search-suggestion__item multi-select__item text-primary js-search-select js-multi-select ${activeBrands?.includes(`${elm?.id}`)
+                        ? "mult-select__item_selected"
+                        : ""
+                        }`}
                     >
                       <span className="me-auto">{elm.name}</span>
                     </li>
@@ -256,20 +272,7 @@ export default function FilterAll() {
         {/* /.accordion-item */}
       </div>
       {/* /.accordion */}
-      <div className="filter-active-tags pt-2">
-        {filterFacts.map((filter, index) => (
-          <button
-            key={index}
-            onClick={() =>
-              removeParams([{ key: filter?.key, value: `${filter?.id}` }])
-            }
-            className="filter-tag d-inline-flex align-items-center mb-3 me-3 text-uppercase js-filter"
-          >
-            <i className="btn-close-xs d-inline-block" />
-            <span className="ms-2">{filter.label}</span>
-          </button>
-        ))}
-      </div>
+
     </>
   );
 }

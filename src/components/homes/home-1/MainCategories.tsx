@@ -50,7 +50,7 @@ const MainCategories = () => {
 
   return (
     <div className="products-carousel mx-4">
-      <h2 className="section-title text-uppercase mb-4 pb-xl-2 mb-xl-2">
+      <h2 className="tw-font-anton section-title tw-text-black text-uppercase mb-4 pb-xl-2 mb-xl-2">
         Dòng sản phẩm chính
       </h2>
 
@@ -76,7 +76,7 @@ const MainCategories = () => {
               </div>
 
               <div className="pc__info position-relative">
-                <h6 className="pc__title font-medium">
+                <h6 className="pc__title font-medium tw-font-anton">
                   <Link href={`${pathNames.STORE}?activeCategory=${elm.id}`}>
                     {elm?.name}
                   </Link>
