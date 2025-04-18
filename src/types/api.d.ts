@@ -1,9 +1,11 @@
+import { EGender } from "@/utils/constants/gender.enum";
 import {
   EOrderStatus,
   EPaymentMethod,
   EShippingMethod,
 } from "@/utils/constants/order.enum";
 import { ERole } from "@/utils/constants/role.enum";
+import { EUserDeleteRequestStatus } from "@/utils/constants/user-delete-request-status.enum";
 
 export interface ApiResponse<T> {
   data: T;
@@ -57,6 +59,9 @@ export interface User {
   phoneNumber?: string | undefined;
   username?: string | undefined;
   role?: ERole | undefined;
+  birthday?: string | undefined;
+  gender?: EGender | undefined;
+  deletionStatus?: EUserDeleteRequestStatus | undefined;
 }
 
 export interface CartItem {

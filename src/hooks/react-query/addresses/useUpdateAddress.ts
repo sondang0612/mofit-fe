@@ -10,7 +10,7 @@ interface UpdateAddressParams extends Omit<Address, "id"> {
 }
 
 const fetchData = asyncAuth(async (form: UpdateAddressParams) => {
-  const response = await axiosInstance.post("addresses", form);
+  const response = await axiosInstance.patch("addresses", form);
   return response?.data;
 });
 
