@@ -2,12 +2,14 @@ import axiosInstance from "@/libs/axiosInstance";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { queryKey } from "../queryKey";
+import { EGender } from "@/utils/constants/gender.enum";
 
 export type Form = {
   firstName?: string;
   lastName?: string;
   phoneNumber?: string;
   birthday?: string;
+  gender?: EGender;
   email?: string;
   currentPassword?: string;
   newPassword?: string;
@@ -15,7 +17,7 @@ export type Form = {
 };
 
 const fetchData = async (form: Form) => {
-  const response = await axiosInstance.put("auth/update-profile", form);
+  const response = await axiosInstance.put("auth/profile", form);
   return response.data;
 };
 
