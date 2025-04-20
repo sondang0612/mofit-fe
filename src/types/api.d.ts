@@ -135,3 +135,8 @@ export interface OrderStatusLog {
   currentStatus?: EOrderStatus | undefined;
   time?: string;
 }
+
+export interface FavoriteProduct {
+  id?: number | undefined;
+  product?: Product | undefined;
+}
