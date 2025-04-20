@@ -18,16 +18,16 @@ const SoftFilter = (props: Props) => {
   const router = useRouter();
   const sortingValue = getParam("sortingValue");
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = event.target.value;
+  const handleClick = (value: string) => {
 
-    if (selectedValue) {
+    if (value) {
       const params = new URLSearchParams(searchParams.toString());
-      params.set("sortingValue", selectedValue);
+      params.set("sortingValue", value);
 
       router.push(`?${params?.toString()}`, { scroll: false });
     }
   };
+
 
   return (
     pathName === pathNames.STORE && (
@@ -35,35 +35,34 @@ const SoftFilter = (props: Props) => {
         <div className={`shop-filter-header pb-1 container`}>
           <Breadcrumb />
 
-          <div className="d-flex columns m-2 justify-content-between shop-filter-container">
-            <div className="d-flex align-items-center order-0 order-md-3">
-              <button
-                className="btn-link btn-link_f d-flex align-items-center ps-0 js-open-aside"
-                onClick={openModalShopFilter}
-              >
-                <span
-                  className="text-uppercase fw-bold d-inline-block align-middle border px-4 py-2 border-black"
-                  style={{ color: "#131313" }}
-                >
-                  <BiTransfer size={24} color="#131313" />
-                  Lọc và sắp xếp
-                </span>
-              </button>
+          <div className="tw-pt-4 tw-pb-2 tw-flex tw-items-center tw-justify-between">
+
+            <div className="tw-hidden lg:tw-flex tw-flex-wrap tw-gap-4">
+              {sortingOptions.map((option, index) => (
+                <div key={index} onClick={() => handleClick(option.value)} className={`tw-uppercase tw-cursor-pointer tw-text-[15px] hover:tw-text-black tw-border-b-2 tw-border-transparent hover:tw-border-black  ${(sortingValue || 'all') == option.value ? 'tw-text-black tw-border-black tw-font-medium' : 'tw-text-[#767676]'}`}>
+                  {option.label}
+                </div>
+              ))}
             </div>
-            <div className="btn-link btn-link_f shop-acs d-flex px-1 border-black border">
-              <select
-                className="shop-acs__select form-select w-auto border-0 py-0 order-1 order-md-0"
-                aria-label="Sort Items"
-                name="total-number"
-                value={sortingValue || "all"}
-                onChange={handleChange}
-              >
+
+            <div className="tw-flex tw-h-[42px] lg:tw-hidden tw-border tw-border-[#767676] tw-bg-white tw-text-[15px] tw-font-medium tw-px-4 tw-py-2 tw-text-xs lg:tw-text-base">
+              <select value={sortingValue || 'all'} onChange={(e) => handleClick(e.target.value)} className="tw-outline-none tw-border-none">
                 {sortingOptions.map((option, index) => (
-                  <option key={index} value={option.value}>
+                  <option key={index} value={option.value} className="tw-text-sm lg:tw-text-base tw-font-medium">
                     {option.label}
                   </option>
                 ))}
               </select>
+            </div>
+            <div
+              onClick={openModalShopFilter}
+              className="tw-flex tw-items-center tw-justify-center tw-gap-2 tw-cursor-pointer tw-border tw-border-[#767676] tw-bg-white tw-text-[15px] tw-font-medium tw-px-4 tw-py-2 tw-text-xs lg:tw-text-base"
+              style={{ color: "#131313" }}
+            >
+              <BiTransfer size={24} color="#131313" />
+              <div>
+                Lọc và sắp xếp
+              </div>
             </div>
           </div>
         </div>

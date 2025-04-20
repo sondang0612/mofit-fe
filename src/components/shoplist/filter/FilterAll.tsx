@@ -9,6 +9,7 @@ import Slider from "rc-slider";
 import React, { useState } from "react";
 import FilterCategoryItem from "./FilterCategoryItem";
 
+import { IoIosArrowRoundForward } from "react-icons/io";
 export default function FilterAll() {
   const { getAllParams, getParam } = useUrlParams();
   const activeCategory = Number(getParam("activeCategory")) || undefined;
@@ -75,10 +76,10 @@ export default function FilterAll() {
   );
 
   return (
-    <>
+    <div className="">
       <div className="accordion" id="categories-list">
         <div>
-          <h5 className="tw-text-textBlack tw-font-bold text-uppercase tw-text-sm">Bộ lọc được áp dụng</h5>
+          <h5 className="tw-text-[18px]  text-uppercase tw-text-sm">Bộ lọc được áp dụng</h5>
           <div className="filter-active-tags pt-2">
             {filterFacts.map((filter, index) => (
               <button
@@ -92,9 +93,14 @@ export default function FilterAll() {
                 <span className="ms-2">{filter.label}</span>
               </button>
             ))}
+            {filterFacts.length === 0 && (
+              <span className="text-secondary">
+                Không có bộ lọc nào được áp dụng
+              </span>
+            )}
           </div>
         </div>
-        <div className="accordion-item mb-4">
+        <div className="accordion-item mb-4 tw-mt-4">
           <h5 className="accordion-header tw-text-sm" id="accordion-heading-11" >
             <button
               className="accordion-button p-0 border-0 fs-5 text-uppercase"
@@ -272,7 +278,12 @@ export default function FilterAll() {
         {/* /.accordion-item */}
       </div>
       {/* /.accordion */}
-
-    </>
+      <div className="tw-rounded tw-border tw-absolute tw-px-4 tw-left-0 tw-right-0 tw-bottom-0 tw-bg-white tw-py-2">
+        <div className="tw-text-white tw-flex tw-items-center tw-justify-between tw-px-4 tw-bg-black tw-py-3">
+          <div className=" tw-font-bold tw-uppercase">Áp dụng</div>
+          <IoIosArrowRoundForward size={25} />
+        </div>
+      </div>
+    </div>
   );
 }

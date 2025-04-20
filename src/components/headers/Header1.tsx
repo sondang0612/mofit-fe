@@ -51,9 +51,8 @@ export default function Header1() {
   return (
     <header
       id="header"
-      className={`header header_sticky ${
-        scrollDirection == "up" ? "header_sticky-active" : "position-absolute"
-      } `}
+      className={`header header_sticky ${scrollDirection == "up" ? "header_sticky-active" : "position-absolute"
+        } `}
     >
       <div className="h-full px-24">
         <div className="header-desk header-desk_type_1">

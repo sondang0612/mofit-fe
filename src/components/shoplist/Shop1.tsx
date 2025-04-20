@@ -68,11 +68,12 @@ const Shop1 = () => {
       <section className="shop-main d-flex container">
         <div className="shop-list flex-grow-1 relative">
           <div
-            className={`products-grid row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5`}
+            className={``}
             id="products-grid"
           >
             <List
               data={products}
+              className="tw-grid tw-grid-cols-2 md:tw-grid-cols-3 xl:tw-grid-cols-5 tw-gap-4"
               isFetching={isFetching}
               renderItem={renderItem}
               skeleton={SkeletonProduct1}
