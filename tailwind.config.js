@@ -10,6 +10,7 @@ module.exports = {
       },
       fontFamily: {
         anton: ["Anton"],
+        jost: ["Jost"],
       },
     },
   },

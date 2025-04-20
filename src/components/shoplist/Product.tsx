@@ -92,13 +92,13 @@ const Product = (props: Props) => {
         </div>
 
         <div className="pc__info position-relative bg-white">
-          <p className="pc__category">
+          <p className="pc__category tw-text-[#767676] tw-font-jost">
             {data?.category?.parentCategory
               ? data?.category?.parentCategory.name
               : data?.category?.name}
           </p>
           <h6
-            className="pc__title line-clamp-2"
+            className="pc__title line-clamp-2  tw-font-jost"
             style={{
               fontSize: 14,
               fontWeight: 500,
@@ -108,16 +108,15 @@ const Product = (props: Props) => {
           >
             <Link href={`/${data?.slug}/product`}>{data?.title}</Link>
           </h6>
-          <div className="product-card__price">
+          <div className="product-card__price  tw-font-jost">
             <div
-              className={`money price ${
-                data?.discount ? "price-old" : "visibility-hidden"
-              }`}
+              className={`money price ${data?.discount ? "price-old" : "visibility-hidden"
+                }`}
             >
               {price}
             </div>
             <div
-              className="money price price-sale"
+              className="money price price-sale  tw-font-jost"
               style={{ color: "#222222" }}
             >
               {discountedPrice}
@@ -132,7 +131,7 @@ const Product = (props: Props) => {
           </button>
         </div>
         {data?.discount && (
-          <div className="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">
+          <div className="pc-labels  tw-font-jost position-absolute top-0 start-0 w-100 d-flex justify-content-between">
             <div className="pc-labels__right ms-auto">
               <span className="pc-label pc-label_sale d-block text-white">
                 -{data?.discount?.percentage}%

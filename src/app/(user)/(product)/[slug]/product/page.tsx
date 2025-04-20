@@ -15,7 +15,9 @@ export default function Product(props: Props) {
     <>
       <Header1 />
       <main className="page-wrapper" style={{ paddingBottom: 64 }}>
-        <Breadcrumb />
+        <div className="tw-pt-4">
+          <Breadcrumb />
+        </div>
         <div className="mb-md-1 pb-md-3"></div>
         <SingleProduct12 slug={params?.slug} />
       </main>

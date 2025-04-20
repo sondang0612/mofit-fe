@@ -53,6 +53,10 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
           rel="stylesheet"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Jost&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body>
         <AuthProvider>

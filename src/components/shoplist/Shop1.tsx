@@ -66,7 +66,7 @@ const Shop1 = () => {
   return (
     <div className="bg-layout pb-5">
       <section className="shop-main d-flex container">
-        <div className="shop-list flex-grow-1 relative">
+        <div className="shop-list flex-grow-1 relative tw-pt-10 lg:tw-pt-0">
           <div
             className={``}
             id="products-grid"
