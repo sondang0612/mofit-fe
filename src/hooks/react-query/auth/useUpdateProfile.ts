@@ -4,9 +4,14 @@ import { toast } from "react-toastify";
 import { queryKey } from "../queryKey";
 
 export type Form = {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
+  firstName?: string;
+  lastName?: string;
+  phoneNumber?: string;
+  birthday?: string;
+  email?: string;
+  currentPassword?: string;
+  newPassword?: string;
+  confirmNewPassword?: string;
 };
 
 const fetchData = async (form: Form) => {

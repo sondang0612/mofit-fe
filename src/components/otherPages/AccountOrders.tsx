@@ -87,9 +87,8 @@ const AccountOrders = () => {
             {orderStatusTabs.map((tab) => (
               <li className="nav-item" key={tab.key}>
                 <a
-                  className={`nav-link ${
-                    activeStatus === tab.key ? "active" : ""
-                  }`}
+                  className={`nav-link ${activeStatus === tab.key ? "active" : ""
+                    }`}
                   onClick={() => handleTabChange(tab.key)}
                 >
                   {tab.label}
@@ -169,7 +168,7 @@ const AccountOrders = () => {
                                 sum +
                                 +(
                                   +(order?.product?.price || 0) *
-                                    (order?.quantity || 1) || 0
+                                  (order?.quantity || 1) || 0
                                 ),
                               0
                             )
