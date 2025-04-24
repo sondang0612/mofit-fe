@@ -125,13 +125,13 @@ export const dashboardMenuItems = [
     value: "account_edit",
     Icon: ProfileIcon,
   },
-  {
-    id: 2,
-    href: "/#",
-    title: "Thông báo của tôi",
-    value: "account_notification",
-    Icon: BellIcon,
-  },
+  // {
+  //   id: 2,
+  //   href: "/#",
+  //   title: "Thông báo của tôi",
+  //   value: "account_notification",
+  //   Icon: BellIcon,
+  // },
   {
     id: 3,
     href: "/account_orders",
@@ -146,13 +146,13 @@ export const dashboardMenuItems = [
     value: "account_edit_address",
     Icon: AddressIcon,
   },
-  {
-    id: 5,
-    href: "/account_payment",
-    title: "Thông tin thanh toán",
-    value: "account_payment",
-    Icon: PaymentIcon,
-  },
+  // {
+  //   id: 5,
+  //   href: "/account_payment",
+  //   title: "Thông tin thanh toán",
+  //   value: "account_payment",
+  //   Icon: PaymentIcon,
+  // },
   {
     id: 4,
     href: "/account_wishlist",
@@ -160,13 +160,13 @@ export const dashboardMenuItems = [
     value: "account_wishlist",
     Icon: LikeIcon,
   },
-  {
-    id: 5,
-    href: "/account_support",
-    title: "Hỗ trợ khách hàng",
-    value: "account_support",
-    Icon: null,
-  },
+  // {
+  //   id: 5,
+  //   href: "/account_support",
+  //   title: "Hỗ trợ khách hàng",
+  //   value: "account_support",
+  //   Icon: null,
+  // },
   {
     id: 5,
     href: "/login_register",

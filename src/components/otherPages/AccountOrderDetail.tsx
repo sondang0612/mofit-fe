@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import {
   EOrderStatus,
   EOrderStatusLabel,
+  EPaymentMethod,
   EPaymentMethodLabel,
 } from "@/utils/constants/order.enum";
 import { formatPrice } from "@/utils/formatPrice";
@@ -102,7 +103,7 @@ const AccountOrderDetail = () => {
               <div className="tw-flex tw-ítems-center tw-justify-between">
                 <div className="tw-font-bold">Hình thức thanh toán</div>
                 <div className="tw-text-[#1890FF] tw-bg-[#F0F8FF] tw-px-2 tw-rounded-md tw-py-1">
-                  Thanh toán khi nhận hàng
+                  {EPaymentMethodLabel[data?.paymentMethod as EPaymentMethod]}
                 </div>
               </div>
               <div className="tw-flex tw-ítems-center tw-justify-between tw-mt-4">

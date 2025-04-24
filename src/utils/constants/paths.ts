@@ -14,4 +14,9 @@ export const pathNameLabel: any = {
   "about-us": "Về Double Fish",
   blogs: "Bài viết",
   contact: "Liên hệ",
+  account_edit: "Cập nhật tài khoản",
+  account_orders: "Quản lý đơn hàng",
+  account_edit_address: "Quản lý địa chỉ",
+  account_wishlist: "Sản phẩm yêu thích",
+  shop_checkout: "Thanh toán",
 };

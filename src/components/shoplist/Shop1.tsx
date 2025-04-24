@@ -67,10 +67,7 @@ const Shop1 = () => {
     <div className="bg-layout pb-5">
       <section className="shop-main d-flex container">
         <div className="shop-list flex-grow-1 relative tw-pt-10 lg:tw-pt-0">
-          <div
-            className={``}
-            id="products-grid"
-          >
+          <div className={``} id="products-grid">
             <List
               data={products}
               className="tw-grid tw-grid-cols-2 md:tw-grid-cols-3 xl:tw-grid-cols-5 tw-gap-4"

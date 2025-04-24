@@ -16,8 +16,8 @@ export default function ContactPage() {
     <>
       <Header1 />
       <main className="page-wrapper">
+        <div className="mb-2 pb-2"></div>
         <Breadcrumb />
-
         <div className="mb-2 pb-2"></div>
         <section className="container contact-us">
           <h2 className="page-title">Liên hệ</h2>
@@ -81,7 +81,6 @@ export default function ContactPage() {
           </div>
         </section>
       </main>
-      <div className="mb-5 pb-xl-5"></div>
       <Footer1 />
     </>
   );

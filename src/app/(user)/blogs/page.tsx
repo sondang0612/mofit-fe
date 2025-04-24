@@ -17,12 +17,12 @@ export default function BlogPage2() {
     <>
       <Header1 />
       <main className="page-wrapper">
+        <div className="mb-2 pb-2"></div>
         <Breadcrumb />
         <div className="mb-2 pb-2"></div>
 
         <Blog2 />
       </main>
-      <div className="mb-5 pb-xl-5"></div>
       <Footer1 />
     </>
   );

@@ -1,19 +1,26 @@
 "use client";
+import { useUrlParams } from "@/hooks/useUrlParams";
 import { pathNameLabel } from "@/utils/constants/paths";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 import { IoReturnUpBack } from "react-icons/io5";
 
-const Breadcrumb = () => {
+const BreadcrumbWithoutSuspense = () => {
   const pathName = usePathname();
-
+  const { getParam } = useUrlParams();
   const items = React.useMemo(() => {
     let paths = pathName.split("/");
 
     if (pathName.includes("product")) {
       paths[2] = paths[1];
       paths[1] = "store";
+    }
+
+    const redirect = getParam("redirect");
+
+    if (redirect) {
+      paths[0] = redirect;
     }
 
     return paths.map((item: any) => ({
@@ -57,5 +64,11 @@ const Breadcrumb = () => {
     </div>
   );
 };
+
+const Breadcrumb = () => (
+  <Suspense fallback={<div />}>
+    <BreadcrumbWithoutSuspense />
+  </Suspense>
+);
 
 export default React.memo(Breadcrumb);

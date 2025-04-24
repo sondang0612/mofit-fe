@@ -15,7 +15,7 @@ import Pagination from "../shoplist/Pagination";
 
 const orderStatusTabs = [
   { key: "", label: "Tất cả đơn" },
-  { key: EOrderStatus.PENDING, label: "Chờ thanh toán" },
+  { key: EOrderStatus.PENDING, label: "Chờ xử lý" },
   { key: EOrderStatus.PROCESSING, label: "Đang xử lý" },
   { key: EOrderStatus.DELIVERED, label: "Đang vận chuyển" },
   { key: EOrderStatus.SHIPPED, label: "Đã giao" },
@@ -87,8 +87,9 @@ const AccountOrders = () => {
             {orderStatusTabs.map((tab) => (
               <li className="nav-item" key={tab.key}>
                 <a
-                  className={`nav-link ${activeStatus === tab.key ? "active" : ""
-                    }`}
+                  className={`nav-link ${
+                    activeStatus === tab.key ? "active" : ""
+                  }`}
                   onClick={() => handleTabChange(tab.key)}
                 >
                   {tab.label}
@@ -168,7 +169,7 @@ const AccountOrders = () => {
                                 sum +
                                 +(
                                   +(order?.product?.price || 0) *
-                                  (order?.quantity || 1) || 0
+                                    (order?.quantity || 1) || 0
                                 ),
                               0
                             )

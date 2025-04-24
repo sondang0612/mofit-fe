@@ -21,7 +21,6 @@ export default function LoginPage() {
         </Suspense>
       </main>
 
-      <div className="mb-5 pb-xl-5"></div>
       <Footer1 />
     </>
   );
