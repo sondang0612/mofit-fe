@@ -24,8 +24,16 @@ export enum EPaymentStatus {
   FAILED = "failed",
   REFUNDING = "refunding",
   REFUNDED = "refunded",
-  COD = "cod",
 }
+
+export const EPaymentStatusLabel = {
+  [EPaymentStatus.PENDING]: "Chờ thanh toán",
+  [EPaymentStatus.PROCESSING]: "Đang xử lý",
+  [EPaymentStatus.COMPLETED]: "Hoàn thành",
+  [EPaymentStatus.REFUNDED]: "Đã hoàn tiền",
+  [EPaymentStatus.REFUNDING]: "Chờ hoàn tiền",
+  [EPaymentStatus.FAILED]: "Thất bại",
+};
 
 export const EOrderStatusLabel = {
   [EOrderStatus.DRAFT]: "Đơn nháp",

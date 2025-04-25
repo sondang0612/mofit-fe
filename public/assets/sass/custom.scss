@@ -76,8 +76,11 @@ a {
   }
 }
 .page-wrapper {
+  min-height: 80vh;
   background-color: #f3f3f3;
   padding-top: 90px;
+  padding-bottom: 90px;
+
   @media (max-width: 1000px) {
     padding-top: 60px;
   }

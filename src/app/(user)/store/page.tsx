@@ -30,7 +30,6 @@ export default function Store() {
           <Shop1 />
         </Suspense>
       </main>
-      <div className="mb-5 pb-xl-5"></div>
       <Suspense fallback={<div>Loading...</div>}>
         <ShopFilter />
       </Suspense>

@@ -1,28 +1,31 @@
+import Breadcrumb from "@/components/Breadcrumb";
 import Footer1 from "@/components/footers/Footer1";
 
 import Header1 from "@/components/headers/Header1";
+import AccountOrders from "@/components/otherPages/AccountOrders";
 import DashboardSidebar from "@/components/otherPages/DashboardSidebar";
-import EditAddress from "@/components/otherPages/EditAddress";
+import React from "react";
 
 export const metadata = {
   title:
-    "Dashboard Edit Address || Double Fish eCommerce React Nextjs Template",
+    "Dashboard Account Orders || Double Fish eCommerce React Nextjs Template",
   description: "Double Fish eCommerce React Nextjs Template",
 };
-export default function AccountEditAddressPage() {
+export default function AccountOrderPage() {
   return (
     <>
       <Header1 />
       <main className="page-wrapper">
-        <div className="mb-4 pb-4"></div>
+        <div className="mb-2 pb-2"></div>
+        <Breadcrumb />
+        <div className="mb-2 pb-2"></div>
         <section className="my-account container">
           <div className="row">
             <DashboardSidebar />
-            <EditAddress />
+            <AccountOrders />
           </div>
         </section>
       </main>
-
       <Footer1 />
     </>
   );

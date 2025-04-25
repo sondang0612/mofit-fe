@@ -1,212 +1,122 @@
 "use client";
+import {
+  footerLinks1,
+  footerLinks2,
+  footerLinks3,
+  socialLinks,
+} from "@/data/footer";
 import Link from "next/link";
 
 export default function Footer1() {
   return (
-    <footer className="bg-dark text-white py-5">
-      <div
-        className="container"
-        style={{
-          fontFamily: "Inter",
-          fontSize: "11px",
-        }}
-      >
-        <div className="row">
-          {/* About Column */}
-          <div className="col-6 col-lg-2">
-            <div className="fw-bold fs-6 mb-3">About</div>
-            <ul className="list-unstyled">
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  About Us
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Reviews
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Ambassadors
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Stories
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Gallery
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Press
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Community
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Support Column */}
-          <div className="col-6 col-lg-2">
-            <div className="fw-bold fs-6 mb-3">Support</div>
-            <ul className="list-unstyled">
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Customer Support
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Commercial Enquiries
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  FAQs
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Shipping
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Returns & Warranty Claims
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Standard Warranty
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Wall Placement
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Installation
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Help Center
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  B2B Login
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Corporate Column */}
-          <div className="col-6 col-lg-1">
-            <div className="fw-bold fs-6 mb-3">Corporate</div>
-            <ul className="list-unstyled">
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Terms & Conditions
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Cookies Policy
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Social Column */}
-          <div className="col-6 col-lg-2">
-            <div className="fw-bold fs-6 mb-3">Social</div>
-            <ul className="list-unstyled">
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Instagram
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Facebook
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  YouTube
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Pinterest
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  TikTok
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="#" className="text-decoration-none text-white">
-                  Vimeo
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Newsletter Column - Now Larger */}
-          <div className="col-12 col-md-5">
-            <div className="fs-5 fw-bold mb-3">Join our community today.</div>
-            <p className="mb-3">
-              10% off first order. Be the first to hear the latest products
-              news, vip offers and sales!
+    <footer className="footer footer_type_1 dark">
+      <div className="footer-middle px-24">
+        <div className="row row-cols-lg-5 row-cols-2">
+          <div className="footer-column footer-store-info col-12 mb-4 mb-lg-0">
+            <p className="footer-address">
+              Số 160, đường Trần Não, khu phố 2,Phường An Khánh,Thành phố Thủ
+              Đức, Hồ Chí Minh,Việt Nam
             </p>
 
-            <div className="mb-3">
-              <div className="d-flex">
-                <input
-                  type="email"
-                  placeholder="YOUR EMAIL"
-                  className="form-control form-control-sm bg-transparent border-white text-white rounded-8 me-2"
-                  style={{
-                    flex: "1",
-                    height: "45px",
-                    padding: "0.25rem 1rem",
-                  }}
-                />
-                <button
-                  className="btn btn-sm btn-light fw-medium rounded-8"
-                  style={{ height: "45px", padding: "0 0.75rem" }}
-                >
-                  SUBSCRIBE
-                </button>
-              </div>
-            </div>
-
-            <p className="small">
-              By submitting this form and signing up for texts, you consent to{" "}
-              <Link href="#" className="text-white text-decoration-underline">
-                Terms & Conditions
-              </Link>
+            <p className="m-0">
+              <strong className="fw-medium">info@evovietnam.com.vn</strong>
             </p>
+            <p>
+              <strong className="fw-medium">+84 315 636 871</strong>
+            </p>
+
+            <ul className="social-links list-unstyled d-flex flex-wrap mb-0">
+              {socialLinks.map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    className="footer__social-link d-block"
+                  >
+                    <svg
+                      className={link.className}
+                      width={link.width}
+                      height={link.height}
+                      viewBox={link.viewBox}
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      {typeof link.icon === "string" ? (
+                        <use href={link.icon} />
+                      ) : (
+                        link.icon
+                      )}
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
+          {/* <!-- /.footer-column --> */}
+
+          <div className="footer-column footer-menu mb-4 mb-lg-0">
+            <h5 className="sub-menu__title text-uppercase">Công ty</h5>
+            <ul className="sub-menu__list list-unstyled">
+              {footerLinks1.map((elm, i) => (
+                <li key={i} className="sub-menu__item">
+                  <Link href={elm.href} className="menu-link menu-link_us-s">
+                    {elm.text}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* <!-- /.footer-column --> */}
+          <div className="footer-column footer-menu mb-4 mb-lg-0">
+            <h5 className="sub-menu__title text-uppercase">Cửa hàng</h5>
+            <ul className="sub-menu__list list-unstyled">
+              {footerLinks2.map((elm, i) => (
+                <li key={i} className="sub-menu__item">
+                  <Link href={elm.href} className="menu-link menu-link_us-s">
+                    {elm.text}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* <!-- /.footer-column --> */}
+          <div className="footer-column footer-menu mb-4 mb-lg-0">
+            <h5 className="sub-menu__title text-uppercase">Hỗ trợ</h5>
+            <ul className="sub-menu__list list-unstyled">
+              {footerLinks3.map((elm, i) => (
+                <li key={i} className="sub-menu__item">
+                  <Link href={elm.href} className="menu-link menu-link_us-s">
+                    {elm.text}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* <!-- /.footer-column --> */}
+          <div className="footer-column footer-newsletter col-12 mb-4 mb-lg-0">
+            <h5 className="sub-menu__title text-uppercase">
+              Tham gia ngay trong hôm nay
+            </h5>
+            <p>Giảm giá lên đến 10% cho đơn hàng đầu tiên.</p>
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              className="footer-newsletter__form position-relative bg-body"
+            >
+              <input
+                className="form-control border-white"
+                type="email"
+                name="email"
+                placeholder="Email"
+              />
+              <input
+                className="btn-link fw-medium bg-white position-absolute top-0 end-0 h-100"
+                type="submit"
+                defaultValue="Tham gia"
+              />
+            </form>
+          </div>
+          {/* <!-- /.footer-column --> */}
         </div>
+        {/* <!-- /.row-cols-5 --> */}
       </div>
     </footer>
   );

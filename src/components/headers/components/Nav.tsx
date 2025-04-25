@@ -76,7 +76,6 @@ export default function Nav() {
           className={`navigation__link
            ${isActiveParentMenu(shopList) ? "menu-active" : ""}
            ${isActiveParentMenu(shopDetails) ? "menu-active" : ""}
-           ${isActiveParentMenu(additionalShopPageitems) ? "menu-active" : ""}
            ${pathname?.includes("product") ? "menu-active" : ""}
           `}
         >
@@ -85,7 +84,7 @@ export default function Nav() {
         <div className="mega-menu">
           <div className="container d-flex">
             {categories?.map((elm, i) => (
-              <div className="col pe-4">
+              <div className="col pe-4" key={i}>
                 <Link
                   href={`${pathNames.STORE}?activeCategory=${elm?.id}`}
                   className="sub-menu__title"
@@ -138,7 +137,7 @@ export default function Nav() {
           Về Double Fish
         </Link>
       </li>
-      <li className="navigation__item">
+      {/* <li className="navigation__item">
         <Link
           href={pathNames.BLOGS}
           className={`navigation__link ${
@@ -147,7 +146,7 @@ export default function Nav() {
         >
           Tin tức
         </Link>
-      </li>
+      </li> */}
       <li className="navigation__item">
         <Link
           href="/contact"

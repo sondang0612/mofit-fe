@@ -18,7 +18,6 @@ export default function CustomerLogin() {
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(username, password);
 
     if (!isValidForm) {
       toast.error("Vui lòng nhập đầy đủ thông tin");

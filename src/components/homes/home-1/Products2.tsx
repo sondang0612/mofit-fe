@@ -1,6 +1,4 @@
 "use client";
-import Star from "@/components/common/Star";
-import { useContextElement } from "@/context/Context";
 import Link from "next/link";
 
 import { attributesData } from "@/data/products/productCategories";
@@ -13,15 +11,14 @@ import {
 import { Product } from "@/types/api";
 import { apiEndpoints } from "@/utils/constants/apiEndpoints";
 import { EDefaultValue } from "@/utils/constants/default-value.enum";
+import { pathNames } from "@/utils/constants/paths";
+import { getFinalPrice } from "@/utils/getFinalPrice";
 import Image from "next/image";
 import React, { Fragment, useState } from "react";
-import { getFinalPrice } from "@/utils/getFinalPrice";
 import List from "./List";
 import SkeletonProduct1 from "./SkeletonProduct1";
-import { pathNames } from "@/utils/constants/paths";
 
 export default function Products2() {
-  const { toggleWishlist, isAddedtoWishlist } = useContextElement();
   const [selectedAttributeValue, setSelectedAttributeValue] = useState(
     attributesData[0].value
   );
@@ -108,11 +105,8 @@ export default function Products2() {
               )}
             </div>
             <button
-              className={`pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist ${
-                isAddedtoWishlist(data.id) ? "active" : ""
-              }`}
+              className={`pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist`}
               title="Add To Wishlist"
-              onClick={() => toggleWishlist(data.id)}
             >
               <svg
                 width="16"

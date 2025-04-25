@@ -15,12 +15,12 @@ import Pagination from "../shoplist/Pagination";
 
 const orderStatusTabs = [
   { key: "", label: "Tất cả đơn" },
-  { key: EOrderStatus.PENDING, label: "Chờ thanh toán" },
+  { key: EOrderStatus.PENDING, label: "Chờ xử lý" },
   { key: EOrderStatus.PROCESSING, label: "Đang xử lý" },
   { key: EOrderStatus.DELIVERED, label: "Đang vận chuyển" },
   { key: EOrderStatus.SHIPPED, label: "Đã giao" },
   { key: EOrderStatus.CANCELED, label: "Đã huỷ" },
-  { key: EOrderStatus.DRAFT, label: "Đơn nháp" },
+  //{ key: EOrderStatus.DRAFT, label: "Đơn nháp" },
 ];
 
 const AccountOrders = () => {
@@ -87,8 +87,9 @@ const AccountOrders = () => {
             {orderStatusTabs.map((tab) => (
               <li className="nav-item" key={tab.key}>
                 <a
-                  className={`nav-link ${activeStatus === tab.key ? "active" : ""
-                    }`}
+                  className={`nav-link ${
+                    activeStatus === tab.key ? "active" : ""
+                  }`}
                   onClick={() => handleTabChange(tab.key)}
                 >
                   {tab.label}
@@ -124,8 +125,13 @@ const AccountOrders = () => {
           <div className="orders-list">
             <div className="order-items">
               {orders.map((order) => (
-                <div key={order.id} className="order-item ">
-                  <div className="order-item-status fw-medium mb-4">
+                <div key={order.id} className="order-item">
+                  <div
+                    className={`order-item-status fw-medium mb-4 ${
+                      order.status === EOrderStatus.CANCELED &&
+                      "!tw-text-red-500"
+                    }`}
+                  >
                     {EOrderStatusLabel?.[
                       order.status as keyof typeof EOrderStatusLabel
                     ] ?? order.status}
@@ -168,17 +174,17 @@ const AccountOrders = () => {
                                 sum +
                                 +(
                                   +(order?.product?.price || 0) *
-                                  (order?.quantity || 1) || 0
+                                    (order?.quantity || 1) || 0
                                 ),
                               0
                             )
                           )}
                         </span>
                       </div>
-                      <div className="order-actions">
-                        <button className="btn btn-sm btn-outline-primary me-2 tw-rounded">
+                      <div className="order-actions tw-flex tw-items-center tw-justify-end">
+                        {/* <button className="btn btn-sm btn-outline-primary me-2 tw-rounded">
                           Mua lại
-                        </button>
+                        </button> */}
                         <button
                           className="btn btn-sm btn-primary tw-rounded"
                           onClick={() =>

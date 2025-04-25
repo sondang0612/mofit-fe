@@ -43,14 +43,18 @@ const defaultValues = {
 
 export default function EditAccount() {
   const { data: profile } = useProfile();
-  const { mutate: requestDeleteAccount } = useCreateDeleteAccount()
+  const { mutate: requestDeleteAccount } = useCreateDeleteAccount();
   const [modal, setModal] = useState({
     editPhoneNumber: false,
     editEmail: false,
     editPassword: false,
-  })
-  console.log("🚀 ~ EditAccount ~ profile:", profile)
-  const { register, reset, handleSubmit, formState: { errors } } = useForm<Form>({
+  });
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Form>({
     defaultValues,
   });
   const { mutate: updateProfile } = useUpdateProfile();
@@ -83,9 +87,9 @@ export default function EditAccount() {
         const birthdayDate = new Date(profile.birthday);
         const formattedProfile = {
           ...profile,
-          birthDay: birthdayDate.getDate().toString().padStart(2, '0'),
-          birthMonth: (birthdayDate.getMonth() + 1).toString().padStart(2, '0'),
-          birthYear: birthdayDate.getFullYear().toString()
+          birthDay: birthdayDate.getDate().toString().padStart(2, "0"),
+          birthMonth: (birthdayDate.getMonth() + 1).toString().padStart(2, "0"),
+          birthYear: birthdayDate.getFullYear().toString(),
         };
         reset(formattedProfile);
       } else {
@@ -98,12 +102,16 @@ export default function EditAccount() {
 
   const onSubmit = (data: Form) => {
     // Reconstruct birthday from separate fields
-    const birthday = data.birthYear && data.birthMonth && data.birthDay
-      ? `${data.birthYear}-${data.birthMonth}-${data.birthDay}`
-      : null;
+    const birthday =
+      data.birthYear && data.birthMonth && data.birthDay
+        ? `${data.birthYear}-${data.birthMonth}-${data.birthDay}`
+        : null;
 
     // Validate password if provided
-    if ((data.currentPassword || data.newPassword || data.confirmNewPassword) && !checkValidPassword(data)) {
+    if (
+      (data.currentPassword || data.newPassword || data.confirmNewPassword) &&
+      !checkValidPassword(data)
+    ) {
       return;
     }
 
@@ -112,32 +120,37 @@ export default function EditAccount() {
     updateProfile({
       ...payload,
       birthday: birthday || "",
-    })
+    } as any);
   };
 
   const handleRequestDeleteAccount = () => {
     Swal.fire({
-      title: 'Bạn có chắc chắn muốn xoá tài khoản này?',
+      title: "Bạn có chắc chắn muốn xoá tài khoản này?",
       text: "Tất cả dữ liệu sẽ bị xoá vĩnh viễn!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Có, tôi muốn xoá!',
-      cancelButtonText: 'Huỷ bỏ',
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Có, tôi muốn xoá!",
+      cancelButtonText: "Huỷ bỏ",
     }).then((result) => {
       if (result.isConfirmed) {
-        requestDeleteAccount(profile as any)
+        requestDeleteAccount(profile as any);
       }
-    })
-  }
+    });
+  };
 
   return (
     <div className="col-lg-9 ">
       <div className="page-content">
-        <form onSubmit={handleSubmit(onSubmit)} className="tw-flex tw-flex-col lg:tw-flex-row tw-gap-y-8">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="tw-flex tw-flex-col lg:tw-flex-row tw-gap-y-8"
+        >
           <div className="tw-w-full lg:tw-w-[60%] lg:tw-pr-4">
-            <p className="tw-text-lg tw-text-[#64646D] tw-font-normal">Thông tin cá nhân</p>
+            <p className="tw-text-lg tw-text-[#64646D] tw-font-normal">
+              Thông tin cá nhân
+            </p>
             <div className="tw-flex tw-gap-4">
               <div className="tw-flex">
                 <Avatar fontSize={35} size={112} data={profile} />
@@ -146,15 +159,21 @@ export default function EditAccount() {
                 <div className="tw-flex tw-items-center tw-gap-4">
                   <div className="tw-w-[50px]">Họ</div>
                   <input
-                    className={`tw-rounded tw-px-2 tw-w-full tw-py-1 !tw-border !tw-border-${errors.lastName ? "red-500" : "[#C4C4CF]"} tw-shadow-none tw-outline-none`}
+                    className={`tw-rounded tw-px-2 tw-w-full tw-py-1 !tw-border !tw-border-${
+                      errors.lastName ? "red-500" : "[#C4C4CF]"
+                    } tw-shadow-none tw-outline-none`}
                     {...register("lastName", { required: "Vui lòng nhập họ" })}
                   />
                 </div>
                 <div className="tw-flex tw-items-center tw-gap-4">
                   <div className="tw-w-[50px]">Tên</div>
                   <input
-                    className={`tw-rounded tw-px-2 tw-w-full tw-py-1 !tw-border !tw-border-${errors.firstName ? "red-500" : "[#C4C4CF]"} tw-shadow-none tw-outline-none`}
-                    {...register("firstName", { required: "Vui lòng nhập tên" })}
+                    className={`tw-rounded tw-px-2 tw-w-full tw-py-1 !tw-border !tw-border-${
+                      errors.firstName ? "red-500" : "[#C4C4CF]"
+                    } tw-shadow-none tw-outline-none`}
+                    {...register("firstName", {
+                      required: "Vui lòng nhập tên",
+                    })}
                   />
                 </div>
               </div>
@@ -226,7 +245,9 @@ export default function EditAccount() {
             </div>
           </div>
           <div className="tw-flex-1 lg:tw-pl-4 lg:tw-border-l lg:tw-border-[#EBEBF0]">
-            <p className="tw-text-lg tw-text-[#64646D] tw-font-normal">Số điện thoại và Email</p>
+            <p className="tw-text-lg tw-text-[#64646D] tw-font-normal">
+              Số điện thoại và Email
+            </p>
             <div className="tw-flex tw-items-center tw-justify-between tw-pb-4 tw-border-b tw-border-[#F8F8F8]">
               <div className="tw-flex tw-items-center tw-gap-1">
                 <PhoneIcon />
@@ -236,7 +257,13 @@ export default function EditAccount() {
                 </div>
               </div>
               <div>
-                <button onClick={() => setModal({ ...modal, editPhoneNumber: true })} type="button" className="tw-w-[86px] tw-text-primary tw-border tw-border-primary tw-rounded tw-bg-transparent">Cập nhật</button>
+                <button
+                  onClick={() => setModal({ ...modal, editPhoneNumber: true })}
+                  type="button"
+                  className="tw-w-[86px] tw-text-primary tw-border tw-border-primary tw-rounded tw-bg-transparent"
+                >
+                  Cập nhật
+                </button>
               </div>
             </div>
             <div className="tw-flex tw-items-center tw-justify-between tw-py-4 tw-border-b tw-border-[#F8F8F8]">
@@ -248,39 +275,73 @@ export default function EditAccount() {
                 </div>
               </div>
               <div>
-                <button onClick={() => setModal({ ...modal, editEmail: true })} type="button" className="tw-w-[86px] tw-text-primary tw-border tw-border-primary tw-rounded tw-bg-transparent">Cập nhật</button>
+                <button
+                  onClick={() => setModal({ ...modal, editEmail: true })}
+                  type="button"
+                  className="tw-w-[86px] tw-text-primary tw-border tw-border-primary tw-rounded tw-bg-transparent"
+                >
+                  Cập nhật
+                </button>
               </div>
             </div>
 
-            <p className="tw-text-lg tw-text-[#64646D] tw-font-normal tw-mt-4">Bảo mật</p>
+            <p className="tw-text-lg tw-text-[#64646D] tw-font-normal tw-mt-4">
+              Bảo mật
+            </p>
             <div className="tw-flex tw-items-center tw-justify-between tw-pb-4 tw-border-b tw-border-[#F8F8F8]">
               <div className="tw-flex tw-items-center tw-gap-1">
                 <LockIcon />
-                <div>
-                  Đổi mật khẩu
-                </div>
+                <div>Đổi mật khẩu</div>
               </div>
               <div>
-                <button onClick={() => setModal({ ...modal, editPassword: true })} type="button" className="tw-w-[86px] tw-text-primary tw-border tw-border-primary tw-rounded tw-bg-transparent">Cập nhật</button>
+                <button
+                  onClick={() => setModal({ ...modal, editPassword: true })}
+                  type="button"
+                  className="tw-w-[86px] tw-text-primary tw-border tw-border-primary tw-rounded tw-bg-transparent"
+                >
+                  Cập nhật
+                </button>
               </div>
             </div>
             <div className="tw-flex tw-items-center tw-justify-between tw-py-4 ">
               <div className="tw-flex tw-items-center tw-gap-1">
                 <TrashIcon />
-                <div>
-                  Yêu cầu xoá tài khoản
-                </div>
+                <div>Yêu cầu xoá tài khoản</div>
               </div>
               <div>
-                {profile?.deletionStatus !== EUserDeleteRequestStatus.PENDING && profile?.deletionStatus !== EUserDeleteRequestStatus.APPROVED ? <button onClick={handleRequestDeleteAccount} type="button" className="tw-w-[79px] tw-text-primary tw-border tw-border-primary tw-rounded tw-bg-transparent">Yêu cầu</button> : <div className="tw-text-primary">Đang chờ duyệt</div>}
+                {profile?.deletionStatus !== EUserDeleteRequestStatus.PENDING &&
+                profile?.deletionStatus !==
+                  EUserDeleteRequestStatus.APPROVED ? (
+                  <button
+                    onClick={handleRequestDeleteAccount}
+                    type="button"
+                    className="tw-w-[79px] tw-text-primary tw-border tw-border-primary tw-rounded tw-bg-transparent"
+                  >
+                    Yêu cầu
+                  </button>
+                ) : (
+                  <div className="tw-text-primary">Đang chờ duyệt</div>
+                )}
               </div>
             </div>
           </div>
         </form>
       </div>
-      <EditPhoneNumberModal isOpen={modal.editPhoneNumber} onClose={() => setModal({ ...modal, editPhoneNumber: false })} profile={profile} />
-      <EditEmailModal isOpen={modal.editEmail} onClose={() => setModal({ ...modal, editEmail: false })} profile={profile} />
-      <EditPasswordModal isOpen={modal.editPassword} onClose={() => setModal({ ...modal, editPassword: false })} profile={profile} />
+      <EditPhoneNumberModal
+        isOpen={modal.editPhoneNumber}
+        onClose={() => setModal({ ...modal, editPhoneNumber: false })}
+        profile={profile}
+      />
+      <EditEmailModal
+        isOpen={modal.editEmail}
+        onClose={() => setModal({ ...modal, editEmail: false })}
+        profile={profile}
+      />
+      <EditPasswordModal
+        isOpen={modal.editPassword}
+        onClose={() => setModal({ ...modal, editPassword: false })}
+        profile={profile}
+      />
     </div>
   );
 }

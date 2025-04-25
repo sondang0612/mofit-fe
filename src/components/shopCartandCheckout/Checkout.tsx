@@ -142,7 +142,9 @@ export default function Checkout() {
               )}
               <span
                 className="underline cursor-pointer text-blue-500"
-                onClick={() => router.push("/account_edit_address")}
+                onClick={() =>
+                  router.push("/account_edit_address?redirect=shop_checkout")
+                }
               >
                 {addresses && addresses?.length > 0
                   ? "Đặt lại địa chỉ mặc định"

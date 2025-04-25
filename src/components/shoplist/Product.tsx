@@ -110,8 +110,9 @@ const Product = (props: Props) => {
           </h6>
           <div className="product-card__price  tw-font-jost">
             <div
-              className={`money price ${data?.discount ? "price-old" : "visibility-hidden"
-                }`}
+              className={`money price ${
+                data?.discount ? "price-old" : "visibility-hidden"
+              }`}
             >
               {price}
             </div>
@@ -123,7 +124,7 @@ const Product = (props: Props) => {
             </div>
           </div>
           <button
-            className="pc__btn-wl position-absolute  end-0 bg-transparent border-0"
+            className="pc__btn-wl position-absolute bg-transparent border-0"
             style={{ bottom: 12, right: 12 }}
             onClick={() => handleAddToCart(data?.id, 1)}
           >

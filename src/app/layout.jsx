@@ -13,9 +13,9 @@ import QuickView from "@/components/modals/QuickView";
 import SiteMap from "@/components/modals/SiteMap";
 import SizeGuide from "@/components/modals/SizeGuide";
 import CartDrawer from "@/components/shopCartandCheckout/CartDrawer";
-import Context from "@/context/Context";
 import { AuthProvider } from "@/providers/AuthProvider";
 import QueryProvider from "@/providers/QueryProvider";
+import { usePathname } from "next/navigation";
 import "rc-slider/assets/index.css";
 import React, { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
@@ -23,7 +23,6 @@ import "react-tooltip/dist/react-tooltip.css";
 import "tippy.js/dist/tippy.css";
 import "../../public/assets/css/plugins/swiper.min.css";
 import "../../public/assets/sass/style.scss";
-import { usePathname } from "next/navigation";
 
 export default function RootLayout({ children }) {
   const pathName = usePathname();
@@ -62,35 +61,33 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <QueryProvider>
             <Svgs />
-            <Context>
-              {!isAdmin && <MobileHeader />}
-              {children}
-              {!isAdmin && <MobileFooter1 />}
-              {/* //modals and asides */}
-              <LoginFormPopup />
-              <QuickView />
-              {/* <NewsLetter /> */}
-              {/* <CookieContainer /> */}
-              <SizeGuide />
-              <Delivery />
-              {!isAdmin && <CartDrawer />}
-              <SiteMap />
-              <CustomerLogin />
-              <ProductDescription />
-              <ProductAdditionalInformation />
-              <ProductReviews />
-              <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-              />
-            </Context>
+            {!isAdmin && <MobileHeader />}
+            {children}
+            {!isAdmin && <MobileFooter1 />}
+            {/* //modals and asides */}
+            <LoginFormPopup />
+            <QuickView />
+            {/* <NewsLetter /> */}
+            {/* <CookieContainer /> */}
+            <SizeGuide />
+            <Delivery />
+            {!isAdmin && <CartDrawer />}
+            <SiteMap />
+            <CustomerLogin />
+            <ProductDescription />
+            <ProductAdditionalInformation />
+            <ProductReviews />
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
             <div className="page-overlay" id="pageOverlay"></div>
             <ScrollTop />
           </QueryProvider>

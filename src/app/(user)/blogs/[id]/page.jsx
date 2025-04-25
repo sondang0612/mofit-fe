@@ -13,11 +13,11 @@ export default function BlogDetailsPage({ params }) {
     <>
       <Header1 />
       <main className="page-wrapper">
+        <div className="mb-2 pb-2"></div>
         <Breadcrumb />
         <div className="mb-2 pb-2"></div>
         <BlogDetails blog={blog} />
       </main>
-      <div className="mb-5 pb-xl-5"></div>
       <Footer1 />
     </>
   );
