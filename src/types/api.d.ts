@@ -2,6 +2,7 @@ import { EGender } from "@/utils/constants/gender.enum";
 import {
   EOrderStatus,
   EPaymentMethod,
+  EPaymentStatus,
   EShippingMethod,
 } from "@/utils/constants/order.enum";
 import { ERole } from "@/utils/constants/role.enum";
@@ -89,6 +90,11 @@ export interface OrderItem {
   quantity?: number | undefined;
 }
 
+export interface Payment {
+  id?: number | undefined;
+  status?: EPaymentStatus | undefined;
+}
+
 export interface Order {
   id?: number | undefined;
   orderItems?: OrderItem[] | undefined;
@@ -105,6 +111,7 @@ export interface Order {
   address?: Address | undefined;
   cart?: CartItem[] | undefined;
   canCancel?: boolean | undefined;
+  payment?: Payment | undefined;
 }
 
 export interface Category {

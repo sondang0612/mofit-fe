@@ -9,6 +9,8 @@ import {
   EOrderStatusLabel,
   EPaymentMethod,
   EPaymentMethodLabel,
+  EPaymentStatus,
+  EPaymentStatusLabel,
 } from "@/utils/constants/order.enum";
 import { formatPrice } from "@/utils/formatPrice";
 import { useOrderTimeLine } from "@/hooks/react-query/orders/useOrderTimeLine";
@@ -132,6 +134,19 @@ const AccountOrderDetail = () => {
                   {formatPrice(data?.subTotal)}
                 </div>
               </div>
+              {(data?.payment?.status === EPaymentStatus.REFUNDING ||
+                data?.payment?.status === EPaymentStatus.REFUNDED) && (
+                <div className="tw-flex tw-ítems-center tw-justify-between tw-mt-4">
+                  <div>Trạng thái hoàn tiền</div>
+                  <div className="tw-text-sm">
+                    {
+                      EPaymentStatusLabel[
+                        data?.payment?.status as EPaymentStatus
+                      ]
+                    }
+                  </div>
+                </div>
+              )}
               {data?.canCancel && (
                 <div className="tw-flex tw-items-center tw-justify-end tw-mt-2">
                   <div
