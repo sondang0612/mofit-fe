@@ -104,6 +104,7 @@ export interface Order {
   user?: User | undefined;
   address?: Address | undefined;
   cart?: CartItem[] | undefined;
+  canCancel?: boolean | undefined;
 }
 
 export interface Category {

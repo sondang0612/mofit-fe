@@ -16,6 +16,7 @@ import { formatDate } from "@/utils/constants/formatDate";
 import { time } from "console";
 import Spinner from "../loading/Spinner";
 import OrderTimeline from "../timeline/OrderTimeline";
+import { useCancelOrder } from "@/hooks/react-query/orders/useCancelOrder";
 
 const mockOrder = {
   id: "#250406517",
@@ -59,16 +60,23 @@ const AccountOrderDetail = () => {
   const { id } = useParams();
   const { data, isLoading } = useOrder({ id: Number(id) });
   const { data: timeline } = useOrderTimeLine({ id: Number(id) });
-  console.log("data", data);
-  console.log("timeline", timeline);
+  const { mutate: cancelOrder } = useCancelOrder();
+
   return (
-    <div className="container col-lg-9 bg-white order-detail-page py-4 tw-text-text">
+    <div
+      className={`container col-lg-9 bg-white order-detail-page py-4 tw-text-text  ${
+        data?.status === EOrderStatus.CANCELED &&
+        "tw-opacity-60 tw-cursor-not-allowed"
+      }`}
+    >
       {isLoading ? (
         <Spinner />
       ) : (
         <>
-          <div className="tw-flex tw-flex-col lg:tw-flex-row tw-gap-y-4 tw-pb-[40px] tw-border-b tw-border-dashed tw-border-[#D9D9D9]">
-            <div className="tw-w-full lg:tw-w-[55%]">
+          <div
+            className={`tw-flex tw-flex-col lg:tw-flex-row tw-gap-y-4 tw-pb-[40px] tw-border-b tw-border-dashed tw-border-[#D9D9D9]`}
+          >
+            <div className="tw-w-full lg:tw-w-[55%] tw-relative">
               <div className="">
                 Mã đơn hàng:{" "}
                 <span className="tw-font-bold tw-text-textBlack">
@@ -112,7 +120,7 @@ const AccountOrderDetail = () => {
               </div>
               <div className="tw-flex tw-ítems-center tw-justify-between tw-mt-4">
                 <div>Giảm giá</div>
-                <div>-{formatPrice(data?.discount)}</div>
+                <div>{formatPrice(data?.discount, "-")}</div>
               </div>
               <div className="tw-flex tw-ítems-center tw-justify-between tw-mt-4">
                 <div>Phí vận chuyển</div>
@@ -124,6 +132,16 @@ const AccountOrderDetail = () => {
                   {formatPrice(data?.subTotal)}
                 </div>
               </div>
+              {data?.canCancel && (
+                <div className="tw-flex tw-items-center tw-justify-end tw-mt-2">
+                  <div
+                    className="tw-text-white tw-cursor-pointer tw-text-sm tw-bg-red-500 tw-rounded-sm tw-w-fit tw-px-3 tw-py-2 hover:tw-bg-red-400"
+                    onClick={() => cancelOrder({ orderId: data?.id })}
+                  >
+                    Huỷ đơn
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="tw-py-4">
@@ -138,7 +156,13 @@ const AccountOrderDetail = () => {
                 </div>
               )}
 
-              <div className="tw-text-primary tw-border-l tw-pl-2">
+              <div
+                className={`${
+                  data?.status === EOrderStatus.CANCELED
+                    ? "tw-text-red-500"
+                    : "tw-text-primary"
+                } tw-border-l tw-pl-2`}
+              >
                 {
                   EOrderStatusLabel[
                     data?.status as keyof typeof EOrderStatusLabel
@@ -182,7 +206,10 @@ const AccountOrderDetail = () => {
           </div>
 
           <div className="tw-mt-8">
-            <OrderTimeline timeline={timeline as any} />
+            <OrderTimeline
+              timeline={timeline as any}
+              currentStatus={data?.status}
+            />
           </div>
         </>
       )}
