@@ -73,9 +73,9 @@ export default function SearchPopup() {
           onSubmit={handleSubmit(onSubmit)}
           className="search-field container"
         >
-          <p className="text-uppercase text-secondary fw-medium mb-4">
+          {/* <p className="text-uppercase text-secondary fw-medium mb-4">
             Bạn đang trông đợi điều gì?
-          </p>
+          </p> */}
           <div className="position-relative">
             <input
               className="search-field__input search-popup__input w-100 fw-medium"

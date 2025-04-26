@@ -6,6 +6,7 @@ export const pathNames = {
   CONTACT: "/contact",
   ORDER: "/account_orders",
   ORDER_DETAIL: "/account_orders/:id",
+  SHOP_ORDER_COMPLETE: "/shop_order_complete",
 };
 
 export const pathNameLabel: any = {

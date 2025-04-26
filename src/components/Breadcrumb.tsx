@@ -37,7 +37,7 @@ const BreadcrumbWithoutSuspense = () => {
   return (
     <div className="container">
       <nav aria-label="breadcrumb">
-        <ol className="breadcrumb mb-1">
+        <ol className="breadcrumb mb-1 !tw-mt-0">
           <IoReturnUpBack
             size={24}
             style={{ marginRight: 8 }}

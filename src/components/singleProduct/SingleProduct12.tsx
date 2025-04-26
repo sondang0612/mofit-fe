@@ -3,6 +3,7 @@ import { useCreateCartItem } from "@/hooks/react-query/cart-items/useCreateCartI
 import { useProduct } from "@/hooks/react-query/products/useProduct";
 import { formatPrice } from "@/utils/formatPrice";
 import { getProductAttributeNames } from "@/utils/getProductAttributeNames";
+import React from "react";
 import ShareComponent from "../common/ShareComponent";
 import Star from "../common/Star";
 import BreadCumb from "./BreadCumb";
@@ -15,14 +16,13 @@ interface Props {
 export default function SingleProduct12(props: Props) {
   const { slug } = props;
   const { mutate: createCartItem } = useCreateCartItem();
-
+  const [quantity, setQuantity] = React.useState<number>(1);
   const { data: product } = useProduct({ slug });
 
   const handleAddToCart = (productId?: number, quantity?: number) => {
     if (!productId || !quantity) {
       return undefined;
     }
-
     createCartItem({ productId, quantity });
   };
 
@@ -56,19 +56,33 @@ export default function SingleProduct12(props: Props) {
                 <input
                   type="number"
                   name="quantity"
-                  min="1"
-                  value={1}
+                  min={1}
+                  value={quantity}
                   className="qty-control__number text-center"
-                  onChange={() => console.log(123)}
+                  onChange={(e) => {
+                    setQuantity(+e.target.value);
+                  }}
                 />
-                <div className="qty-control__reduce">-</div>
-                <div className="qty-control__increase">+</div>
+                <div
+                  className="qty-control__reduce"
+                  onClick={() =>
+                    quantity > 1 && setQuantity((prev) => prev - 1)
+                  }
+                >
+                  -
+                </div>
+                <div
+                  className="qty-control__increase"
+                  onClick={() => setQuantity((prev) => prev + 1)}
+                >
+                  +
+                </div>
               </div>
               {/* <!-- .qty-control --> */}
               <button
                 type="submit"
                 className="btn btn-primary btn-addtocart js-open-aside"
-                onClick={() => handleAddToCart(product?.id, 1)}
+                onClick={() => handleAddToCart(product?.id, quantity)}
               >
                 Thêm vào giỏ hàng
               </button>

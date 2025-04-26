@@ -1,14 +1,8 @@
-import { pathNames } from "@/utils/constants/paths";
-import { FaHeart, FaUser } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa6";
-import { GoBellFill } from "react-icons/go";
-import { RiFileListFill } from "react-icons/ri";
-import PaymentIcon from "@/components/icons/PaymentIcon";
-import ProfileIcon from "@/components/icons/ProfileIcon";
-import BellIcon from "@/components/icons/BellIcon";
-import OrderIcon from "@/components/icons/OrderIcon";
 import AddressIcon from "@/components/icons/AddressIcon";
 import LikeIcon from "@/components/icons/LikeIcon";
+import OrderIcon from "@/components/icons/OrderIcon";
+import ProfileIcon from "@/components/icons/ProfileIcon";
+import { pathNames } from "@/utils/constants/paths";
 
 export const homePages = [{ id: 1, title: "Home 1", href: "/" }];
 
