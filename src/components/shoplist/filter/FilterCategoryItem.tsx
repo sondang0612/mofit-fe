@@ -5,12 +5,12 @@ import React from "react";
 interface Props {
   isActive?: boolean;
   category?: Category | undefined;
+  setActiveCategory: (categoryId: number) => void;
+  activeCategory?: number
 }
 
 const FilterCategoryItem = (props: Props) => {
-  const { category, isActive } = props;
-  const { setParams, getParam } = useUrlParams();
-  const activeCategory = Number(getParam("activeCategory"));
+  const { category, isActive,setActiveCategory, activeCategory } = props;
   const [toggleSubCategories, setToggleSubCategories] = React.useState(
     category?.subCategories?.find((item) => item.id === activeCategory) !==
       undefined
@@ -28,10 +28,7 @@ const FilterCategoryItem = (props: Props) => {
 
   const handleItemClick = () => {
     if (!hasSubCategories) {
-      setParams([
-        { key: "activeCategory", value: `${category?.id}` },
-        { key: "page", value: 1 },
-      ]);
+      setActiveCategory(category?.id || 0);
       return undefined;
     } else {
       setToggleSubCategories((prev) => !prev);
@@ -53,11 +50,10 @@ const FilterCategoryItem = (props: Props) => {
             <li
               key={item?.id}
               className={`${item?.id === activeCategory && "text-blue-500"}`}
-              onClick={() =>
-                setParams([
-                  { key: "activeCategory", value: `${item?.id}` },
-                  { key: "page", value: 1 },
-                ])
+              onClick={() => {
+                setActiveCategory(item?.id || 0);
+              }
+
               }
             >
               {item?.name}

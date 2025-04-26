@@ -1,4 +1,4 @@
-import { useRouter, useSearchParams } from "next/navigation";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import { useCallback } from "react";
 
 interface ParamItem {
@@ -21,6 +21,7 @@ interface ParamItem {
 export const useUrlParams = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const pathname = usePathname()
 
   /**
    * Set URL parameters
@@ -126,7 +127,9 @@ export const useUrlParams = () => {
    */
   const getAllParams = useCallback(
     (key: string) => {
-      return searchParams.getAll(key);
+      const value = searchParams.get(key);
+      const  decodeValue = value?.trim() ?  decodeURIComponent(value || "")?.split(',') : []
+      return decodeValue?.length ? decodeValue : undefined
     },
     [searchParams]
   );
@@ -183,6 +186,43 @@ export const useUrlParams = () => {
     [searchParams, router]
   );
 
+  /**
+   * Remove all occurrences of specific parameter keys from the URL
+   * @param keys Array of parameter keys to remove completely
+   * @param options Configuration options
+   */
+  const removeAllParams = useCallback(
+    () => {
+      router.replace(pathname, { scroll: false });
+    },
+    [searchParams, router]
+  );
+
+  /**
+   * Get all URL query parameters as an object
+   * @returns Object containing all current URL parameters
+   */
+  const getAllQueryParams = useCallback(() => {
+    const paramsObject: Record<string, string | string[]> = {};
+    
+    // Iterate through all search parameters
+    searchParams.forEach((value, key) => {
+      // If this key already exists in our object, make it an array
+      if (key in paramsObject) {
+        if (Array.isArray(paramsObject[key])) {
+          (paramsObject[key] as string[]).push(value);
+        } else {
+          // Convert existing string to array with both values
+          paramsObject[key] = [paramsObject[key] as string, value];
+        }
+      } else {
+        paramsObject[key] = value;
+      }
+    });
+    
+    return paramsObject;
+  }, [searchParams]);
+
   return {
     setParams,
     removeParams,
@@ -192,5 +232,8 @@ export const useUrlParams = () => {
     toggleArrayParam,
     params: searchParams,
     getAllParams,
+    removeAllParams,
+    getAllQueryParams,
   };
 };
+
