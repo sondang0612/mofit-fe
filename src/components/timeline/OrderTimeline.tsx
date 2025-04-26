@@ -66,7 +66,7 @@ const OrderTimeline: React.FC<OrderTimelineProps> = ({
         <div
           className="timeline-line position-absolute"
           style={{
-            top: "48px",
+            top: "2.25rem",
             left: 0,
             right: 0,
             height: "3px",
@@ -89,8 +89,8 @@ const OrderTimeline: React.FC<OrderTimelineProps> = ({
                     : "bg-white"
                 }`}
                 style={{
-                  width: "70px",
-                  height: "70px",
+                  width: "4.375rem",
+                  height: "4.375rem",
 
                   backgroundColor: "#fff",
                   position: "relative",
@@ -101,8 +101,8 @@ const OrderTimeline: React.FC<OrderTimelineProps> = ({
                   src={`/assets/images/order/${step.icon}.svg`}
                   alt={step.label}
                   style={{
-                    width: "70px",
-                    height: "70px",
+                    width: "4.375rem",
+                    height: "4.375rem",
                     opacity: getStepStatus(step.status) === "active" ? 1 : 0.5,
                   }}
                 />

@@ -74,7 +74,7 @@ export default function CartDrawer() {
               className="underline cursor-pointer text-blue-500"
               onClick={handleShopNow}
             >
-              Shopping now!
+              Mua hàng ngay!
             </span>
           </div>
         )}
@@ -103,7 +103,7 @@ export default function CartDrawer() {
             </>
           ) : (
             <Link href={pathNames.STORE} className="btn btn-light mt-3 d-block">
-              Explore shop
+              Mua hàng ngay
             </Link>
           )}
         </div>

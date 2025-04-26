@@ -14,16 +14,17 @@ const paymentMethodTxt = {
 export default function OrderCompleted() {
   const { getParam } = useUrlParams();
   const txnRef = getParam("txnRef");
+  const orderId = getParam("orderId");
 
   const { data: orders, isLoading } = useFetch<Order>({
     endpoint: apiEndpoints.ORDERS,
     limit: 1,
-    queryParams: [QueryParam.TXN_REF],
-    queryValues: [txnRef],
-    enabled: !!txnRef,
+    queryParams: [QueryParam.ORDER_ID, QueryParam.TXN_REF],
+    queryValues: [orderId, txnRef],
+    enabled: !!txnRef && !!orderId,
   });
 
-  if (!txnRef) {
+  if (!txnRef && !orderId) {
     return <div>Shop now</div>;
   }
 

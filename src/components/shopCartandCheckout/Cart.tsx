@@ -11,7 +11,7 @@ export default function Cart() {
   const { mutate: removeCartItem } = useRemoveCartItem();
 
   return (
-    <div className="shopping-cart" style={{ minHeight: "calc(100vh - 300px)" }}>
+    <div className="shopping-cart">
       <div className="cart-table__wrapper">
         {cart?.length ? (
           <>
@@ -46,7 +46,7 @@ export default function Cart() {
             <div className="fs-20">Giò hàng đang trống</div>
 
             <button className="btn mt-3 btn-light">
-              <Link href={pathNames.STORE}>Shopping now!</Link>
+              <Link href={pathNames.STORE}>Mua hàng ngay!</Link>
             </button>
           </>
         )}

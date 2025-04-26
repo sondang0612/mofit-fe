@@ -7,6 +7,7 @@ export const pathNames = {
   ORDER: "/account_orders",
   ORDER_DETAIL: "/account_orders/:id",
   SHOP_ORDER_COMPLETE: "/shop_order_complete",
+  PAYMENT_POLICY: "/payment-policy",
 };
 
 export const pathNameLabel: any = {

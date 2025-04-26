@@ -50,7 +50,7 @@ const SideBar = () => {
         style={{ paddingTop: 12, paddingBottom: 12 }}
       >
         <div className="d-flex align-items-center">
-          <Avatar data={profile} marginRight={8} size={40} />
+          <Avatar data={profile} marginRight={8} size="2.5rem" />
           <div>
             <div className="text-sm">{profile?.username}</div>
             <Role role={profile?.role} />

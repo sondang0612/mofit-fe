@@ -66,6 +66,8 @@ export default function MobileFooter1() {
           className={`col-3 ${
             pathName !== "/account_edit" &&
             pathName !== "/login_register?isRegister=false" &&
+            pathName !== "/account_edit_address" &&
+            pathName !== "/account_wishlist" &&
             "tw-opacity-50"
           }`}
         >

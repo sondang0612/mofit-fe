@@ -15,7 +15,7 @@ const Page: React.FC = () => {
     <div>
       <SunEditor
         getSunEditorInstance={getSunEditorInstance}
-        setDefaultStyle="height: 600px; font-size: 16px;"
+        setDefaultStyle="height: 600px; font-size: 1rem;"
         autoFocus
         defaultValue={content}
         onChange={setContent}
