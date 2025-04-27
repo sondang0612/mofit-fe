@@ -21,4 +21,5 @@ export const pathNameLabel: any = {
   account_edit_address: "Quản lý địa chỉ",
   account_wishlist: "Sản phẩm yêu thích",
   shop_checkout: "Thanh toán",
+  shop_cart: "Giỏ hàng",
 };

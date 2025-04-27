@@ -1,14 +1,13 @@
 .shopping-cart {
   display: flex;
   flex-direction: column;
-  gap: 3.625rem;
 
   @include media-breakpoint-up(xl) {
     flex-direction: row;
   }
 
   .cart-table__wrapper {
-    padding-top: 3.125rem;
+    padding-top: 1.5rem;
     flex-grow: 1;
   }
 
@@ -92,15 +91,15 @@
 
     th,
     td {
-      @include media-breakpoint-up(md) {
-        border-bottom: 1px solid $border-color;
-      }
+      // @include media-breakpoint-up(md) {
+      //   border-bottom: 1px solid $border-color;
+      // }
     }
 
     thead {
       display: none;
 
-      @include media-breakpoint-up(md) {
+      @include media-breakpoint-up(lg) {
         display: table-header-group;
       }
 
@@ -120,15 +119,13 @@
         border-bottom: 1px solid $border-color;
         transition: all 0.3s ease;
 
-        @include media-breakpoint-up(md) {
+        @include media-breakpoint-up(lg) {
           display: table-row;
           padding: 0;
           border: 0;
         }
 
         &:first-child {
-          border-top: 1px solid $border-color;
-
           @include media-breakpoint-up(md) {
             border: 0;
           }
@@ -139,7 +136,7 @@
           display: block;
           clear: both;
 
-          @include media-breakpoint-up(md) {
+          @include media-breakpoint-up(lg) {
             display: none;
           }
         }
@@ -170,7 +167,7 @@
         display: block;
         margin-left: 9.375rem;
 
-        @include media-breakpoint-up(md) {
+        @include media-breakpoint-up(lg) {
           padding: 1.875rem 0;
           display: table-cell;
           margin: 0;
@@ -181,7 +178,7 @@
           float: left;
           margin-left: 0;
 
-          @include media-breakpoint-up(md) {
+          @include media-breakpoint-up(lg) {
             float: none;
           }
         }
@@ -189,7 +186,7 @@
         .shopping-cart__product-price {
           display: none;
 
-          @include media-breakpoint-up(md) {
+          @include media-breakpoint-up(lg) {
             display: block;
           }
         }
@@ -199,7 +196,7 @@
           display: block;
           margin-top: -2.2rem;
 
-          @include media-breakpoint-up(md) {
+          @include media-breakpoint-up(lg) {
             float: none;
             margin: 0;
           }
@@ -210,7 +207,7 @@
           right: 0;
           top: 1rem;
 
-          @include media-breakpoint-up(md) {
+          @include media-breakpoint-up(lg) {
             position: static;
           }
         }
@@ -326,4 +323,10 @@
     font-size: 1rem;
     font-weight: 500;
   }
+}
+
+.no-spin::-webkit-inner-spin-button,
+.no-spin::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

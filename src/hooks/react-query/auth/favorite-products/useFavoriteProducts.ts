@@ -12,7 +12,7 @@ const fetchData = asyncAuth(async (params?: Params) => {
 });
 
 const useFavoriteProducts = (params?: Params) => {
-  const { data, ...query } = useQuery<FavoriteProduct>({
+  const { data, ...query } = useQuery<FavoriteProduct[]>({
     queryKey: [queryKey.FAVORITE_PRODUCTS],
     queryFn: () => fetchData(params),
   });

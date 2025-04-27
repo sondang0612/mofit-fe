@@ -12,8 +12,14 @@ import Nav from "./components/Nav";
 import SearchPopup from "./components/SearchPopup";
 import User from "./components/User";
 import { usePathname } from "next/navigation";
+import Breadcrumb from "../Breadcrumb";
 
-export default function Header1() {
+type Props = {
+  showBreadcrumb?: boolean;
+};
+
+export default function Header1(props: Props) {
+  const { showBreadcrumb = false } = props;
   const [scrollDirection, setScrollDirection] = React.useState("down");
   const { data: profile } = useProfile();
   const { mutate: logout } = useLogout();
@@ -51,10 +57,11 @@ export default function Header1() {
   return (
     <header
       id="header"
-      className={`header header_sticky ${scrollDirection == "up" ? "header_sticky-active" : "position-absolute"
-        } `}
+      className={`header header_sticky ${
+        scrollDirection == "up" ? "header_sticky-active" : "position-absolute"
+      } `}
     >
-      <div className="h-full px-24">
+      <div className="h-full px-24 ">
         <div className="header-desk header-desk_type_1">
           <div className="logo">
             <Link href="/">
@@ -121,10 +128,17 @@ export default function Header1() {
               </div>
             )}
           </div>
+
           {/* <!-- /.header__tools --> */}
         </div>
+
         {/* <!-- /.header-desk header-desk_type_1 --> */}
       </div>
+      {showBreadcrumb && (
+        <div className="tw-bg-white px-24 tw-pb-2">
+          <Breadcrumb />
+        </div>
+      )}
       <Suspense fallback={<div />}>
         <SoftFilter />
       </Suspense>

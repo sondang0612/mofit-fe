@@ -1,41 +1,37 @@
 "use client";
-import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Link from "next/link";
-import { Navigation } from "swiper/modules";
-import { useEffect, useState } from "react";
-import { allProducts } from "@/data/products";
 import { useFavoriteProducts } from "@/hooks/react-query/auth/favorite-products/useFavoriteProducts";
-import { useLikeProduct } from "@/hooks/react-query/auth/favorite-products/useLikeProduct";
-import { useUnLikeProduct } from "@/hooks/react-query/auth/favorite-products/useUnLikeProduct";
+import Product from "../shoplist/Product";
 
 export default function AccountWishlist() {
   const { data: products } = useFavoriteProducts();
-  const { mutate: likeProduct } = useLikeProduct();
-  const { mutate: unLikeProduct } = useUnLikeProduct();
+  console.log("🚀 ~ AccountWishlist ~ products:", products);
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(price);
+  };
 
   return (
-    <div className="col-lg-9">
-      <div className="page-content my-account__wishlist">
-        <div className="fs-18">
-          No products added to wishlist yet{" "}
-          <div>
-            <button
-              onClick={() => likeProduct({ productId: 1 })}
-              className="tw-bg-red-500"
-            >
-              Like
-            </button>
+    <div className="tw-w-full">
+      <div className="tw-bg-white tw-rounded-lg tw-shadow-sm tw-p-6">
+        {!products || products?.length === 0 ? (
+          <div className="tw-text-lg tw-text-gray-600 tw-text-center tw-py-12">
+            No products added to wishlist yet
           </div>
+        ) : (
           <div>
-            <button
-              onClick={() => unLikeProduct({ productId: 1 })}
-              className="tw-bg-blue-500"
-            >
-              unLike
-            </button>
+            <h2 className="tw-text-2xl tw-font-bold tw-mb-6 tw-text-gray-800">
+              Your Wishlist
+            </h2>
+            <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-6">
+              {products.map((item) => (
+                <Product data={item} key={item.id} />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
