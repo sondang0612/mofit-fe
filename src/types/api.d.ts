@@ -30,7 +30,6 @@ export interface Product {
   description?: string | undefined;
   sku?: string | undefined;
   slug?: string | undefined;
-  isFavourite?: boolean | undefined;
 }
 
 export interface Category {

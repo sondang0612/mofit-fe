@@ -533,6 +533,11 @@
         &.active svg {
           color: var(--theme-color);
         }
+
+        .unliked path {
+          fill: #fff;
+          stroke-width: 1px;
+        }
       }
     }
 

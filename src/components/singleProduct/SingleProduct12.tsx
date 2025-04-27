@@ -8,6 +8,11 @@ import ShareComponent from "../common/ShareComponent";
 import Star from "../common/Star";
 import BreadCumb from "./BreadCumb";
 import ProductSlider1 from "./sliders/ProductSlider1";
+import { useCheckLike } from "@/hooks/react-query/auth/favorite-products/useCheckLike";
+import { FcLike } from "react-icons/fc";
+import { FcLikePlaceholder } from "react-icons/fc";
+import { useLikeProduct } from "@/hooks/react-query/auth/favorite-products/useLikeProduct";
+import { useUnLikeProduct } from "@/hooks/react-query/auth/favorite-products/useUnLikeProduct";
 
 interface Props {
   slug?: string;
@@ -18,6 +23,9 @@ export default function SingleProduct12(props: Props) {
   const { mutate: createCartItem } = useCreateCartItem();
   const [quantity, setQuantity] = React.useState<number>(1);
   const { data: product } = useProduct({ slug });
+  const { data: isLiked } = useCheckLike({ productId: product?.id });
+  const { mutate: likeProduct } = useLikeProduct();
+  const { mutate: unLikeProduct } = useUnLikeProduct();
 
   const handleAddToCart = (productId?: number, quantity?: number) => {
     if (!productId || !quantity) {
@@ -89,17 +97,27 @@ export default function SingleProduct12(props: Props) {
             </div>
           </form>
           <div className="product-single__addtolinks">
-            <a href="#" className="menu-link menu-link_us-s add-to-wishlist">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <use href="#icon_heart" />
-              </svg>
-              <span>Thích</span>
+            <a
+              className="menu-link menu-link_us-s add-to-wishlist"
+              onClick={() => {
+                if (isLiked) {
+                  unLikeProduct({ productId: product?.id });
+                } else {
+                  likeProduct({ productId: product?.id });
+                }
+              }}
+            >
+              {isLiked ? (
+                <>
+                  <FcLike size={18} />
+                  <span>Đã thích</span>
+                </>
+              ) : (
+                <>
+                  <FcLikePlaceholder size={18} className="unliked" />
+                  <span>Thích</span>
+                </>
+              )}
             </a>
             <ShareComponent title={product?.title} />
           </div>

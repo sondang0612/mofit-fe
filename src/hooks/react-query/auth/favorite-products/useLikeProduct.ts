@@ -1,6 +1,5 @@
 import axiosInstance from "@/libs/axiosInstance";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 import { queryKey } from "../../queryKey";
 
 type Form = {
@@ -19,7 +18,6 @@ const useLikeProduct = () => {
   return useMutation({
     mutationFn: fetchData,
     onSuccess: (data) => {
-      toast.success(`Đã thêm vào Wishlist`);
       queryClient.invalidateQueries({ queryKey: [queryKey.FAVORITE_PRODUCTS] });
     },
   });
