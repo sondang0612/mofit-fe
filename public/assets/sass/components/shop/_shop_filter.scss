@@ -3,7 +3,7 @@
   background-color: #fff;
   .shop-filter-container {
     display: flex;
-    font-size: 10px;
+    font-size: 0.625rem;
 
     svg {
       width: 16px;
@@ -13,24 +13,24 @@
 
     .shop-acs {
       option {
-        font-size: 10px;
+        font-size: 0.625rem;
       }
       select {
-        font-size: 10px;
+        font-size: 0.625rem;
       }
     }
 
     @include media-breakpoint-up(lg) {
       button span {
-        font-size: 12px;
+        font-size: 0.75rem;
       }
 
       .shop-acs {
         option {
-          font-size: 12px;
+          font-size: 0.75rem;
         }
         select {
-          font-size: 12px;
+          font-size: 0.75rem;
         }
       }
     }

@@ -11,10 +11,8 @@ import React from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { AiFillPlusSquare } from "react-icons/ai";
-import LoveIcon from "@/components/icons/LoveIcon";
-import {useUnLikeProduct} from "@/hooks/react-query/auth/favorite-products/useUnLikeProduct";
-import {useLikeProduct} from "@/hooks/react-query/auth/favorite-products/useLikeProduct";
-import {IoHeartOutline, IoHeartSharp} from "react-icons/io5";
+import { useUnLikeProduct } from "@/hooks/react-query/auth/favorite-products/useUnLikeProduct";
+import { useLikeProduct } from "@/hooks/react-query/auth/favorite-products/useLikeProduct";
 
 interface Props {
   data: IProduct;
@@ -23,8 +21,8 @@ interface Props {
 const Product = (props: Props) => {
   const { data } = props;
   const { mutate: createCartItem } = useCreateCartItem();
-    const { mutate: likeProduct } = useLikeProduct();
-    const { mutate: unLikeProduct } = useUnLikeProduct();
+  const { mutate: likeProduct } = useLikeProduct();
+  const { mutate: unLikeProduct } = useUnLikeProduct();
 
   const handleAddToCart = (productId?: number, quantity?: number) => {
     if (!productId || !quantity) {
@@ -98,18 +96,13 @@ const Product = (props: Props) => {
         </div>
 
         <div className="pc__info position-relative bg-white">
-         <div className={"tw-flex tw-items-center tw-justify-between"}>
-           <p className="pc__category tw-text-[#767676] tw-font-jost">
-             {data?.category?.parentCategory
-                 ? data?.category?.parentCategory.name
-                 : data?.category?.name}
-           </p>
-           <div onClick={() => {
-                data?.isFavourite ? unLikeProduct({productId: data?.id}) : likeProduct({productId: data?.id})
-           }} className={"tw-flex tw-items-center hover:tw-opacity-70 hover:tw-cursor-pointer"}>
-               {data?.isFavourite ? <IoHeartSharp size={17} /> :<IoHeartOutline size={17} /> }
-           </div>
-         </div>
+          <div className={"tw-flex tw-items-center tw-justify-between"}>
+            <p className="pc__category tw-text-[#767676] tw-font-jost">
+              {data?.category?.parentCategory
+                ? data?.category?.parentCategory.name
+                : data?.category?.name}
+            </p>
+          </div>
           <h6
             className="pc__title line-clamp-2  tw-font-jost"
             style={{

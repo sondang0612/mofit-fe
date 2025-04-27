@@ -1,18 +1,10 @@
 "use client";
 
-import { useOrderByTxnRef } from "@/hooks/react-query/orders/useOrderByTxnRef";
 import { QueryParam, useFetch } from "@/hooks/react-query/useFetch";
 import { useUrlParams } from "@/hooks/useUrlParams";
 import { Order } from "@/types/api";
 import { apiEndpoints } from "@/utils/constants/apiEndpoints";
-import {
-  EVnpayResponseCode,
-  EVnpayTransactionNo,
-  EVnpayTransactionStatus,
-} from "@/utils/constants/vnpay.enum";
 import { formatPrice } from "@/utils/formatPrice";
-import { useRouter } from "next/navigation";
-import React from "react";
 
 const paymentMethodTxt = {
   payment_gateway: "Chuyển khoản ngân hàng",
@@ -21,39 +13,16 @@ const paymentMethodTxt = {
 
 export default function OrderCompleted() {
   const { getParam } = useUrlParams();
-  const txnRef = getParam("vnp_TxnRef");
-  const transactionStatus = getParam("vnp_TransactionStatus");
-  const responseCode = getParam("vnp_ResponseCode");
-  const transactionNo = getParam("vnp_TransactionNo");
+  const txnRef = getParam("txnRef");
   const orderId = getParam("orderId");
 
-  const {
-    data: orders,
-    isSuccess: isSuccessOrder,
-    isLoading,
-  } = useFetch<Order>({
+  const { data: orders, isLoading } = useFetch<Order>({
     endpoint: apiEndpoints.ORDERS,
     limit: 1,
-    queryParams: [QueryParam.ID, QueryParam.TXN_REF],
+    queryParams: [QueryParam.ORDER_ID, QueryParam.TXN_REF],
     queryValues: [orderId, txnRef],
-    enabled:
-      (!!txnRef && !!transactionNo && !!responseCode && !!transactionStatus) ||
-      !!orderId,
+    enabled: !!txnRef && !!orderId,
   });
-
-  const isSuccess = React.useMemo(() => {
-    return (
-      (transactionStatus === EVnpayTransactionStatus.SUCCESS &&
-        responseCode === EVnpayResponseCode.SUCCESS &&
-        transactionNo !== EVnpayTransactionNo.FAIL) ||
-      isSuccessOrder
-    );
-  }, [
-    (transactionStatus === EVnpayTransactionStatus.SUCCESS &&
-      responseCode === EVnpayResponseCode.SUCCESS &&
-      transactionNo !== EVnpayTransactionNo.FAIL) ||
-      isSuccessOrder,
-  ]);
 
   if (!txnRef && !orderId) {
     return <div>Shop now</div>;
@@ -81,81 +50,78 @@ export default function OrderCompleted() {
             fill="white"
           />
         </svg>
-        <h3>{isSuccess ? "Đặt hàng thành công!" : "Đặt hàng thất bại!"}</h3>
-        {isSuccess && <p>Đơn hàng của bạn đang được xử lý.</p>}
+        <h3>Đặt hàng thành công!</h3>
       </div>
-      {isSuccess && (
-        <>
-          <div className="order-info">
-            <div className="order-info__item">
-              <label>Mã đơn hàng</label>
-              <span>{order?.id}</span>
-            </div>
-            <div className="order-info__item">
-              <label>Ngày tạo</label>
-              <span>{new Date().toLocaleDateString()}</span>
-            </div>
-            <div className="order-info__item">
-              <label>Tổng tiền</label>
+      <>
+        <div className="order-info">
+          <div className="order-info__item">
+            <label>Mã đơn hàng</label>
+            <span>{order?.id}</span>
+          </div>
+          <div className="order-info__item">
+            <label>Ngày tạo</label>
+            <span>{new Date().toLocaleDateString()}</span>
+          </div>
+          <div className="order-info__item">
+            <label>Tổng tiền</label>
 
-              <span>{formatPrice(order?.totalPrice)}</span>
-            </div>
-            <div className="order-info__item">
-              <label>Phương thức thanh toán</label>
-              <span>
-                {
-                  paymentMethodTxt[
-                    order?.paymentMethod as "payment_gateway" | "cod"
-                  ]
-                }
-              </span>
-            </div>
+            <span>{formatPrice(order?.totalPrice)}</span>
           </div>
-          <div className="checkout__totals-wrapper">
-            <div className="checkout__totals">
-              <h3>Chi tiết đơn hàng</h3>
-              <table className="checkout-cart-items">
-                <thead>
-                  <tr>
-                    <th>Sản phẩm</th>
-                    <th>Ước tính</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {order?.orderItems?.map((elm, i) => (
-                    <tr key={i}>
-                      <td>
-                        {elm?.product?.title} x {elm?.quantity}
-                      </td>
-                      <td>{formatPrice(elm?.product?.price)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <table className="checkout-totals">
-                <tbody>
-                  <tr>
-                    <th>Tạm tính</th>
-                    <td>{formatPrice(order?.subTotal)}</td>
-                  </tr>
-                  <tr>
-                    <th>Vận chuyển</th>
-                    <td>Free shipping</td>
-                  </tr>
-                  <tr>
-                    <th>VAT</th>
-                    <td>{formatPrice(order?.vat)}đ</td>
-                  </tr>
-                  <tr>
-                    <th>Tổng</th>
-                    <td>{formatPrice(order?.totalPrice)}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <div className="order-info__item">
+            <label>Phương thức thanh toán</label>
+            <span>
+              {
+                paymentMethodTxt[
+                  order?.paymentMethod as "payment_gateway" | "cod"
+                ]
+              }
+            </span>
           </div>
-        </>
-      )}
+        </div>
+        <div className="checkout__totals-wrapper">
+          <div className="checkout__totals">
+            <h3>Chi tiết đơn hàng</h3>
+            <table className="checkout-cart-items">
+              <thead>
+                <tr>
+                  <th>Sản phẩm</th>
+                  <th>Ước tính</th>
+                </tr>
+              </thead>
+              <tbody>
+                {order?.orderItems?.map((elm, i) => (
+                  <tr key={i}>
+                    <td>
+                      {elm?.product?.title} x {elm?.quantity}
+                    </td>
+                    <td>{formatPrice(elm?.product?.price)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <table className="checkout-totals">
+              <tbody>
+                <tr>
+                  <th>Tạm tính</th>
+                  <td>{formatPrice(order?.subTotal)}</td>
+                </tr>
+                <tr>
+                  <th>Vận chuyển</th>
+                  <td>Free shipping</td>
+                </tr>
+                <tr>
+                  <th>VAT</th>
+                  <td>{formatPrice(order?.vat)}đ</td>
+                </tr>
+                <tr>
+                  <th>Tổng</th>
+                  <td>{formatPrice(order?.totalPrice)}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </>
     </div>
   );
 }

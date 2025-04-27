@@ -1,7 +1,7 @@
 import React from "react";
 
 const QuickView = () => {
-  return <div>QuickView</div>;
+  return <div></div>;
 };
 
 export default QuickView;

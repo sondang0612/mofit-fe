@@ -153,7 +153,7 @@ export default function EditAccount() {
             </p>
             <div className="tw-flex tw-gap-4">
               <div className="tw-flex">
-                <Avatar fontSize={35} size={112} data={profile} />
+                <Avatar fontSize={35} size="7rem" data={profile} />
               </div>
               <div className="tw-space-y-4">
                 <div className="tw-flex tw-items-center tw-gap-4">
@@ -235,7 +235,7 @@ export default function EditAccount() {
                 </div>
               </div>
             </div>
-            <div className="tw-mt-20 tw-flex tw-justify-center mx-auto">
+            <div className="tw-mt-6 md:tw-mt-20 tw-flex tw-justify-center mx-auto">
               <button
                 type="submit"
                 className="tw-rounded tw-bg-primary tw-h-[40px] tw-w-[176px] tw-border-none tw-outline-none tw-text-white hover:tw-opacity-80"

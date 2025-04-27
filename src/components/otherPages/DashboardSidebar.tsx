@@ -31,7 +31,11 @@ export default function DashboardSidebar() {
                 } `}
               >
                 <div
-                  style={{ width: 24, height: 25, marginRight: 22 }}
+                  style={{
+                    width: "1.5rem",
+                    height: "1.5rem",
+                    marginRight: "0.5rem",
+                  }}
                   className="d-flex align-items-center"
                 >
                   {Icon && <Icon />}

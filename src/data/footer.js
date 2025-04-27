@@ -10,12 +10,12 @@ export const footerLinks2 = [
   { href: "/store?sortingValue=best_seller", text: "Bán chạy" },
 ];
 export const footerLinks3 = [
-  { href: pathNames.ABOUT_US, text: "Customer Service" },
-  { href: "/account_dashboard", text: "My Account" },
-  { href: "/store_location", text: "Find a Store" },
-  { href: "/terms", text: "Legal & Privacy" },
-  { href: "/contact", text: "Contact" },
-  { href: pathNames.ABOUT_US, text: "Gift Card" },
+  { href: pathNames.PAYMENT_POLICY, text: "Chính sách thanh toán" },
+  { href: "/account_dashboard", text: "Chính sách vận chuyển" },
+  { href: "/store_location", text: "Chính sách bảo mật thông tin" },
+  { href: "/terms", text: "Chính sách xử lý khiếu nại" },
+  { href: "/contact", text: "Chính sách kiểm hàng" },
+  { href: pathNames.ABOUT_US, text: "Chính sách đổi trả" },
 ];
 
 export const languageOptions = [

@@ -1,18 +1,18 @@
 import axiosInstance from "@/libs/axiosInstance";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 import { queryKey } from "../queryKey";
 
 type Form = {
-  cartItemId?: number | undefined;
+  productId: number;
+  quantity: number;
 };
 
 const fetchData = async (form: Form) => {
-  const response = await axiosInstance.delete(`cart-items/${form.cartItemId}`);
+  const response = await axiosInstance.patch("cart-items", form);
   return response?.data;
 };
 
-const useRemoveCartItem = () => {
+const useUpdateCartItem = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: fetchData,
@@ -22,4 +22,4 @@ const useRemoveCartItem = () => {
   });
 };
 
-export { useRemoveCartItem };
+export { useUpdateCartItem };

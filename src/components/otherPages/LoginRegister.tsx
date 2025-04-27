@@ -152,11 +152,11 @@ export default function LoginRegister() {
                   <label htmlFor="customerPasswodInput">Mật khẩu *</label>
                 </div>
 
-                <div className="d-flex align-items-center mb-3 pb-2">
+                {/* <div className="d-flex align-items-center mb-3 pb-2">
                   <Link href="/reset_password" className="btn-text ms-auto">
                     Quên mật khẩu?
                   </Link>
-                </div>
+                </div> */}
 
                 <button
                   className="btn btn-primary w-100 text-uppercase"

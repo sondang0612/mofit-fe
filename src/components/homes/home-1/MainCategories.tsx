@@ -89,7 +89,7 @@ const MainCategories = () => {
         <div className="products-pagination mt-4 mb-4 d-flex align-items-center justify-content-center"></div>
         <div className="d-flex align-items-center justify-content-center w-full">
           <button
-            className="rounded-10 px-3 py-1 text-uppercase tw-w-[104px] tw-rounded-[40px] tw-border-2 tw-text-[13px] tw-font-bold tw-font-anton tw-border-black"
+            className="rounded-10 px-3 py-1 text-uppercase tw-w-[104px] tw-rounded-[40px] tw-border-2 tw-text-[0.8125rem] tw-font-bold tw-font-anton tw-border-black"
             onClick={() => router.push(pathNames.STORE)}
           >
             Xem tất cả

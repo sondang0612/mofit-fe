@@ -35,9 +35,9 @@ export default function RootLayout({ children }) {
     }
   }, []);
 
-  const isAdmin = React.useMemo(() => {
-    return pathName?.includes("admin");
-  }, [pathName?.includes("admin")]);
+  const isPolicy = React.useMemo(() => {
+    return pathName?.includes("policy");
+  }, [pathName?.includes("policy")]);
 
   return (
     <html lang="en">
@@ -61,9 +61,9 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <QueryProvider>
             <Svgs />
-            {!isAdmin && <MobileHeader />}
+            {!isPolicy && <MobileHeader />}
             {children}
-            {!isAdmin && <MobileFooter1 />}
+            {!isPolicy && <MobileFooter1 />}
             {/* //modals and asides */}
             <LoginFormPopup />
             <QuickView />
@@ -71,7 +71,7 @@ export default function RootLayout({ children }) {
             {/* <CookieContainer /> */}
             <SizeGuide />
             <Delivery />
-            {!isAdmin && <CartDrawer />}
+            {!isPolicy && <CartDrawer />}
             <SiteMap />
             <CustomerLogin />
             <ProductDescription />

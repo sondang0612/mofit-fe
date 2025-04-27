@@ -3,10 +3,16 @@ import { useCreateCartItem } from "@/hooks/react-query/cart-items/useCreateCartI
 import { useProduct } from "@/hooks/react-query/products/useProduct";
 import { formatPrice } from "@/utils/formatPrice";
 import { getProductAttributeNames } from "@/utils/getProductAttributeNames";
+import React from "react";
 import ShareComponent from "../common/ShareComponent";
 import Star from "../common/Star";
 import BreadCumb from "./BreadCumb";
 import ProductSlider1 from "./sliders/ProductSlider1";
+import { useCheckLike } from "@/hooks/react-query/auth/favorite-products/useCheckLike";
+import { FcLike } from "react-icons/fc";
+import { FcLikePlaceholder } from "react-icons/fc";
+import { useLikeProduct } from "@/hooks/react-query/auth/favorite-products/useLikeProduct";
+import { useUnLikeProduct } from "@/hooks/react-query/auth/favorite-products/useUnLikeProduct";
 
 interface Props {
   slug?: string;
@@ -15,14 +21,16 @@ interface Props {
 export default function SingleProduct12(props: Props) {
   const { slug } = props;
   const { mutate: createCartItem } = useCreateCartItem();
-
+  const [quantity, setQuantity] = React.useState<number>(1);
   const { data: product } = useProduct({ slug });
+  const { data: isLiked } = useCheckLike({ productId: product?.id });
+  const { mutate: likeProduct } = useLikeProduct();
+  const { mutate: unLikeProduct } = useUnLikeProduct();
 
   const handleAddToCart = (productId?: number, quantity?: number) => {
     if (!productId || !quantity) {
       return undefined;
     }
-
     createCartItem({ productId, quantity });
   };
 
@@ -56,36 +64,60 @@ export default function SingleProduct12(props: Props) {
                 <input
                   type="number"
                   name="quantity"
-                  min="1"
-                  value={1}
+                  min={1}
+                  value={quantity}
                   className="qty-control__number text-center"
-                  onChange={() => console.log(123)}
+                  onChange={(e) => {
+                    setQuantity(+e.target.value);
+                  }}
                 />
-                <div className="qty-control__reduce">-</div>
-                <div className="qty-control__increase">+</div>
+                <div
+                  className="qty-control__reduce"
+                  onClick={() =>
+                    quantity > 1 && setQuantity((prev) => prev - 1)
+                  }
+                >
+                  -
+                </div>
+                <div
+                  className="qty-control__increase"
+                  onClick={() => setQuantity((prev) => prev + 1)}
+                >
+                  +
+                </div>
               </div>
               {/* <!-- .qty-control --> */}
               <button
                 type="submit"
                 className="btn btn-primary btn-addtocart js-open-aside"
-                onClick={() => handleAddToCart(product?.id, 1)}
+                onClick={() => handleAddToCart(product?.id, quantity)}
               >
                 Thêm vào giỏ hàng
               </button>
             </div>
           </form>
           <div className="product-single__addtolinks">
-            <a href="#" className="menu-link menu-link_us-s add-to-wishlist">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <use href="#icon_heart" />
-              </svg>
-              <span>Thích</span>
+            <a
+              className="menu-link menu-link_us-s add-to-wishlist"
+              onClick={() => {
+                if (isLiked) {
+                  unLikeProduct({ productId: product?.id });
+                } else {
+                  likeProduct({ productId: product?.id });
+                }
+              }}
+            >
+              {isLiked ? (
+                <>
+                  <FcLike size={18} />
+                  <span>Đã thích</span>
+                </>
+              ) : (
+                <>
+                  <FcLikePlaceholder size={18} className="unliked" />
+                  <span>Thích</span>
+                </>
+              )}
             </a>
             <ShareComponent title={product?.title} />
           </div>

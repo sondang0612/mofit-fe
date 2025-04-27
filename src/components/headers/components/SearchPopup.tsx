@@ -19,6 +19,10 @@ export default function SearchPopup() {
   const { register, handleSubmit } = useForm<Form>({ defaultValues });
   const containerRef = useRef<any>(null);
   const { data: categories } = useCategories();
+  const products = [
+    { id: 0, title: "123" },
+    { id: 0, title: "123" },
+  ];
   const router = useRouter();
   const handleClickOutside = (event: any) => {
     if (containerRef.current && !containerRef.current.contains(event.target)) {
@@ -32,10 +36,8 @@ export default function SearchPopup() {
   };
 
   useEffect(() => {
-    // Add event listener for clicks
     document.addEventListener("click", handleClickOutside);
 
-    // Clean up the event listener on component unmount
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
@@ -73,9 +75,9 @@ export default function SearchPopup() {
           onSubmit={handleSubmit(onSubmit)}
           className="search-field container"
         >
-          <p className="text-uppercase text-secondary fw-medium mb-4">
+          {/* <p className="text-uppercase text-secondary fw-medium mb-4">
             Bạn đang trông đợi điều gì?
-          </p>
+          </p> */}
           <div className="position-relative">
             <input
               className="search-field__input search-popup__input w-100 fw-medium"
@@ -99,6 +101,26 @@ export default function SearchPopup() {
               className="btn-icon btn-close-lg search-popup__reset"
               type="reset"
             ></button>
+          </div>
+
+          <div className="search-popup__results">
+            <div className="sub-menu search-suggestion">
+              <h6 className="sub-menu__title fs-base">Gợi ý sản phẩm</h6>
+              <ul className="sub-menu__list list-unstyled">
+                {products?.map((item, index) => (
+                  <li className="sub-menu__item" key={index}>
+                    <Link
+                      href={`${pathNames.STORE}?activeCategory=${item?.id}`}
+                      className="menu-link menu-link_us-s"
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="search-result row row-cols-5"></div>
           </div>
 
           <div className="search-popup__results">

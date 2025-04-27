@@ -19,7 +19,6 @@ const useUnLikeProduct = () => {
   return useMutation({
     mutationFn: fetchData,
     onSuccess: (data) => {
-      toast.success(`Đã xoá khỏi Wishlist`);
       queryClient.invalidateQueries({ queryKey: [queryKey.FAVORITE_PRODUCTS] });
     },
   });

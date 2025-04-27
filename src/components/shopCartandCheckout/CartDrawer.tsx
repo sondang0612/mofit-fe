@@ -2,18 +2,14 @@
 import Link from "next/link";
 
 import { useCart } from "@/hooks/react-query/cart/useCart";
-import { EDefaultValue } from "@/utils/constants/default-value.enum";
-import { getTotalPrice } from "@/utils/getTotalPrice";
-import Image from "next/image";
+import { pathNames } from "@/utils/constants/paths";
+import { formatPrice } from "@/utils/formatPrice";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
-import { useRemoveCartItem } from "@/hooks/react-query/cart-items/useRemoveCartItem";
-import { formatPrice } from "@/utils/formatPrice";
-import { pathNames } from "@/utils/constants/paths";
+import CartDrawerItem from "./CartDrawerItem";
 
 export default function CartDrawer() {
   const { data: cart } = useCart();
-  const { mutate: removeCartItem } = useRemoveCartItem();
   const router = useRouter();
   const pathname = usePathname();
   const closeCart = () => {
@@ -66,60 +62,7 @@ export default function CartDrawer() {
         {cart?.length ? (
           <div className="aside-content cart-drawer-items-list">
             {cart?.map((elm, i) => (
-              <React.Fragment key={i}>
-                <div className="cart-drawer-item d-flex position-relative">
-                  <div className="position-relative">
-                    <Image
-                      loading="lazy"
-                      className="cart-drawer-item__img"
-                      width={330}
-                      height={400}
-                      style={{ height: "fit-content" }}
-                      src={elm?.product?.imgSrc || EDefaultValue.IMAGE}
-                      alt="image"
-                    />
-                  </div>
-                  <div className="cart-drawer-item__info flex-grow-1">
-                    <h6 className="cart-drawer-item__title fw-normal">
-                      {elm?.product?.title}
-                    </h6>
-                    <p className="cart-drawer-item__option text-secondary">
-                      Loại: {elm?.product?.category?.name}
-                    </p>
-                    <p className="cart-drawer-item__option text-secondary">
-                      Mã: {elm?.product?.id}
-                    </p>
-                    <div className="d-flex align-items-center justify-content-between mt-1">
-                      <div className="qty-control position-relative">
-                        <input
-                          type="number"
-                          name="quantity"
-                          value={elm.quantity}
-                          onChange={(e) => console.log(e.target.value)}
-                          min="1"
-                          className="qty-control__number border-0 text-center"
-                        />
-                        <div className="qty-control__reduce text-start">-</div>
-                        <div className="qty-control__increase text-end">+</div>
-                      </div>
-
-                      <span className="cart-drawer-item__price money price">
-                        {formatPrice(
-                          getTotalPrice(elm?.product?.price, elm?.quantity)
-                        )}
-                      </span>
-                    </div>
-                  </div>
-
-                  <button
-                    className="btn-close-xs position-absolute top-0 end-0 js-cart-item-remove"
-                    onClick={() => removeCartItem({ cartItemId: elm?.id })}
-                  ></button>
-                </div>
-                {/* <!-- /.cart-drawer-item d-flex --> */}
-
-                <hr className="cart-drawer-divider" />
-              </React.Fragment>
+              <CartDrawerItem data={elm} key={i} />
             ))}
 
             {/* <!-- /.cart-drawer-item d-flex --> */}
@@ -131,7 +74,7 @@ export default function CartDrawer() {
               className="underline cursor-pointer text-blue-500"
               onClick={handleShopNow}
             >
-              Shopping now!
+              Mua hàng ngay!
             </span>
           </div>
         )}
@@ -160,7 +103,7 @@ export default function CartDrawer() {
             </>
           ) : (
             <Link href={pathNames.STORE} className="btn btn-light mt-3 d-block">
-              Explore shop
+              Mua hàng ngay
             </Link>
           )}
         </div>

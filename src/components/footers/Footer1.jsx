@@ -14,15 +14,24 @@ export default function Footer1() {
         <div className="row row-cols-lg-5 row-cols-2">
           <div className="footer-column footer-store-info col-12 mb-4 mb-lg-0">
             <p className="footer-address">
-              Số 160, đường Trần Não, khu phố 2,Phường An Khánh,Thành phố Thủ
-              Đức, Hồ Chí Minh,Việt Nam
+              CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ THƯƠNG MẠI MODERN FARE VIỆT NAM.
+            </p>
+            <p className="footer-address">
+              GPKD số 0105243391 do Sở KH và ĐT TP Hà Nội cấp ngày 06/04/2011
+            </p>
+
+            <p className="footer-address">
+              Địa chỉ: Số 31B, Ngõ 226, Đường Cầu Giấy, Phường Quan Hoa, Quận
+              Cầu Giấy, TP. Hà Nội, Việt Nam
             </p>
 
             <p className="m-0">
-              <strong className="fw-medium">info@evovietnam.com.vn</strong>
+              <strong className="fw-medium">
+                Email: info@evovietnam.com.vn
+              </strong>
             </p>
             <p>
-              <strong className="fw-medium">+84 315 636 871</strong>
+              <strong className="fw-medium">Hotline: +84 315 636 871</strong>
             </p>
 
             <ul className="social-links list-unstyled d-flex flex-wrap mb-0">
@@ -80,7 +89,9 @@ export default function Footer1() {
           </div>
           {/* <!-- /.footer-column --> */}
           <div className="footer-column footer-menu mb-4 mb-lg-0">
-            <h5 className="sub-menu__title text-uppercase">Hỗ trợ</h5>
+            <h5 className="sub-menu__title text-uppercase">
+              Hỗ trợ khách hàng
+            </h5>
             <ul className="sub-menu__list list-unstyled">
               {footerLinks3.map((elm, i) => (
                 <li key={i} className="sub-menu__item">

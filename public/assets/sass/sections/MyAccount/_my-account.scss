@@ -15,7 +15,7 @@
     font-weight: 500;
 
     .menu-link {
-      font-size: 13px;
+      font-size: 0.8125rem;
       color: #4a4a4a;
       display: flex;
       opacity: 0.8;
@@ -91,14 +91,14 @@
   }
   .notice {
     margin-bottom: 2rem;
-    font-size: 18px;
+    font-size: 1.125rem;
     color: #64646d;
   }
 
   &__address {
     .add-new {
       cursor: pointer;
-      font-size: 16px;
+      font-size: 1rem;
       display: flex;
       align-items: center;
       gap: 16px;
@@ -137,7 +137,7 @@
         }
 
         h5 {
-          font-size: 13px;
+          font-size: 0.8125rem;
           font-weight: 700;
           color: #333333;
           line-height: 24px;
@@ -152,7 +152,7 @@
         p {
           margin-bottom: 0;
           color: #9b9b9b;
-          font-size: 13px;
+          font-size: 0.8125rem;
           font-weight: 700;
         }
       }
@@ -170,7 +170,7 @@
           gap: 8px;
           align-items: center;
           color: #333333;
-          font-size: 13px;
+          font-size: 0.8125rem;
         }
       }
     }
@@ -221,13 +221,13 @@
   padding-left: 32px;
 
   .account-user_info-title {
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 300;
     color: #333333;
   }
 
   .account-user_info-name {
-    font-size: 16px;
+    font-size: 1rem;
     color: #333333;
   }
 }

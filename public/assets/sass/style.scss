@@ -84,3 +84,19 @@
 @import "./custom.scss";
 
 // @import "../css/product-single.css";
+
+html {
+  font-size: 1rem;
+}
+
+@media (max-width: 1023px) {
+  html {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 767px) {
+  html {
+    font-size: 0.75rem;
+  }
+}

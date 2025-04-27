@@ -3,11 +3,11 @@ import React from "react";
 
 type Props = {
   data?: User;
-  size?: number;
+  size?: string;
 } & React.CSSProperties;
 
 const Avatar = (props: Props) => {
-  const { data, size = 24, ...styles } = props;
+  const { data, size = "2rem", ...styles } = props;
 
   const name = React.useMemo(() => {
     if (!data?.firstName || !data?.lastName) return "MF";

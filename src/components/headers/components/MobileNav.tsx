@@ -162,7 +162,7 @@ export default function MobileNav() {
             pathname == pathNames.STORE ? "menu-active" : ""
           }`}
         >
-          Sản phẩm
+          Cửa hàng
         </Link>
       </li>
 
@@ -177,7 +177,7 @@ export default function MobileNav() {
         </Link>
       </li>
 
-      <li className="navigation__item">
+      {/* <li className="navigation__item">
         <Link
           href={pathNames.BLOGS}
           className={`navigation__link w-full ${
@@ -186,7 +186,7 @@ export default function MobileNav() {
         >
           Tin tức
         </Link>
-      </li>
+      </li> */}
       <li className="navigation__item">
         <Link
           href="/contact"

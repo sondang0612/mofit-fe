@@ -8,6 +8,7 @@ import {
 } from "@/data/menu";
 import { useBrands } from "@/hooks/react-query/brands/useBrands";
 import { useCategories } from "@/hooks/react-query/categories/useCategories";
+import { useAuthStore } from "@/hooks/store/useAuthStore";
 import { pathNames } from "@/utils/constants/paths";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -17,6 +18,7 @@ export default function Nav() {
   const pathname = usePathname();
   const { data: categories } = useCategories();
   const { data: brands } = useBrands();
+  const { isLoggedIn } = useAuthStore();
 
   const isMenuActive = (menu: any) => {
     return menu?.split("/")[1] == pathname.split("/")[1];
@@ -157,6 +159,18 @@ export default function Nav() {
           Liên hệ
         </Link>
       </li>
+      {isLoggedIn && (
+        <li className="navigation__item">
+          <Link
+            href={pathNames.ORDER}
+            className={`navigation__link ${
+              pathname == pathNames.ORDER ? "menu-active" : ""
+            }`}
+          >
+            Đơn hàng của tôi
+          </Link>
+        </li>
+      )}
     </>
   );
 }

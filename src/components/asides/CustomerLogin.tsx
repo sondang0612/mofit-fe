@@ -4,13 +4,16 @@ import { useLogin } from "@/hooks/react-query/auth/useLogin";
 import { closeModalUserlogin } from "@/utils/aside";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { IoEyeSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
+import { BsFillEyeSlashFill } from "react-icons/bs";
 
 export default function CustomerLogin() {
   const [username, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const router = useRouter();
   const { mutate: login, isSuccess } = useLogin();
+  const [showPass, setShowPass] = React.useState<boolean>(false);
 
   const isValidForm = React.useMemo(() => {
     return username.length !== 0 && password.length !== 0;
@@ -83,24 +86,34 @@ export default function CustomerLogin() {
               <label>Email *</label>
             </div>
             <div className="pb-3" />
-            <div className="form-floating mb-3">
+            <div className="form-floating mb-3 tw-relative">
               <input
                 name="password"
                 className="form-control form-control_gray"
-                type="password"
+                type={!showPass ? "password" : "text"}
                 placeholder="********"
                 onChange={(e) => setPassword(e.target.value)}
               />
               <label className="form-label">Mật khẩu *</label>
+              <div
+                className="tw-absolute tw-top-1/2 -tw-translate-y-1/2 tw-right-4 tw-cursor-pointer"
+                onClick={() => setShowPass(!showPass)}
+              >
+                {showPass ? (
+                  <IoEyeSharp size={18} />
+                ) : (
+                  <BsFillEyeSlashFill size={18} />
+                )}
+              </div>
             </div>
-            <div className="d-flex align-items-center mb-3 pb-2">
+            {/* <div className="d-flex align-items-center mb-3 pb-2">
               <div
                 onClick={() => navigate("/reset_password")}
                 className="btn-text ms-auto"
               >
                 Đặt lại mật khẩu
               </div>
-            </div>
+            </div> */}
             <button
               className="btn btn-primary w-100 text-uppercase"
               type="submit"

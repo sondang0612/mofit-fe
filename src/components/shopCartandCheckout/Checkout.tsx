@@ -17,6 +17,13 @@ import CartWithoutDiscount from "./CartWithoutDiscount";
 import { useFetch } from "@/hooks/react-query/useFetch";
 import { Address as IAddress } from "@/types/api";
 import { apiEndpoints } from "@/utils/constants/apiEndpoints";
+import { useUrlParams } from "@/hooks/useUrlParams";
+import {
+  EVnpayResponseCode,
+  EVnpayTransactionNo,
+  EVnpayTransactionStatus,
+} from "@/utils/constants/vnpay.enum";
+import { pathNames } from "@/utils/constants/paths";
 
 const paymentMethods = [
   {
@@ -33,6 +40,24 @@ const paymentMethods = [
 
 export default function Checkout() {
   const router = useRouter();
+  const { getParam } = useUrlParams();
+
+  const txnRef = getParam("vnp_TxnRef");
+  const transactionStatus = getParam("vnp_TransactionStatus");
+  const responseCode = getParam("vnp_ResponseCode");
+  const transactionNo = getParam("vnp_TransactionNo");
+
+  const isSuccess = React.useMemo(() => {
+    return (
+      transactionStatus === EVnpayTransactionStatus.SUCCESS &&
+      responseCode === EVnpayResponseCode.SUCCESS &&
+      transactionNo !== EVnpayTransactionNo.FAIL
+    );
+  }, [
+    transactionStatus === EVnpayTransactionStatus.SUCCESS &&
+      responseCode === EVnpayResponseCode.SUCCESS &&
+      transactionNo !== EVnpayTransactionNo.FAIL,
+  ]);
 
   const { data: cart } = useCart();
   const { data: addresses } = useFetch<IAddress>({
@@ -81,6 +106,12 @@ export default function Checkout() {
       totalPrice: getTotal(subTotal, 0, 0),
     });
   };
+
+  React.useEffect(() => {
+    if (isSuccess) {
+      router.push(`${pathNames.SHOP_ORDER_COMPLETE}?txnRef=${txnRef}`);
+    }
+  }, [isSuccess]);
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
