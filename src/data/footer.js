@@ -1,21 +1,29 @@
 import { pathNames } from "@/utils/constants/paths";
 
-export const footerLinks1 = [
-  { href: pathNames.ABOUT_US, text: "Về Double Fish" },
-  { href: pathNames.BLOGS, text: "Tin tức" },
-  { href: "/contact", text: "Liên hệ" },
-];
 export const footerLinks2 = [
+  { href: pathNames.ABOUT_US, text: "Giới thiệu" },
+  //{ href: pathNames.BLOGS, text: "Tin tức" },
+  { href: pathNames.CONTACT, text: "Liên hệ" },
+  { href: pathNames.PAYMENT_POLICY, text: "Chính sách thanh toán" },
+  { href: pathNames.COMPLAINT_POLICY, text: "Chính sách xử lý khiếu nại" },
+  {
+    href: pathNames.SHIPPING_AND_DELIVERY_POLICY,
+    text: "Chính sách vận chuyển và giao nhận",
+  },
+  {
+    href: pathNames.RETURN_AND_REFUND_POLICY,
+    text: "Chính sách đổi trả và hoàn tiền",
+  },
+  { href: pathNames.INSPECTION_POLICY, text: "Chính sách kiểm hàng" },
+  { href: pathNames.PRIVATE_POLICY, text: "Chính sách bảo mật thông tin" },
+];
+export const footerLinks3 = [
   { href: "/store?sortingValue=new_arrivals", text: "Hàng mới về" },
   { href: "/store?sortingValue=best_seller", text: "Bán chạy" },
 ];
-export const footerLinks3 = [
-  { href: pathNames.PAYMENT_POLICY, text: "Chính sách thanh toán" },
-  { href: "/account_dashboard", text: "Chính sách vận chuyển" },
-  { href: "/store_location", text: "Chính sách bảo mật thông tin" },
-  { href: "/terms", text: "Chính sách xử lý khiếu nại" },
-  { href: "/contact", text: "Chính sách kiểm hàng" },
-  { href: pathNames.ABOUT_US, text: "Chính sách đổi trả" },
+export const footerLinks1 = [
+  { href: "#", text: "Hotline 0923 680808" },
+  { href: "#", text: "contact@doublefish.com.vn" },
 ];
 
 export const languageOptions = [

@@ -9,29 +9,20 @@ import Link from "next/link";
 
 export default function Footer1() {
   return (
-    <footer className="footer footer_type_1 dark">
-      <div className="footer-middle px-24">
+    <footer className="footer footer_type_1 !tw-bg-black">
+      <div className="footer-middle md:tw-px-24 tw-px-6">
         <div className="row row-cols-lg-5 row-cols-2">
           <div className="footer-column footer-store-info col-12 mb-4 mb-lg-0">
-            <p className="footer-address">
+            <p className="!tw-text-base tw-text-white tw-font-semibold">
               CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ THƯƠNG MẠI MODERN FARE VIỆT NAM.
             </p>
-            <p className="footer-address">
+            <p className="tw-text-sm tw-text-white">
               GPKD số 0105243391 do Sở KH và ĐT TP Hà Nội cấp ngày 06/04/2011
             </p>
 
-            <p className="footer-address">
+            <p className="tw-text-sm tw-text-white">
               Địa chỉ: Số 31B, Ngõ 226, Đường Cầu Giấy, Phường Quan Hoa, Quận
               Cầu Giấy, TP. Hà Nội, Việt Nam
-            </p>
-
-            <p className="m-0">
-              <strong className="fw-medium">
-                Email: info@evovietnam.com.vn
-              </strong>
-            </p>
-            <p>
-              <strong className="fw-medium">Hotline: +84 315 636 871</strong>
             </p>
 
             <ul className="social-links list-unstyled d-flex flex-wrap mb-0">
@@ -61,41 +52,17 @@ export default function Footer1() {
             </ul>
           </div>
           {/* <!-- /.footer-column --> */}
-
           <div className="footer-column footer-menu mb-4 mb-lg-0">
-            <h5 className="sub-menu__title text-uppercase">Công ty</h5>
-            <ul className="sub-menu__list list-unstyled">
-              {footerLinks1.map((elm, i) => (
-                <li key={i} className="sub-menu__item">
-                  <Link href={elm.href} className="menu-link menu-link_us-s">
-                    {elm.text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          {/* <!-- /.footer-column --> */}
-          <div className="footer-column footer-menu mb-4 mb-lg-0">
-            <h5 className="sub-menu__title text-uppercase">Cửa hàng</h5>
-            <ul className="sub-menu__list list-unstyled">
-              {footerLinks2.map((elm, i) => (
-                <li key={i} className="sub-menu__item">
-                  <Link href={elm.href} className="menu-link menu-link_us-s">
-                    {elm.text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          {/* <!-- /.footer-column --> */}
-          <div className="footer-column footer-menu mb-4 mb-lg-0">
-            <h5 className="sub-menu__title text-uppercase">
+            <h5 className="sub-menu__title text-uppercase !tw-font-semibold !tw-text-base">
               Hỗ trợ khách hàng
             </h5>
             <ul className="sub-menu__list list-unstyled">
-              {footerLinks3.map((elm, i) => (
+              {footerLinks1.map((elm, i) => (
                 <li key={i} className="sub-menu__item">
-                  <Link href={elm.href} className="menu-link menu-link_us-s">
+                  <Link
+                    href={elm.href}
+                    className="menu-link menu-link_us hover:!tw-text-white hover:tw-opacity-80 !tw-text-white"
+                  >
                     {elm.text}
                   </Link>
                 </li>
@@ -103,27 +70,78 @@ export default function Footer1() {
             </ul>
           </div>
           {/* <!-- /.footer-column --> */}
-          <div className="footer-column footer-newsletter col-12 mb-4 mb-lg-0">
-            <h5 className="sub-menu__title text-uppercase">
-              Tham gia ngay trong hôm nay
+
+          <div className="footer-column footer-menu mb-4 mb-lg-0">
+            <h5 className="sub-menu__title text-uppercase !tw-font-semibold !tw-text-base">
+              Về Double Fish
             </h5>
-            <p>Giảm giá lên đến 10% cho đơn hàng đầu tiên.</p>
+            <ul className="sub-menu__list list-unstyled">
+              {footerLinks2.map((elm, i) => (
+                <li key={i} className="sub-menu__item">
+                  <Link
+                    href={elm.href}
+                    className="menu-link menu-link_us hover:!tw-text-white hover:tw-opacity-80 !tw-text-white"
+                  >
+                    {elm.text}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* <!-- /.footer-column --> */}
+          <div className="footer-column footer-newsletter col-12 mb-4 mb-lg-0 md:tw-pb-0 tw-pb-6">
+            <h5 className="sub-menu__title text-uppercase !tw-font-semibold !tw-text-base">
+              Đăng ký nhận ngay ưu đã mới nhất
+            </h5>
             <form
               onSubmit={(e) => e.preventDefault()}
-              className="footer-newsletter__form position-relative bg-body"
+              className="footer-newsletter__form position-relative bg-body !tw-bg-black"
             >
               <input
-                className="form-control border-white"
+                className="form-control !tw-outline-none !tw-bg-black !tw-text-white tw-relative autofill:!tw-bg-transparent"
+                style={{
+                  border: "none !important",
+                  borderBottom: "1px solid #fff !important",
+                }}
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Nhập email của bạn"
               />
               <input
-                className="btn-link fw-medium bg-white position-absolute top-0 end-0 h-100"
+                className="fw-medium absolute tw-top-1/2 -tw-translate-y-1/2 end-0 !tw-h-fit !tw-bg-black !tw-text-white"
                 type="submit"
                 defaultValue="Tham gia"
               />
             </form>
+            <div className="tw-mt-5 tw-flex tw-gap-4">
+              <a target="_blank" href="https://zalo.me/0971090094">
+                <img
+                  src="/assets/svgs/zalo.svg"
+                  alt="#"
+                  className="tw-cursor-pointer"
+                />
+              </a>
+              <a
+                target="_blank"
+                href="https://www.facebook.com/evogiaiphapthethao"
+              >
+                <img
+                  src="/assets/svgs/facebook.svg"
+                  alt="#"
+                  className="tw-cursor-pointer"
+                />
+              </a>
+              <a
+                target="_blank"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=info@evovietnam.com.vn&su=Chào%20Công%20Ty&body=Xin%20chào%2C%20tôi%20muốn%20hỏi%20về%20sản%20phẩm."
+              >
+                <img
+                  src="/assets/svgs/mail.svg"
+                  alt="#"
+                  className="tw-cursor-pointer"
+                />
+              </a>
+            </div>
           </div>
           {/* <!-- /.footer-column --> */}
         </div>

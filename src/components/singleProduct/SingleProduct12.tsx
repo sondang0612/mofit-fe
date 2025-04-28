@@ -13,6 +13,7 @@ import { FcLike } from "react-icons/fc";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { useLikeProduct } from "@/hooks/react-query/auth/favorite-products/useLikeProduct";
 import { useUnLikeProduct } from "@/hooks/react-query/auth/favorite-products/useUnLikeProduct";
+import Description from "./Description";
 
 interface Props {
   slug?: string;
@@ -137,7 +138,7 @@ export default function SingleProduct12(props: Props) {
           </div>
         </div>
       </div>
-      {/* <div className="product-single__details-tab">
+      <div className="product-single__details-tab md:tw-mt-6 tw-mt-2">
         <ul className="nav nav-tabs" id="myTab1" role="tablist">
           <li className="nav-item" role="presentation">
             <a
@@ -149,10 +150,10 @@ export default function SingleProduct12(props: Props) {
               aria-controls="tab-description"
               aria-selected="true"
             >
-              Mô tả
+              Mô tả chi tiết
             </a>
           </li>
-          <li className="nav-item" role="presentation">
+          {/* <li className="nav-item" role="presentation">
             <a
               className="nav-link nav-link_underscore"
               id="tab-additional-info-tab"
@@ -164,7 +165,7 @@ export default function SingleProduct12(props: Props) {
             >
               Thông tin thêm
             </a>
-          </li>
+          </li> */}
         </ul>
         <div className="tab-content">
           <div
@@ -175,16 +176,16 @@ export default function SingleProduct12(props: Props) {
           >
             <Description product={product} />
           </div>
-          <div
+          {/* <div
             className="tab-pane fade"
             id="tab-additional-info"
             role="tabpanel"
             aria-labelledby="tab-additional-info-tab"
           >
             <AdditionalInfo />
-          </div>
+          </div> */}
         </div>
-      </div> */}
+      </div>
     </section>
   );
 }
