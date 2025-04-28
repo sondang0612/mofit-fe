@@ -21,7 +21,7 @@ export default function OrderCompleted() {
     limit: 1,
     queryParams: [QueryParam.ORDER_ID, QueryParam.TXN_REF],
     queryValues: [orderId, txnRef],
-    enabled: !!txnRef && !!orderId,
+    enabled: !!txnRef || !!orderId,
   });
 
   if (!txnRef && !orderId) {
