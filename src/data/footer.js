@@ -1,9 +1,6 @@
 import { pathNames } from "@/utils/constants/paths";
 
 export const footerLinks2 = [
-  { href: pathNames.ABOUT_US, text: "Giới thiệu" },
-  //{ href: pathNames.BLOGS, text: "Tin tức" },
-  { href: pathNames.CONTACT, text: "Liên hệ" },
   { href: pathNames.PAYMENT_POLICY, text: "Chính sách thanh toán" },
   { href: pathNames.COMPLAINT_POLICY, text: "Chính sách xử lý khiếu nại" },
   {
@@ -22,6 +19,9 @@ export const footerLinks3 = [
   { href: "/store?sortingValue=best_seller", text: "Bán chạy" },
 ];
 export const footerLinks1 = [
+  { href: pathNames.ABOUT_US, text: "Giới thiệu" },
+  { href: pathNames.CONTACT, text: "Liên hệ" },
+  { href: pathNames.BLOGS, text: "Tin tức" },
   { href: "#", text: "Hotline 0923 680808" },
   { href: "#", text: "contact@doublefish.com.vn" },
 ];
