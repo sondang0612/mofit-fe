@@ -27,7 +27,7 @@ export default function AccountWishlist() {
             </h2>
             <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-6">
               {products.map((item) => (
-                <Product data={item} key={item.id} />
+                <Product data={item.product as any} key={item.id} />
               ))}
             </div>
           </div>

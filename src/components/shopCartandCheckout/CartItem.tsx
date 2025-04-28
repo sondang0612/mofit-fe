@@ -39,8 +39,8 @@ const CartItem: React.FC<Props> = ({ data, canEdit = true, onRemove }) => {
           <Image
             loading="lazy"
             src={data?.product?.imgSrc || EDefaultValue.IMAGE}
-            width="120"
-            height="120"
+            width="80"
+            height="80"
             alt="image"
           />
         </div>

@@ -5,16 +5,55 @@ import { useUrlParams } from "@/hooks/useUrlParams";
 import { Order } from "@/types/api";
 import { apiEndpoints } from "@/utils/constants/apiEndpoints";
 import { formatPrice } from "@/utils/formatPrice";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const paymentMethodTxt = {
   payment_gateway: "Chuyển khoản ngân hàng",
-  cod: "Thanh toán tiến mặt",
+  cod: "Thanh toán tiền mặt",
+};
+
+// Loading skeleton component
+const OrderSkeleton = () => {
+  return (
+    <div className="tw-max-w-lg tw-mt-16 tw-mx-auto tw-bg-white tw-rounded-2xl tw-shadow-sm tw-overflow-hidden">
+      <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-py-10 tw-px-6">
+        <div className="tw-bg-gray-200 tw-rounded-full tw-p-4 tw-mb-4 tw-animate-pulse">
+          <div className="tw-w-10 tw-h-10"></div>
+        </div>
+        <div className="tw-bg-gray-200 tw-h-8 tw-w-2/3 tw-rounded tw-mb-6 tw-animate-pulse"></div>
+
+        <div className="tw-w-full">
+          {[1, 2, 3].map((item) => (
+            <div key={item} className="tw-flex tw-justify-between tw-py-3">
+              <div className="tw-bg-gray-200 tw-h-6 tw-w-1/3 tw-rounded tw-animate-pulse"></div>
+              <div className="tw-bg-gray-200 tw-h-6 tw-w-1/4 tw-rounded tw-animate-pulse"></div>
+            </div>
+          ))}
+
+          <div className="tw-border-b tw-border-dashed tw-my-2"></div>
+
+          {[1, 2].map((item) => (
+            <div key={item} className="tw-flex tw-justify-between tw-py-3">
+              <div className="tw-bg-gray-200 tw-h-6 tw-w-1/3 tw-rounded tw-animate-pulse"></div>
+              <div className="tw-bg-gray-200 tw-h-6 tw-w-1/4 tw-rounded tw-animate-pulse"></div>
+            </div>
+          ))}
+        </div>
+
+        <div className="tw-w-full tw-mt-6">
+          <div className="tw-bg-gray-200 tw-h-12 tw-w-full tw-rounded-md tw-animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default function OrderCompleted() {
   const { getParam } = useUrlParams();
   const txnRef = getParam("txnRef");
   const orderId = getParam("orderId");
+  const router = useRouter();
 
   const { data: orders, isLoading } = useFetch<Order>({
     endpoint: apiEndpoints.ORDERS,
@@ -31,97 +70,95 @@ export default function OrderCompleted() {
   const order = orders[0];
 
   if (isLoading) {
-    return <p>Loading</p>;
+    return <OrderSkeleton />;
   }
 
   return (
-    <div className="order-complete">
-      <div className="order-complete__message">
-        <svg
-          width="80"
-          height="80"
-          viewBox="0 0 80 80"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle cx="40" cy="40" r="40" fill="#B9A16B" />
-          <path
-            d="M52.9743 35.7612C52.9743 35.3426 52.8069 34.9241 52.5056 34.6228L50.2288 32.346C49.9275 32.0446 49.5089 31.8772 49.0904 31.8772C48.6719 31.8772 48.2533 32.0446 47.952 32.346L36.9699 43.3449L32.048 38.4062C31.7467 38.1049 31.3281 37.9375 30.9096 37.9375C30.4911 37.9375 30.0725 38.1049 29.7712 38.4062L27.4944 40.683C27.1931 40.9844 27.0257 41.4029 27.0257 41.8214C27.0257 42.24 27.1931 42.6585 27.4944 42.9598L33.5547 49.0201L35.8315 51.2969C36.1328 51.5982 36.5513 51.7656 36.9699 51.7656C37.3884 51.7656 37.8069 51.5982 38.1083 51.2969L40.385 49.0201L52.5056 36.8996C52.8069 36.5982 52.9743 36.1797 52.9743 35.7612Z"
-            fill="white"
-          />
-        </svg>
-        <h3>Đặt hàng thành công!</h3>
-      </div>
-      <>
-        <div className="order-info">
-          <div className="order-info__item">
-            <label>Mã đơn hàng</label>
-            <span>{order?.id}</span>
-          </div>
-          <div className="order-info__item">
-            <label>Ngày tạo</label>
-            <span>{new Date().toLocaleDateString()}</span>
-          </div>
-          <div className="order-info__item">
-            <label>Tổng tiền</label>
+    <div className="tw-max-w-lg tw-mt-16 tw-mx-auto tw-bg-white tw-rounded-2xl tw-shadow-sm tw-overflow-hidden">
+      <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-py-10 tw-px-6">
+        <div className="tw-bg-green-100 tw-rounded-full tw-p-4 tw-mb-4">
+          <svg
+            className="tw-w-10 tw-h-10 tw-text-green-600"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fillRule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </div>
+        <h2 className="tw-text-2xl tw-font-medium tw-text-gray-800 tw-mb-6">
+          Đặt hàng thành công
+        </h2>
 
-            <span>{formatPrice(order?.totalPrice)}</span>
+        <div className="tw-w-full">
+          <div className="tw-flex tw-justify-between tw-py-3">
+            <span className="tw-text-gray-500">Mã đơn hàng</span>
+            <span className="tw-font-medium tw-text-gray-800">{order?.id}</span>
           </div>
-          <div className="order-info__item">
-            <label>Phương thức thanh toán</label>
-            <span>
-              {
-                paymentMethodTxt[
+
+          <div className="tw-flex tw-justify-between tw-py-3">
+            <span className="tw-text-gray-500">Ngày đặt hàng</span>
+            <span className="tw-font-medium tw-text-gray-800">
+              {new Date(order?.createdAt || new Date())
+                .toLocaleDateString("vi-VN", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  second: "2-digit",
+                })
+                .replace(",", "")}
+            </span>
+          </div>
+
+          <div className="tw-flex tw-justify-between tw-py-3">
+            <span className="tw-text-gray-500">Phương thức thanh toán</span>
+            <div className="tw-flex tw-items-center">
+              {order?.paymentMethod === "payment_gateway" && (
+                <img
+                  src="/assets/images/vn-pay.png"
+                  alt="VNPAY"
+                  className="tw-w-[21px] tw-mr-2"
+                />
+              )}
+              <span className="tw-font-medium tw-text-gray-800">
+                {paymentMethodTxt[
                   order?.paymentMethod as "payment_gateway" | "cod"
-                ]
-              }
+                ] || "VNPAY"}
+              </span>
+            </div>
+          </div>
+
+          <div className="tw-border-b tw-border-dashed"></div>
+
+          <div className="tw-flex tw-justify-between tw-py-3">
+            <span className="tw-text-gray-500">VAT</span>
+            <span className="tw-font-medium tw-text-gray-800">
+              {formatPrice(order?.vat || 0)}
+            </span>
+          </div>
+
+          <div className="tw-flex tw-justify-between tw-py-3">
+            <span className="tw-text-gray-500 tw-text-lg">Tổng cộng</span>
+            <span className="tw-font-bold tw-text-gray-800 tw-text-lg">
+              {formatPrice(order?.totalPrice || 0)}
             </span>
           </div>
         </div>
-        <div className="checkout__totals-wrapper">
-          <div className="checkout__totals">
-            <h3>Chi tiết đơn hàng</h3>
-            <table className="checkout-cart-items">
-              <thead>
-                <tr>
-                  <th>Sản phẩm</th>
-                  <th>Ước tính</th>
-                </tr>
-              </thead>
-              <tbody>
-                {order?.orderItems?.map((elm, i) => (
-                  <tr key={i}>
-                    <td>
-                      {elm?.product?.title} x {elm?.quantity}
-                    </td>
-                    <td>{formatPrice(elm?.product?.price)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <table className="checkout-totals">
-              <tbody>
-                <tr>
-                  <th>Tạm tính</th>
-                  <td>{formatPrice(order?.subTotal)}</td>
-                </tr>
-                <tr>
-                  <th>Vận chuyển</th>
-                  <td>Free shipping</td>
-                </tr>
-                <tr>
-                  <th>VAT</th>
-                  <td>{formatPrice(order?.vat)}đ</td>
-                </tr>
-                <tr>
-                  <th>Tổng</th>
-                  <td>{formatPrice(order?.totalPrice)}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+
+        <div className="tw-w-full tw-mt-6">
+          <button
+            onClick={() => router.push(`/account_orders/${orderId}`)}
+            className="tw-w-full tw-bg-black tw-text-white tw-py-3 tw-rounded-md tw-font-medium tw-flex tw-items-center tw-justify-center tw-transition-colors hover:tw-bg-gray-800 "
+          >
+            Xem đơn hàng
+          </button>
         </div>
-      </>
+      </div>
     </div>
   );
 }

@@ -8,15 +8,10 @@ import React, { Suspense } from "react";
 export default function () {
   return (
     <>
-      <Header1 />
+      <Header1 showBreadcrumb />
       <main className="page-wrapper">
-        <div className="mb-4 pb-4"></div>
-        <section className="shop-checkout container">
-          <h2 className="page-title">Đã nhận đơn hàng</h2>
-          <ChectoutSteps />
-          <Suspense fallback={<p>loading...</p>}>
-            <OrderCompleted />
-          </Suspense>
+        <section className="shop-checkout container  ">
+          <OrderCompleted />
         </section>
       </main>
       <Footer1 />

@@ -1,29 +1,30 @@
 "use client";
 
-import { useAddresses } from "@/hooks/react-query/addresses/useAddresses";
+import { useRemoveCartItem } from "@/hooks/react-query/cart-items/useRemoveCartItem";
 import { useCart } from "@/hooks/react-query/cart/useCart";
 import { useCreateOrder } from "@/hooks/react-query/orders/useCreateOrder";
-import { EPaymentMethod, EShippingMethod } from "@/utils/constants/order.enum";
-import { formatPrice } from "@/utils/formatPrice";
-import { getSubTotal } from "@/utils/getSubTotal";
-import { getTotal } from "@/utils/getTotal";
-import { getTotalPrice } from "@/utils/getTotalPrice";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React from "react";
-import { toast } from "react-toastify";
-import Address from "../otherPages/address/Address";
-import CartWithoutDiscount from "./CartWithoutDiscount";
 import { useFetch } from "@/hooks/react-query/useFetch";
+import { useUrlParams } from "@/hooks/useUrlParams";
 import { Address as IAddress } from "@/types/api";
 import { apiEndpoints } from "@/utils/constants/apiEndpoints";
-import { useUrlParams } from "@/hooks/useUrlParams";
+import { EPaymentMethod, EShippingMethod } from "@/utils/constants/order.enum";
+import { pathNames } from "@/utils/constants/paths";
 import {
   EVnpayResponseCode,
   EVnpayTransactionNo,
   EVnpayTransactionStatus,
 } from "@/utils/constants/vnpay.enum";
-import { pathNames } from "@/utils/constants/paths";
+import { getSubTotal } from "@/utils/getSubTotal";
+import { getTotal } from "@/utils/getTotal";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { toast } from "react-toastify";
+import AddressCart from "../otherPages/address/AddressCart";
+import CardLayout from "./CardLayout";
+import ListCartItems from "./ListCartItems";
+import { formatPrice } from "@/utils/formatPrice";
+import { getTotalPrice } from "@/utils/getTotalPrice";
 
 const paymentMethods = [
   {
@@ -41,6 +42,7 @@ const paymentMethods = [
 export default function Checkout() {
   const router = useRouter();
   const { getParam } = useUrlParams();
+  const { mutate: removeCartItem } = useRemoveCartItem();
 
   const txnRef = getParam("vnp_TxnRef");
   const transactionStatus = getParam("vnp_TransactionStatus");
@@ -114,77 +116,170 @@ export default function Checkout() {
   }, [isSuccess]);
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <div className="checkout-form">
-        <div className="billing-info__wrapper">
-          <h4>Chi tiết đơn hàng</h4>
-          <CartWithoutDiscount cart={cart || []} />
+    <CardLayout
+      leftChildren={
+        <div className="tw-px-6 tw-pt-2 tw-pb-6 tw-bg-white">
+          <div className="cart-table__wrapper">
+            {cart?.length ? (
+              <>
+                <ListCartItems
+                  data={cart}
+                  onRemove={(cartItemId) => removeCartItem({ cartItemId })}
+                />
+              </>
+            ) : (
+              <>
+                <div className="fs-20">Giỏ hàng đang trống</div>
+
+                <button className="btn mt-3 btn-light">
+                  <Link href={pathNames.STORE}>Mua hàng ngay!</Link>
+                </button>
+              </>
+            )}
+          </div>
         </div>
-        <div className="checkout__totals-wrapper">
-          <div className="sticky-content">
-            <div className="checkout__totals">
-              <h3>Đơn hàng của bạn</h3>
-              <table className="checkout-cart-items">
-                <thead>
-                  <tr>
-                    <th>Sản phẩm</th>
-                    <th>Tạm tính</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cart?.map((elm, i) => (
-                    <tr key={i}>
-                      <td style={{ width: "65%" }}>
-                        {elm.product?.title} x {elm.quantity}
-                      </td>
-                      <td>
-                        {formatPrice(
-                          getTotalPrice(elm?.product?.price, elm?.quantity)
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <table className="checkout-totals">
-                <tbody>
-                  <tr>
-                    <th>Tổng phụ</th>
-                    <td>{formatPrice(subTotal)}</td>
-                  </tr>
-                  <tr>
-                    <th>Vận chuyển</th>
-                    <td>Free shipping</td>
-                  </tr>
-                  <tr>
-                    <th>VAT</th>
-                    <td>{formatPrice(0)}</td>
-                  </tr>
-                  <tr>
-                    <th>Tổng tiền</th>
-                    <td>{formatPrice(getTotal(subTotal, 0, 0))}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div className="checkout__totals">
+      }
+      rightChildren={
+        // <div className="checkout__totals-wrapper">
+        //   <div className="sticky-content">
+        //     <div className="checkout__totals">
+        //       <h3>Đơn hàng của bạn</h3>
+        //       <table className="checkout-cart-items">
+        //         <thead>
+        //           <tr>
+        //             <th>Sản phẩm</th>
+        //             <th>Tạm tính</th>
+        //           </tr>
+        //         </thead>
+        //         <tbody>
+        //           {cart?.map((elm, i) => (
+        //             <tr key={i}>
+        //               <td style={{ width: "65%" }}>
+        //                 {elm.product?.title} x {elm.quantity}
+        //               </td>
+        //               <td>
+        //                 {formatPrice(
+        //                   getTotalPrice(elm?.product?.price, elm?.quantity)
+        //                 )}
+        //               </td>
+        //             </tr>
+        //           ))}
+        //         </tbody>
+        //       </table>
+        //       <table className="checkout-totals">
+        //         <tbody>
+        //           <tr>
+        //             <th>Tổng phụ</th>
+        //             <td>{formatPrice(subTotal)}</td>
+        //           </tr>
+        //           <tr>
+        //             <th>Vận chuyển</th>
+        //             <td>Free shipping</td>
+        //           </tr>
+        //           <tr>
+        //             <th>VAT</th>
+        //             <td>{formatPrice(0)}</td>
+        //           </tr>
+        //           <tr>
+        //             <th>Tổng tiền</th>
+        //             <td>{formatPrice(getTotal(subTotal, 0, 0))}</td>
+        //           </tr>
+        //         </tbody>
+        //       </table>
+        //     </div>
+        //     <div className="checkout__totals">
+        //       {addresses && addresses?.length > 0 && (
+        //         <Address data={addresses[0]} />
+        //       )}
+        //       <span
+        //         className="underline cursor-pointer text-blue-500"
+        //         onClick={() =>
+        //           router.push("/account_edit_address?redirect=shop_checkout")
+        //         }
+        //       >
+        //         {addresses && addresses?.length > 0
+        //           ? "Đặt lại địa chỉ mặc định"
+        //           : "Thêm địa chỉ giao hàng"}
+        //       </span>
+        //     </div>
+        //     <div className="checkout__payment-methods">
+        //       {paymentMethods.map((method) => (
+        //         <div className="form-check" key={method.id}>
+        //           <input
+        //             className="form-check-input form-check-input_fill"
+        //             type="radio"
+        //             name="checkout_payment_method"
+        //             id={method.id}
+        //             checked={paymentMethod === method.value}
+        //             onChange={() => setPaymentMethod(method.value)}
+        //             aria-label={method.label}
+        //           />
+        //           <label className="form-check-label" htmlFor={method.id}>
+        //             {method.label}
+        //           </label>
+        //         </div>
+        //       ))}
+        //       <div className="policy-text">
+        //         Your personal data will be used to process your order, support
+        //         your experience throughout this website, and for other purposes
+        //         described in our{" "}
+        //         <Link href="/terms" target="_blank">
+        //           privacy policy
+        //         </Link>
+        //         .
+        //       </div>
+        //     </div>
+        //     <button
+        //       className="btn btn-primary btn-checkout"
+        //       onClick={handleCreateOrder}
+        //     >
+        //       {paymentMethod === EPaymentMethod.COD ? "Đặt hàng" : "Thanh toán"}
+        //     </button>
+        //   </div>
+        // </div>
+        <div className="tw-space-y-[12px]">
+          <div className="tw-bg-white tw-px-4 tw-pt-2 tw-pb-4">
+            <div>
               {addresses && addresses?.length > 0 && (
-                <Address data={addresses[0]} />
+                <AddressCart data={addresses[0]} />
               )}
-              <span
-                className="underline cursor-pointer text-blue-500"
-                onClick={() =>
-                  router.push("/account_edit_address?redirect=shop_checkout")
-                }
-              >
-                {addresses && addresses?.length > 0
-                  ? "Đặt lại địa chỉ mặc định"
-                  : "Thêm địa chỉ giao hàng"}
-              </span>
+              {addresses && addresses?.length <= 0 && (
+                <div
+                  className="tw-mt-2 underline cursor-pointer text-blue-500"
+                  onClick={() =>
+                    router.push("/account_edit_address?redirect=shop_checkout")
+                  }
+                >
+                  Thêm địa chỉ giao hàng
+                </div>
+              )}
             </div>
-            <div className="checkout__payment-methods">
+          </div>
+          <div className="tw-bg-white tw-p-6">
+            <div className="tw-space-y-2">
+              <div className="tw-flex tw-justify-between tw-items-center">
+                <div className="tw-text-[#808089]">Tạm tính</div>
+                <div>{formatPrice(subTotal)}</div>
+              </div>
+              <div className="tw-flex tw-justify-between tw-items-center">
+                <div className="tw-text-[#808089]">Vận chuyển</div>
+                <div className="tw-text-[#00AB56]">{formatPrice(0)}</div>
+              </div>
+              <div className="tw-flex tw-justify-between tw-items-center">
+                <div className="tw-text-[#808089]">VAT</div>
+                <div className="tw-text-[#00AB56]">{formatPrice(0)}</div>
+              </div>
+            </div>
+            <div className="tw-h-[1px] tw-w-full tw-bg-[#EBEBF0] tw-my-4"></div>
+            <div className="tw-flex tw-items-center tw-justify-between tw-font-bold">
+              <div className="tw-text-[#27272A]">Tổng tiền</div>
+              <div className="tw-text-[#FF424E]">
+                {formatPrice(getTotal(subTotal, 0, 0))}
+              </div>
+            </div>
+            <div className="tw-mt-4">
               {paymentMethods.map((method) => (
-                <div className="form-check" key={method.id}>
+                <div className="form-check !tw-mb-0" key={method.id}>
                   <input
                     className="form-check-input form-check-input_fill"
                     type="radio"
@@ -199,25 +294,20 @@ export default function Checkout() {
                   </label>
                 </div>
               ))}
-              <div className="policy-text">
-                Your personal data will be used to process your order, support
-                your experience throughout this website, and for other purposes
-                described in our{" "}
-                <Link href="/terms" target="_blank">
-                  privacy policy
-                </Link>
-                .
-              </div>
             </div>
-            <button
-              className="btn btn-primary btn-checkout"
-              onClick={handleCreateOrder}
-            >
-              {paymentMethod === EPaymentMethod.COD ? "Đặt hàng" : "Thanh toán"}
-            </button>
+            <div className="tw-mt-4">
+              <button
+                onClick={handleCreateOrder}
+                className="tw-bg-[#EC1A23] tw-h-[40px] tw-text-center w-full tw-text-white tw-rounded hover:tw-bg-red-600 tw-transition-al"
+              >
+                {paymentMethod === EPaymentMethod.COD
+                  ? "Đặt hàng"
+                  : "Thanh toán"}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </form>
+      }
+    />
   );
 }
