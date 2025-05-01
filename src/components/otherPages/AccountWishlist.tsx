@@ -14,7 +14,7 @@ export default function AccountWishlist() {
   };
 
   return (
-    <div className="tw-w-full">
+    <div className="tw-w-full tw-flex-1">
       <div className="tw-bg-white tw-rounded-lg tw-shadow-sm tw-p-6">
         {!products || products?.length === 0 ? (
           <div className="tw-text-lg tw-text-gray-600 tw-text-center tw-py-12">

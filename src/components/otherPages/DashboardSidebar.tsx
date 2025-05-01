@@ -27,7 +27,7 @@ export default function DashboardSidebar() {
               <span
                 onClick={() => handleNavigate(elm.href, elm.value)}
                 className={`menu-link ${
-                  pathname == elm.href ? "menu-link_active" : ""
+                  pathname.includes(elm.href) ? "menu-link_active" : ""
                 } `}
               >
                 <div

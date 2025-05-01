@@ -5,7 +5,6 @@ import { useUrlParams } from "@/hooks/useUrlParams";
 import { Order } from "@/types/api";
 import { apiEndpoints } from "@/utils/constants/apiEndpoints";
 import { formatPrice } from "@/utils/formatPrice";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const paymentMethodTxt = {
@@ -152,7 +151,7 @@ export default function OrderCompleted() {
 
         <div className="tw-w-full tw-mt-6">
           <button
-            onClick={() => router.push(`/account_orders/${orderId}`)}
+            onClick={() => router.push(`/account_orders/${order.id}`)}
             className="tw-w-full tw-bg-black tw-text-white tw-py-3 tw-rounded-md tw-font-medium tw-flex tw-items-center tw-justify-center tw-transition-colors hover:tw-bg-gray-800 "
           >
             Xem đơn hàng

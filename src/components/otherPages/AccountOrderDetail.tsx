@@ -195,7 +195,7 @@ const AccountOrderDetail = () => {
                     <Image
                       width={80}
                       height={80}
-                      src={item?.product?.imgSrc || ""}
+                      src={item?.product?.images?.cover || ""}
                       alt={item?.product?.title || "Product"}
                       className="tw-border tw-mr-3"
                     />

@@ -24,37 +24,11 @@ export default function Footer1() {
               Địa chỉ: Số 31B, Ngõ 226, Đường Cầu Giấy, Phường Quan Hoa, Quận
               Cầu Giấy, TP. Hà Nội, Việt Nam
             </p>
-
-            <ul className="social-links list-unstyled d-flex flex-wrap mb-0">
-              {socialLinks.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    className="footer__social-link d-block"
-                  >
-                    <svg
-                      className={link.className}
-                      width={link.width}
-                      height={link.height}
-                      viewBox={link.viewBox}
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      {typeof link.icon === "string" ? (
-                        <use href={link.icon} />
-                      ) : (
-                        link.icon
-                      )}
-                    </svg>
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
           {/* <!-- /.footer-column --> */}
           <div className="footer-column footer-menu mb-4 mb-lg-0">
             <h5 className="sub-menu__title text-uppercase !tw-font-semibold !tw-text-base">
-              Hỗ trợ khách hàng
+              Về Double Fish
             </h5>
             <ul className="sub-menu__list list-unstyled">
               {footerLinks1.map((elm, i) => (
@@ -73,7 +47,7 @@ export default function Footer1() {
 
           <div className="footer-column footer-menu mb-4 mb-lg-0">
             <h5 className="sub-menu__title text-uppercase !tw-font-semibold !tw-text-base">
-              Về Double Fish
+              Chính sách và quy định
             </h5>
             <ul className="sub-menu__list list-unstyled">
               {footerLinks2.map((elm, i) => (
@@ -98,11 +72,7 @@ export default function Footer1() {
               className="footer-newsletter__form position-relative bg-body !tw-bg-black"
             >
               <input
-                className="form-control !tw-outline-none !tw-bg-black !tw-text-white tw-relative autofill:!tw-bg-transparent"
-                style={{
-                  border: "none !important",
-                  borderBottom: "1px solid #fff !important",
-                }}
+                className="tw-w-full tw-h-12 !tw-outline-none !tw-bg-black !tw-text-white tw-relative autofill:!tw-bg-transparent tw-border-b tw-border-b-white"
                 type="email"
                 name="email"
                 placeholder="Nhập email của bạn"
@@ -110,7 +80,7 @@ export default function Footer1() {
               <input
                 className="fw-medium absolute tw-top-1/2 -tw-translate-y-1/2 end-0 !tw-h-fit !tw-bg-black !tw-text-white"
                 type="submit"
-                defaultValue="Tham gia"
+                value="Tham gia"
               />
             </form>
             <div className="tw-mt-5 tw-flex tw-gap-4">
