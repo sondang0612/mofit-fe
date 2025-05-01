@@ -23,7 +23,7 @@ const Order = (props: Props) => {
           height={80}
           src={
             orderItems
-              ? `${orderItems[0].product?.imgSrc}`
+              ? `${orderItems[0].product?.images?.cover}`
               : EDefaultValue.IMAGE
           }
           alt=""
