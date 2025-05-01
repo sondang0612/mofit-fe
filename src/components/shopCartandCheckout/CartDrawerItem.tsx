@@ -52,7 +52,7 @@ const CartDrawerItem = (props: Props) => {
             width={330}
             height={400}
             style={{ height: "fit-content" }}
-            src={data?.product?.imgSrc || EDefaultValue.IMAGE}
+            src={data?.product?.images?.cover || EDefaultValue.IMAGE}
             alt="image"
           />
         </div>

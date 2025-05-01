@@ -18,8 +18,7 @@ export interface Product {
   id?: number | undefined;
   title?: string | undefined;
   price?: number | undefined;
-  imgSrc?: string | undefined;
-  imgSrc2?: string | undefined;
+  images?: { cover?: string | undefined; other?: string[] };
   ratings?: number | undefined;
   totalReviews?: string | undefined;
   price?: number | undefined;
@@ -30,6 +29,9 @@ export interface Product {
   description?: string | undefined;
   sku?: string | undefined;
   slug?: string | undefined;
+  brand?: Brand | undefined;
+  origin?: string | undefined;
+  specifications?: string | undefined;
 }
 
 export interface Category {
@@ -112,6 +114,7 @@ export interface Order {
   cart?: CartItem[] | undefined;
   canCancel?: boolean | undefined;
   payment?: Payment | undefined;
+  createdAt?: string | undefined;
 }
 
 export interface Category {

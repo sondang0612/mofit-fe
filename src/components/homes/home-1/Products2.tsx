@@ -54,7 +54,7 @@ export default function Products2() {
             <Link href={`/${data?.slug}/product`}>
               <Image
                 loading="lazy"
-                src={data?.imgSrc || EDefaultValue.IMAGE}
+                src={data?.images?.cover || EDefaultValue.IMAGE}
                 width="330"
                 height="400"
                 alt={data?.title || EDefaultValue.ALT_IMAGE}
@@ -62,7 +62,7 @@ export default function Products2() {
               />
               <Image
                 loading="lazy"
-                src={data?.imgSrc2 || EDefaultValue.IMAGE}
+                src={data?.images?.cover || EDefaultValue.IMAGE}
                 width="330"
                 height="400"
                 className="pc__img pc__img-second"

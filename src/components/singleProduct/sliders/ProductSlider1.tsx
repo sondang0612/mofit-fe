@@ -25,11 +25,16 @@ export default function ProductSlider1(props: Props) {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
 
   const images = React.useMemo(() => {
-    return [
-      product?.imgSrc || EDefaultValue.IMAGE,
-      product?.imgSrc2 || EDefaultValue.IMAGE,
-    ]?.filter(Boolean);
-  }, [product?.imgSrc, product?.imgSrc2]);
+    const result = [];
+    if (product?.images?.cover) {
+      result.push(product?.images?.cover);
+    }
+    if (product?.images?.other) {
+      result.push(...product?.images?.other);
+    }
+
+    return result;
+  }, [product?.images?.cover, product?.images?.other]);
 
   return (
     <div className="product-single__media vertical-thumbnail product-media-initialized">

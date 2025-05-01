@@ -53,20 +53,22 @@ const Product = (props: Props) => {
               nextEl: ".next" + data?.id,
             }}
           >
-            {[data?.imgSrc, data?.imgSrc2].map((elm2, i) => (
-              <SwiperSlide key={i} className="swiper-slide w-inherit">
-                <Link href={`/${data?.slug}/product`}>
-                  <Image
-                    loading="lazy"
-                    src={elm2 || EDefaultValue.IMAGE}
-                    width="330"
-                    height="400"
-                    alt="product image"
-                    className="pc__img"
-                  />
-                </Link>
-              </SwiperSlide>
-            ))}
+            {[data?.images?.cover, ...(data?.images?.other as any)].map(
+              (elm2, i) => (
+                <SwiperSlide key={i} className="swiper-slide w-inherit">
+                  <Link href={`/${data?.slug}/product`}>
+                    <Image
+                      loading="lazy"
+                      src={elm2 || EDefaultValue.IMAGE}
+                      width="330"
+                      height="400"
+                      alt="product image"
+                      className="pc__img"
+                    />
+                  </Link>
+                </SwiperSlide>
+              )
+            )}
 
             <span
               className={`cursor-pointer pc__img-prev ${"prev" + data?.id} `}

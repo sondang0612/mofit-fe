@@ -4,8 +4,10 @@ import { useRegister } from "@/hooks/react-query/auth/useRegister";
 import { useUrlParams } from "@/hooks/useUrlParams";
 import { ERole } from "@/utils/constants/role.enum";
 import Link from "next/link";
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 import { useForm } from "react-hook-form";
+import { BsFillEyeSlashFill } from "react-icons/bs";
+import { IoEyeSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
 
 type Form = {
@@ -30,6 +32,7 @@ export default function LoginRegister() {
   const { getParam, setParams } = useUrlParams();
   const { mutate: register } = useRegister();
   const { mutate: login } = useLogin();
+  const [showPass, setShowPass] = React.useState<boolean>(false);
 
   const isRegister = getParam("isRegister");
   const {
@@ -140,9 +143,9 @@ export default function LoginRegister() {
 
                 <div className="pb-3"></div>
 
-                <div className="form-floating mb-3">
+                <div className="form-floating mb-3 tw-relative">
                   <input
-                    type="password"
+                    type={showPass ? "text" : "password"}
                     className="form-control form-control_gray"
                     id="customerPasswodInput"
                     placeholder="Password *"
@@ -150,6 +153,16 @@ export default function LoginRegister() {
                     {...registerForm("password")}
                   />
                   <label htmlFor="customerPasswodInput">Mật khẩu *</label>
+                  <div
+                    className="tw-absolute tw-top-1/2 -tw-translate-y-1/2 tw-right-4 tw-cursor-pointer"
+                    onClick={() => setShowPass(!showPass)}
+                  >
+                    {showPass ? (
+                      <IoEyeSharp size={18} />
+                    ) : (
+                      <BsFillEyeSlashFill size={18} />
+                    )}
+                  </div>
                 </div>
 
                 {/* <div className="d-flex align-items-center mb-3 pb-2">
@@ -260,9 +273,9 @@ export default function LoginRegister() {
 
                 <div className="pb-3"></div>
 
-                <div className="form-floating mb-3">
+                <div className="form-floating mb-3 tw-relative">
                   <input
-                    type="password"
+                    type={showPass ? "text" : "password"}
                     className="form-control form-control_gray"
                     id="customerPasswodRegisterInput"
                     placeholder="Password *"
@@ -272,13 +285,23 @@ export default function LoginRegister() {
                   <label htmlFor="customerPasswodRegisterInput">
                     Mật khẩu *
                   </label>
+                  <div
+                    className="tw-absolute tw-top-1/2 -tw-translate-y-1/2 tw-right-4 tw-cursor-pointer"
+                    onClick={() => setShowPass(!showPass)}
+                  >
+                    {showPass ? (
+                      <IoEyeSharp size={18} />
+                    ) : (
+                      <BsFillEyeSlashFill size={18} />
+                    )}
+                  </div>
                 </div>
 
                 <div className="pb-3"></div>
 
-                <div className="form-floating mb-3">
+                <div className="form-floating mb-3 relative">
                   <input
-                    type="password"
+                    type={showPass ? "text" : "password"}
                     className="form-control form-control_gray"
                     id="customerPasswodRegisterInput"
                     placeholder="Password *"
@@ -288,6 +311,16 @@ export default function LoginRegister() {
                   <label htmlFor="customerPasswodRegisterInput">
                     Nhập lại mật khẩu *
                   </label>
+                  <div
+                    className="tw-absolute tw-top-1/2 -tw-translate-y-1/2 tw-right-4 tw-cursor-pointer"
+                    onClick={() => setShowPass(!showPass)}
+                  >
+                    {showPass ? (
+                      <IoEyeSharp size={18} />
+                    ) : (
+                      <BsFillEyeSlashFill size={18} />
+                    )}
+                  </div>
                 </div>
 
                 <div className="d-flex align-items-center mb-3 pb-2">

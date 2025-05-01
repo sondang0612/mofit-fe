@@ -146,7 +146,9 @@ const AccountOrders = () => {
                           <Image
                             width={80}
                             height={80}
-                            src={item.product?.imgSrc || EDefaultValue.IMAGE}
+                            src={
+                              item.product?.images?.cover || EDefaultValue.IMAGE
+                            }
                             alt={item.product?.title || "Product"}
                             className="border"
                           />
