@@ -23,13 +23,14 @@ import "react-tooltip/dist/react-tooltip.css";
 import "tippy.js/dist/tippy.css";
 import "../../public/assets/css/plugins/swiper.min.css";
 import "../../public/assets/sass/style.scss";
+import ZaloWidget from "@/components/ZaloWidget";
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: any }) {
   const pathName = usePathname();
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Import the script only on the client side
-      import("bootstrap/dist/js/bootstrap.esm").then(() => {
+      import("bootstrap/dist/js/bootstrap.esm" as any).then(() => {
         // Module is imported, you can access any exported functionality if
       });
     }
@@ -92,15 +93,7 @@ export default function RootLayout({ children }) {
             <ScrollTop />
           </QueryProvider>
         </AuthProvider>
-        <div
-          className="zalo-chat-widget"
-          data-oaid="390717872129579341"
-          data-welcome-message="Rất vui khi được hỗ trợ bạn!"
-          data-autopopup="0"
-          data-width=""
-          data-height=""
-        ></div>
-        <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+        <ZaloWidget />
       </body>
     </html>
   );
