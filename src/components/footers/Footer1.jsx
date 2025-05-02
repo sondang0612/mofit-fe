@@ -1,11 +1,7 @@
 "use client";
-import {
-  footerLinks1,
-  footerLinks2,
-  footerLinks3,
-  socialLinks,
-} from "@/data/footer";
+import { footerLinks1, footerLinks2 } from "@/data/footer";
 import Link from "next/link";
+import React from "react";
 
 export default function Footer1() {
   return (
@@ -72,29 +68,26 @@ export default function Footer1() {
               className="footer-newsletter__form position-relative bg-body !tw-bg-black"
             >
               <input
-                className="tw-w-full tw-h-12 !tw-outline-none !tw-bg-black !tw-text-white tw-relative autofill:!tw-bg-transparent tw-border-b tw-border-b-white"
+                className="tw-w-full tw-h-12 !tw-outline-none !tw-bg-black !tw-text-white tw-relative autofill:!tw-bg-transparent tw-border-b tw-border-b-white tw-px-3"
                 type="email"
                 name="email"
                 placeholder="Nhập email của bạn"
               />
               <input
-                className="fw-medium absolute tw-top-1/2 -tw-translate-y-1/2 end-0 !tw-h-fit !tw-bg-black !tw-text-white"
+                className="fw-medium absolute tw-top-1/2 -tw-translate-y-1/2 tw-right-3 !tw-h-fit !tw-bg-transparent !tw-text-white"
                 type="submit"
                 value="Tham gia"
               />
             </form>
             <div className="tw-mt-5 tw-flex tw-gap-4">
-              <a target="_blank" href="https://zalo.me/0971090094">
+              <a target="_blank" href="https://zalo.me/0923680808">
                 <img
                   src="/assets/svgs/zalo.svg"
                   alt="#"
                   className="tw-cursor-pointer"
                 />
               </a>
-              <a
-                target="_blank"
-                href="https://www.facebook.com/evogiaiphapthethao"
-              >
+              <a target="_blank" href="https://www.facebook.com/MofitVietnam">
                 <img
                   src="/assets/svgs/facebook.svg"
                   alt="#"
@@ -103,7 +96,7 @@ export default function Footer1() {
               </a>
               <a
                 target="_blank"
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=info@evovietnam.com.vn&su=Chào%20Công%20Ty&body=Xin%20chào%2C%20tôi%20muốn%20hỏi%20về%20sản%20phẩm."
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@doublefish.com.vn&su=Chào%20Công%20Ty&body=Xin%20chào%2C%20tôi%20muốn%20hỏi%20về%20sản%20phẩm."
               >
                 <img
                   src="/assets/svgs/mail.svg"

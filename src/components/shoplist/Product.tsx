@@ -56,7 +56,7 @@ const Product = (props: Props) => {
             {[data?.images?.cover, ...(data?.images?.other as any)].map(
               (elm2, i) => (
                 <SwiperSlide key={i} className="swiper-slide w-inherit">
-                  <Link href={`/${data?.slug}/product`}>
+                  <Link href={`/product/${data?.slug}`}>
                     <Image
                       loading="lazy"
                       src={elm2 || EDefaultValue.IMAGE}
@@ -114,7 +114,7 @@ const Product = (props: Props) => {
               overflow: "hidden",
             }}
           >
-            <Link href={`/${data?.slug}/product`}>{data?.title}</Link>
+            <Link href={`/product/${data?.slug}`}>{data?.title}</Link>
           </h6>
           <div className="product-card__price  tw-font-jost">
             <div

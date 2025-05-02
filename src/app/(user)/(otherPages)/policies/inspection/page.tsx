@@ -35,7 +35,7 @@ const Page = () => {
             Khi Quý Khách kiểm tra đơn hàng, nhân viên giao nhận buộc phải đợi
             Quý Khách kiểm tra hàng hóa bên trong gói hàng. Trường hợp nhân viên
             từ chối cho Quý Khách kiểm tra hàng hóa, Quý Khách vui lòng liên hệ
-            với <DoubleFishLink /> qua hotline: +84 315 636 871 để được hỗ trợ.
+            với <DoubleFishLink /> qua hotline: +84 923 680 808 để được hỗ trợ.
           </li>
           <li className="tw-list-disc">
             Quý Khách tránh dùng vật sắc nhọn để mở gói hàng để tránh gây hư

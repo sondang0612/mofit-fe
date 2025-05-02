@@ -3,8 +3,8 @@ import * as React from "react";
 const OrderIconBlack: React.FC<React.SVGProps<SVGElement>> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="18"
-    height="18"
+    width="24"
+    height="24"
     fill="none"
     viewBox="0 0 24 25"
   >
