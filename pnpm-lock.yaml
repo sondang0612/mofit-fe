@@ -17,12 +17,18 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.65.1
         version: 5.74.4(react@18.3.1)
+      '@types/classnames':
+        specifier: ^2.3.4
+        version: 2.3.4
       axios:
         specifier: ^1.7.9
         version: 1.9.0
       bootstrap:
         specifier: ^5.0.2
         version: 5.3.5(@popperjs/core@2.11.8)
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
@@ -93,6 +99,9 @@ importers:
         specifier: ^5.0.3
         version: 5.0.3(@types/react@19.1.2)(react@18.3.1)
     devDependencies:
+      '@types/bootstrap':
+        specifier: ^5.2.10
+        version: 5.2.10
       '@types/js-cookie':
         specifier: ^3.0.6
         version: 3.0.6
@@ -459,6 +468,13 @@ packages:
     resolution: {integrity: sha512-mAbxw60d4ffQ4qmRYfkO1xzRBPUEf/72Dgo3qqea0J66nIKuDTLEqQt0ku++SDFlMGMnB6uKDnEG1xD/TDse4Q==}
     peerDependencies:
       react: ^18 || ^19
+
+  '@types/bootstrap@5.2.10':
+    resolution: {integrity: sha512-F2X+cd6551tep0MvVZ6nM8v7XgGN/twpdNDjqS1TUM7YFNEtQYWk+dKAnH+T1gr6QgCoGMPl487xw/9hXooa2g==}
+
+  '@types/classnames@2.3.4':
+    resolution: {integrity: sha512-dwmfrMMQb9ujX1uYGvB5ERDlOzBNywnZAZBtOe107/hORWP05ESgU4QyaanZMWYYfd2BzrG78y13/Bju8IQcMQ==}
+    deprecated: This is a stub types definition. classnames provides its own type definitions, so you do not need this installed.
 
   '@types/google.maps@3.58.1':
     resolution: {integrity: sha512-X9QTSvGJ0nCfMzYOnaVs/k6/4L+7F5uCS+4iUmkLEls6J9S/Phv+m/i3mDeyc49ZBgwab3EFO1HEoBY7k98EGQ==}
@@ -1535,6 +1551,14 @@ snapshots:
     dependencies:
       '@tanstack/query-core': 5.74.4
       react: 18.3.1
+
+  '@types/bootstrap@5.2.10':
+    dependencies:
+      '@popperjs/core': 2.11.8
+
+  '@types/classnames@2.3.4':
+    dependencies:
+      classnames: 2.5.1
 
   '@types/google.maps@3.58.1': {}
 

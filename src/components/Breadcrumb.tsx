@@ -8,12 +8,13 @@ import { IoReturnUpBack } from "react-icons/io5";
 
 const BreadcrumbWithoutSuspense = () => {
   const pathName = usePathname();
+  console.log("🚀 ~ BreadcrumbWithoutSuspense ~ pathName:", pathName);
   const { getParam } = useUrlParams();
   const items = React.useMemo(() => {
     let paths = pathName.split("/");
 
     if (pathName.includes("product")) {
-      paths[2] = paths[1];
+      paths[2] = "Chi tiết sản phẩm";
       paths[1] = "store";
     }
 

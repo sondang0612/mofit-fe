@@ -11,7 +11,6 @@ import { Gallery, Item } from "react-photoswipe-gallery";
 import Image from "next/image";
 import tippy from "tippy.js";
 import { Product } from "@/types/api";
-import { EDefaultValue } from "@/utils/constants/default-value.enum";
 
 interface Props {
   product?: Product;
@@ -19,134 +18,100 @@ interface Props {
 
 export default function ProductSlider1(props: Props) {
   const { product } = props;
+  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
+
+  // Temporary images for demo
+  const demoImages = [
+    "/product-1.jpg",
+    "/product-1.jpg",
+    "/product-1.jpg",
+    "/product-1.jpg",
+  ];
+
+  const images = React.useMemo(() => {
+    if (product?.images?.cover || product?.images?.other) {
+      const result = [];
+      if (product?.images?.cover) {
+        result.push(product.images.cover);
+      }
+      if (product?.images?.other) {
+        result.push(...product.images.other);
+      }
+      return result;
+    }
+    return demoImages;
+  }, [product?.images?.cover, product?.images?.other]);
+
   useEffect(() => {
     tippy("[data-tippy-content]");
   }, []);
-  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-
-  const images = React.useMemo(() => {
-    const result = [];
-    if (product?.images?.cover) {
-      result.push(product?.images?.cover);
-    }
-    if (product?.images?.other) {
-      result.push(...product?.images?.other);
-    }
-
-    return result;
-  }, [product?.images?.cover, product?.images?.other]);
 
   return (
-    <div className="product-single__media vertical-thumbnail product-media-initialized">
-      <div className="product-single__image position-relative">
+    <div className="tw-flex tw-flex-col tw-gap-4">
+      {/* Main Image */}
+      <div className="tw-relative tw-rounded-2xl tw-overflow-hidden tw-bg-white">
         <Gallery>
           <Swiper
-            modules={[Thumbs, Navigation]}
-            slidesPerView={1}
+            modules={[Navigation, Thumbs]}
             thumbs={{ swiper: thumbsSwiper }}
-            navigation={{ prevEl: ".ssnbp1", nextEl: ".ssnbn1" }}
-            className="swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events"
+            navigation={{
+              prevEl: ".main-prev",
+              nextEl: ".main-next",
+            }}
+            className="tw-aspect-square tw-flex tw-items-center tw-justify-center"
           >
-            {images.filter(Boolean).map((elm, i) => (
+            {images.map((image, index) => (
               <SwiperSlide
-                style={{
-                  maxWidth: "100%",
-                  overflow: "hidden",
-                  position: "relative",
-                }}
-                key={i}
-                className="swiper-slide product-single__image-item"
+                key={index}
+                className="tw-flex tw-items-center tw-justify-center"
               >
-                <Item original={elm} thumbnail={elm} width="674" height="674">
+                <Item
+                  original={image}
+                  thumbnail={image}
+                  width={800}
+                  height={800}
+                >
                   {({ ref, open }) => (
-                    <>
+                    <div className="tw-relative tw-aspect-square tw-w-full tw-flex tw-items-center tw-justify-center">
                       <Image
-                        loading="lazy"
-                        className="h-auto w-100"
-                        src={elm as any}
-                        width="674"
-                        height="674"
-                        alt="image"
-                      />
-                      <a
-                        ref={ref}
+                        ref={ref as any}
+                        src={image}
+                        alt={`Product image ${index + 1}`}
+                        fill
+                        className="tw-object-contain"
                         onClick={open}
-                        data-fancybox="gallery"
-                        // href="/assets/images/products/product_0.jpg"
-                        className="item-zoom"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="left"
-                        data-tippy-content="Zoom"
-                      >
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use href="#icon_zoom" />
-                        </svg>
-                      </a>
-                    </>
+                      />
+                    </div>
                   )}
                 </Item>
               </SwiperSlide>
             ))}
-
-            <div className="cursor-pointer swiper-button-prev ssnbp1">
-              <svg
-                width="7"
-                height="11"
-                viewBox="0 0 7 11"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <use href="#icon_prev_sm" />
-              </svg>
-            </div>
-            <div className="cursor-pointer swiper-button-next ssnbn1">
-              <svg
-                width="7"
-                height="11"
-                viewBox="0 0 7 11"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <use href="#icon_next_sm" />
-              </svg>
-            </div>
           </Swiper>
         </Gallery>
       </div>
-      <div className="product-single__thumbnail">
+
+      {/* Thumbnails */}
+      <div className="tw-relative">
         <Swiper
-          modules={[Thumbs]}
-          breakpoints={{
-            0: {
-              direction: "horizontal",
-              slidesPerView: 4,
-            },
-            992: {
-              direction: "vertical",
-            },
-          }}
-          className="swiper-container swiper-container-initialized swiper-container-pointer-events swiper-container-free-mode swiper-container-thumbs swiper-container-horizontal"
           onSwiper={setThumbsSwiper}
-          slidesPerView={4}
+          modules={[Thumbs]}
+          slidesPerView={"auto"}
+          spaceBetween={10}
+          className="tw-h-24"
         >
-          {images.map((elm, i) => (
+          {images.map((image, index) => (
             <SwiperSlide
-              key={i}
-              className="swiper-slide product-single__image-item"
-              style={{ marginBottom: "10px" }}
+              key={index}
+              className="tw-cursor-pointer tw-h-24 !tw-w-auto"
             >
-              <Image
-                loading="lazy"
-                className="h-auto"
-                src={elm as any}
-                width="104"
-                height="104"
-                alt="image"
-              />
+              <div className="tw-relative tw-h-full tw-w-[88px] tw-rounded-lg tw-overflow-hidden tw-border tw-border-gray-200 tw-flex tw-items-center tw-justify-center">
+                <Image
+                  src={image}
+                  alt={`Thumbnail ${index + 1}`}
+                  fill
+                  className="tw-object-contain tw-p-2"
+                />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

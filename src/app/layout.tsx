@@ -1,45 +1,18 @@
-"use client";
-import CustomerLogin from "@/components/asides/CustomerLogin";
-import ProductAdditionalInformation from "@/components/asides/ProductAdditionalInformation";
-import ProductDescription from "@/components/asides/ProductDescription";
-import ProductReviews from "@/components/asides/ProductReviews";
-import LoginFormPopup from "@/components/common/LoginFormPopup";
-import ScrollTop from "@/components/common/ScrollTop";
-import Svgs from "@/components/common/Svgs";
-import MobileFooter1 from "@/components/footers/MobileFooter1";
-import MobileHeader from "@/components/headers/MobileHeader";
-import Delivery from "@/components/modals/Delivery";
-import QuickView from "@/components/modals/QuickView";
-import SiteMap from "@/components/modals/SiteMap";
-import SizeGuide from "@/components/modals/SizeGuide";
-import CartDrawer from "@/components/shopCartandCheckout/CartDrawer";
-import { AuthProvider } from "@/providers/AuthProvider";
-import QueryProvider from "@/providers/QueryProvider";
-import { usePathname } from "next/navigation";
+import MainLayout from "@/components/layout/MainLayout";
 import "rc-slider/assets/index.css";
-import React, { useEffect } from "react";
-import { ToastContainer } from "react-toastify";
 import "react-tooltip/dist/react-tooltip.css";
 import "tippy.js/dist/tippy.css";
 import "../../public/assets/css/plugins/swiper.min.css";
 import "../../public/assets/sass/style.scss";
-import ZaloWidget from "@/components/ZaloWidget";
 
+export const metadata = {
+  title:
+    "Cửa hàng || Double Fish Sport Group,Sport Equipments Manufacturer-doublefish.com.vn",
+
+  description:
+    "Double Fish Sport Group,Sport Equipments Manufacturer-doublefish.com.vn",
+};
 export default function RootLayout({ children }: { children: any }) {
-  const pathName = usePathname();
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Import the script only on the client side
-      import("bootstrap/dist/js/bootstrap.esm" as any).then(() => {
-        // Module is imported, you can access any exported functionality if
-      });
-    }
-  }, []);
-
-  const isPolicy = React.useMemo(() => {
-    return pathName?.includes("policy");
-  }, [pathName?.includes("policy")]);
-
   return (
     <html lang="en">
       <head>
@@ -59,41 +32,7 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body>
-        <AuthProvider>
-          <QueryProvider>
-            <Svgs />
-            {!isPolicy && <MobileHeader />}
-            {children}
-            {!isPolicy && <MobileFooter1 />}
-            {/* //modals and asides */}
-            <LoginFormPopup />
-            <QuickView />
-            {/* <NewsLetter /> */}
-            {/* <CookieContainer /> */}
-            <SizeGuide />
-            <Delivery />
-            {!isPolicy && <CartDrawer />}
-            <SiteMap />
-            <CustomerLogin />
-            <ProductDescription />
-            <ProductAdditionalInformation />
-            <ProductReviews />
-            <ToastContainer
-              position="top-right"
-              autoClose={3000}
-              hideProgressBar={false}
-              newestOnTop
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-            />
-            <div className="page-overlay" id="pageOverlay"></div>
-            <ScrollTop />
-          </QueryProvider>
-        </AuthProvider>
-        <ZaloWidget />
+        <MainLayout>{children}</MainLayout>
       </body>
     </html>
   );

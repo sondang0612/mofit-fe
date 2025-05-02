@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function ShareComponent({ title = "title" }) {
+export default function ShareComponent({ title = "title", showText = true }) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -34,7 +34,7 @@ export default function ShareComponent({ title = "title" }) {
     }
   };
   return (
-    <a href="#" onClick={shareContent} className="menu-link menu-link_us-s ">
+    <div onClick={shareContent} className="tw-flex">
       <svg
         width="16"
         height="19"
@@ -44,7 +44,7 @@ export default function ShareComponent({ title = "title" }) {
       >
         <use href="#icon_sharing" />
       </svg>
-      <span>Chia sẻ</span>
-    </a>
+      {showText && <span>Chia sẻ</span>}
+    </div>
   );
 }
