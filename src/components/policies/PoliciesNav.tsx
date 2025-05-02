@@ -30,13 +30,6 @@ export default function PoliciesNav() {
 
   return (
     <div className="tw-w-full">
-      <span
-        className="tw-underline tw-text-blue-500 tw-cursor-pointer"
-        onClick={() => router.push(pathNames.HOME)}
-      >
-        Quay về trang chủ
-      </span>
-
       <button
         onClick={toggleAccordion}
         className="tw-w-full tw-flex tw-justify-between tw-items-center tw-bg-white tw-px-4 tw-py-3 tw-font-semibold tw-text-left tw-rounded-md tw-transition"

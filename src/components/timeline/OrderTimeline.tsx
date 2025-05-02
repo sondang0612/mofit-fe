@@ -28,7 +28,7 @@ const defaultSteps: OrderStatusStep[] = [
   },
   {
     status: EOrderStatus.DELIVERED,
-    label: "Đang giao",
+    label: "Đang vận chuyển",
     icon: "delivered",
   },
   {

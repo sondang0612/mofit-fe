@@ -66,7 +66,7 @@ const Page = () => {
           Đối với thông tin cá nhân, <DoubleFishLink /> chỉ xóa đi dữ liệu này
           nếu khách hàng có yêu cầu, khách hàng yêu cầu gửi mail về{" "}
           <span className="tw-text-blue-500 tw-underline">
-            info@evovietnam.com.vn
+            contact@doublefish.com.vn
           </span>
         </p>
       </div>
@@ -115,7 +115,8 @@ const Page = () => {
             <span className="tw-font-bold">Website:</span> <DoubleFishLink />
           </li>
           <li className="tw-list-disc">
-            <span className="tw-font-bold">Email:</span> info@evovietnam.com.vn
+            <span className="tw-font-bold">Email:</span>{" "}
+            contact@doublefish.com.vn
           </li>
         </ul>
       </div>
@@ -128,8 +129,8 @@ const Page = () => {
           <DoubleFishLink /> thu thập thông tin khách hàng qua trang web, thông
           tin cá nhân khách hàng được thực hiện thu thập qua email liên hệ đặt
           mua sản phẩm, dịch vụ gửi về hộp mail của chúng tôi:
-          Info@evovietnam.com.vn hoặc số điện thoại liên hệ đặt mua sản phẩm gọi
-          về +84 315 636 871
+          contact@doublefish.com.vn hoặc số điện thoại liên hệ đặt mua sản phẩm
+          gọi về +84 315 636 871
         </p>
         <p>
           Bạn có thể liên hệ địa chỉ email cùng số điện thoại trên để yêu cầu{" "}
@@ -165,7 +166,7 @@ const Page = () => {
           trường hợp có thắc mắc, góp ý nào liên quan đến chính sách bảo mật của{" "}
           <DoubleFishLink /> , và liên quan đến việc thông tin cá nhân bị sử
           dụng sai mục đích hoặc phạm vi đã thông báo vui lòng liên hệ qua số
-          hotline +84 315 636 871 hoặc email: info@evovietnam.com.vn
+          hotline +84 923 680 808 hoặc email: contact@doublefish.com.vn
         </div>
       </div>
     </div>

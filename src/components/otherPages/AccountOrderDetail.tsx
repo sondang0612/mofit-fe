@@ -20,43 +20,6 @@ import Spinner from "../loading/Spinner";
 import OrderTimeline from "../timeline/OrderTimeline";
 import { useCancelOrder } from "@/hooks/react-query/orders/useCancelOrder";
 
-const mockOrder = {
-  id: "#250406517",
-  views: 1,
-  status: "Thành công",
-  createdAt: "06/04/2025, 10:49",
-  deliveryDate: "06/04/2025 13:00 (2h)",
-  paymentMethod: "Thanh toán khi nhận hàng",
-  shippingFee: 0,
-  discount: 0,
-  address: {
-    type: "Nhà riêng",
-    name: "Tiên Mai",
-    phone: "0792756317",
-    detail: "3 Đường 546, Phường Phước Long A, Quận 9, Hồ Chí Minh",
-  },
-  items: [
-    {
-      id: 1,
-      title: "Sữa Chống Nắng Bioré Trang Điểm Mỏng Nhẹ, Mịn Lì 30ml",
-      brand: "Bioré",
-      imgSrc: "/assets/images/products/product-1-1.jpg",
-      price: 94000,
-      quantity: 1,
-      size: "30ml",
-      discount: "18%",
-    },
-  ],
-  total: 94000,
-  timeline: [
-    { status: "Đặt hàng", time: "10:49 06/04/2025", completed: true },
-    { status: "Đang xử lý", time: "10:50 06/04/2025", completed: true },
-    { status: "Sẵn sàng giao", time: "10:50 06/04/2025", completed: true },
-    { status: "Đang giao", time: "10:50 06/04/2025", completed: true },
-    { status: "Giao thành công", time: "19:50 06/04/2025", completed: true },
-  ],
-};
-
 const AccountOrderDetail = () => {
   // const order = mockOrder;
   const { id } = useParams();

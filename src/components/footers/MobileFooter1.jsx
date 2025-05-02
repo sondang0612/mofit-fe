@@ -29,7 +29,7 @@ export default function MobileFooter1() {
             href="/"
             className="footer-mobile__link d-flex flex-column align-items-center"
           >
-            <AiOutlineHome size={18} />
+            <AiOutlineHome size={24} />
             <span>Trang chủ</span>
           </Link>
         </div>
@@ -42,7 +42,7 @@ export default function MobileFooter1() {
             href={pathNames.STORE}
             className="footer-mobile__link d-flex flex-column align-items-center"
           >
-            <MdStorefront size={18} />
+            <MdStorefront size={24} />
             <span>Cửa hàng</span>
           </Link>
         </div>
@@ -56,7 +56,7 @@ export default function MobileFooter1() {
             href={pathNames.ORDER}
             className="footer-mobile__link d-flex flex-column align-items-center"
           >
-            <OrderIconBlack />
+            <OrderIconBlack fontSize={24} />
             <span>Đơn hàng</span>
           </Link>
         </div>
@@ -78,7 +78,7 @@ export default function MobileFooter1() {
             }
             className={`footer-mobile__link d-flex flex-column align-items-center`}
           >
-            <LuUserRound size={18} />
+            <LuUserRound size={24} />
             <span>{profile ? "Tài khoản" : "Đăng nhập"}</span>
           </Link>
         </div>

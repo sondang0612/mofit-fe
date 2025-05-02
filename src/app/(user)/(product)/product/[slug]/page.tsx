@@ -3,15 +3,13 @@ import Footer1 from "@/components/footers/Footer1";
 
 import Header1 from "@/components/headers/Header1";
 import SingleProduct from "@/components/singleProduct/SingleProduct";
-import SingleProduct12 from "@/components/singleProduct/SingleProduct12";
 
 interface Props {
-  params?: { slug?: string };
+  params?: any;
 }
 
-export default function Product(props: Props) {
-  const { params } = props;
-
+export default function Product({ params }: Props) {
+  const { slug } = params;
   return (
     <>
       <Header1 showBreadcrumb />
@@ -24,8 +22,7 @@ export default function Product(props: Props) {
         <div className="tw-block lg:tw-hidden tw-mt-2">
           <Breadcrumb />
         </div>
-        {/* <SingleProduct12 slug={params?.slug} /> */}
-        <SingleProduct slug={params?.slug as string} />
+        <SingleProduct slug={slug as string} />
       </main>
       <Footer1 />
     </>

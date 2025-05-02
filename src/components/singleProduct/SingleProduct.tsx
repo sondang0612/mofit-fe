@@ -1,17 +1,17 @@
 "use client";
-import { use, useMemo, useState } from "react";
-import ProductSlider1 from "./sliders/ProductSlider1";
+import { useCheckLike } from "@/hooks/react-query/auth/favorite-products/useCheckLike";
+import { useLikeProduct } from "@/hooks/react-query/auth/favorite-products/useLikeProduct";
+import { useUnLikeProduct } from "@/hooks/react-query/auth/favorite-products/useUnLikeProduct";
+import { useCreateCartItem } from "@/hooks/react-query/cart-items/useCreateCartItem";
 import { useProduct } from "@/hooks/react-query/products/useProduct";
 import { formatPrice } from "@/utils/formatPrice";
 import classNames from "classnames";
-import { useCheckLike } from "@/hooks/react-query/auth/favorite-products/useCheckLike";
-import { useUnLikeProduct } from "@/hooks/react-query/auth/favorite-products/useUnLikeProduct";
-import { useLikeProduct } from "@/hooks/react-query/auth/favorite-products/useLikeProduct";
-import { useCreateCartItem } from "@/hooks/react-query/cart-items/useCreateCartItem";
 import { useRouter } from "next/navigation";
-import { FcLikePlaceholder } from "react-icons/fc";
-import { FcLike } from "react-icons/fc";
+import { useMemo, useState } from "react";
+import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import ShareComponent from "../common/ShareComponent";
+import HtmlContent from "../HtmlContent";
+import ProductSlider1 from "./sliders/ProductSlider1";
 
 type Props = {
   slug: string;
@@ -177,7 +177,7 @@ const SingleProduct: React.FC<Props> = ({ slug }) => {
                 <div className="tw-font-light">{product?.brand?.name}</div>
               </div>
               <div className="tw-flex tw-gap-4">
-                <div className="tw-text-gray-600">Model:</div>
+                <div className="tw-text-gray-600">SKU:</div>
                 <div className="tw-font-light">{product?.sku}</div>
               </div>
               {/* <div className="tw-flex tw-gap-4">
@@ -188,7 +188,7 @@ const SingleProduct: React.FC<Props> = ({ slug }) => {
           </div>
         </div>
       </div>
-      <div className="container tw-py-8">
+      <div className="container tw-py-8 tw-min-h-40">
         <div className="tw-border-b tw-border-gray-200">
           <div className="tw-flex tw-gap-8 tw-justify-center">
             <button
@@ -217,42 +217,13 @@ const SingleProduct: React.FC<Props> = ({ slug }) => {
             >
               Thông số kỹ thuật
             </button>
-            {/* <button
-              onClick={() => setActiveTab("reviews")}
-              className={classNames(
-                "tw-pb-4 tw-px-4 tw-text-lg tw-font-medium tw-relative",
-                {
-                  "tw-text-[#0095FF] after:tw-absolute after:tw-bottom-0 after:tw-left-0 after:tw-w-full after:tw-h-0.5 after:tw-bg-[#0095FF]":
-                    activeTab === "reviews",
-                  "tw-text-gray-500": activeTab !== "reviews",
-                }
-              )}
-            >
-              Đánh giá
-            </button> */}
           </div>
         </div>
         <div className="tw-py-6">
           {activeTab === "description" && (
-            <div
-              className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: product?.description || "" }}
-            />
+            <HtmlContent value={product?.description} />
           )}
-          {activeTab === "specifications" && (
-            <div
-              className="prose max-w-none"
-              dangerouslySetInnerHTML={{
-                __html: product?.specifications || "",
-              }}
-            />
-          )}
-          {/* {activeTab === "reviews" && (
-            <div
-              className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: product?.reviews || "" }}
-            />
-          )} */}
+          {activeTab === "specifications" && <HtmlContent value={"chao2"} />}
         </div>
       </div>
     </>

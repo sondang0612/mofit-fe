@@ -22,7 +22,7 @@ export const footerLinks1 = [
   { href: pathNames.ABOUT_US, text: "Giới thiệu" },
   { href: pathNames.CONTACT, text: "Liên hệ" },
   { href: pathNames.BLOGS, text: "Tin tức" },
-  { href: "#", text: "Hotline 0923 680808" },
+  { href: "#", text: "Hotline: +84 923 680 808" },
   { href: "#", text: "contact@doublefish.com.vn" },
 ];
 
