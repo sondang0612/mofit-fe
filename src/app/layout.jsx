@@ -92,6 +92,15 @@ export default function RootLayout({ children }) {
             <ScrollTop />
           </QueryProvider>
         </AuthProvider>
+        <div
+          className="zalo-chat-widget"
+          data-oaid="390717872129579341"
+          data-welcome-message="Rất vui khi được hỗ trợ bạn!"
+          data-autopopup="0"
+          data-width=""
+          data-height=""
+        ></div>
+        <script src="https://sp.zalo.me/plugins/sdk.js"></script>
       </body>
     </html>
   );
