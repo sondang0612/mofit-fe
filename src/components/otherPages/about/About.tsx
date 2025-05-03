@@ -1,5 +1,5 @@
 "use client";
-import configs from "@/configs";
+import { useSiteSettings } from "@/hooks/react-query/useSiteSettings";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 
@@ -95,7 +95,7 @@ const lineDrawing = {
 
 export default function About() {
   const sectionRef = useRef(null);
-
+  const { data: siteSettings } = useSiteSettings();
   return (
     <section ref={sectionRef}>
       <div className="tw-w-full tw-flex tw-flex-col tw-items-center tw-justify-center">
@@ -135,7 +135,7 @@ export default function About() {
             className="tw-my-[3.875rem]"
           >
             <motion.img
-              src={configs.about_us.about_centre}
+              src={siteSettings?.home?.about_us?.about_centre}
               alt="About Center"
               className="tw-h-[27.125rem] tw-w-[40.1875rem]"
               animate={{
@@ -317,7 +317,7 @@ export default function About() {
             }}
           >
             <img
-              src={configs.about_us.about_com}
+              src={siteSettings?.home?.about_us?.about_com}
               alt="Double Fish Sports"
               className="tw-h-auto tw-w-full tw-rounded-lg"
             />

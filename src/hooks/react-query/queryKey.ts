@@ -12,4 +12,5 @@ export const queryKey = {
   BRANDS: "BRANDS",
   ATTRIBUTES: "ATTRIBUTES",
   USERS: "USERS",
+  SITE_SETTINGS: "SITE_SETTINGS",
 };

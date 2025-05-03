@@ -8,11 +8,9 @@ import { getFinalPrice } from "@/utils/getFinalPrice";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { AiFillPlusSquare } from "react-icons/ai";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { AiFillPlusSquare } from "react-icons/ai";
-import { useUnLikeProduct } from "@/hooks/react-query/auth/favorite-products/useUnLikeProduct";
-import { useLikeProduct } from "@/hooks/react-query/auth/favorite-products/useLikeProduct";
 
 interface Props {
   data: IProduct;
@@ -21,8 +19,6 @@ interface Props {
 const Product = (props: Props) => {
   const { data } = props;
   const { mutate: createCartItem } = useCreateCartItem();
-  const { mutate: likeProduct } = useLikeProduct();
-  const { mutate: unLikeProduct } = useUnLikeProduct();
 
   const handleAddToCart = (productId?: number, quantity?: number) => {
     if (!productId || !quantity) {
@@ -53,22 +49,22 @@ const Product = (props: Props) => {
               nextEl: ".next" + data?.id,
             }}
           >
-            {[data?.images?.cover, ...(data?.images?.other as any)].map(
-              (elm2, i) => (
-                <SwiperSlide key={i} className="swiper-slide w-inherit">
-                  <Link href={`/product/${data?.slug}`}>
-                    <Image
-                      loading="lazy"
-                      src={elm2 || EDefaultValue.IMAGE}
-                      width="330"
-                      height="400"
-                      alt="product image"
-                      className="pc__img"
-                    />
-                  </Link>
-                </SwiperSlide>
-              )
-            )}
+            {data?.images
+              ? [data?.images?.cover, ...(data?.images?.other as any)]
+              : [EDefaultValue.IMAGE].filter(Boolean).map((elm2, i) => (
+                  <SwiperSlide key={i} className="swiper-slide w-inherit">
+                    <Link href={`/product/${data?.slug}`}>
+                      <Image
+                        loading="lazy"
+                        src={elm2 || EDefaultValue.IMAGE}
+                        width="330"
+                        height="400"
+                        alt="product image"
+                        className="pc__img"
+                      />
+                    </Link>
+                  </SwiperSlide>
+                ))}
 
             <span
               className={`cursor-pointer pc__img-prev ${"prev" + data?.id} `}

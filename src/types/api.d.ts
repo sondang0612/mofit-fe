@@ -40,6 +40,7 @@ export interface Category {
   imgSrc?: string | undefined;
   parentCategory?: Category | undefined;
   subCategories?: Category[] | undefined;
+  slug?: string | undefined;
 }
 
 export interface Brand {
@@ -150,4 +151,16 @@ export interface OrderStatusLog {
 export interface FavoriteProduct {
   id?: number | undefined;
   product?: Product | undefined;
+}
+
+export interface SiteSettings {
+  home: {
+    heros: string[];
+    tryNow: string;
+    news: string[];
+    about_us: {
+      about_com: string;
+      about_centre: string;
+    };
+  };
 }

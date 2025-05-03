@@ -1,15 +1,16 @@
 "use client";
-import configs from "@/configs";
+import { useSiteSettings } from "@/hooks/react-query/useSiteSettings";
+import { EDefaultValue } from "@/utils/constants/default-value.enum";
 import Image from "next/image";
 import React from "react";
 
 const TryNow = () => {
   const [showVideo, setShowVideo] = React.useState(false);
-
+  const { data: siteSettings } = useSiteSettings();
   return (
     <div className="w-full h-full relative overflow-hidden">
       <Image
-        src={configs.home.tryNow}
+        src={siteSettings?.home?.tryNow || EDefaultValue.IMAGE}
         loading="eager"
         alt="Try Now"
         width={0}
