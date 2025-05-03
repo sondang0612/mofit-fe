@@ -1,6 +1,5 @@
 "use client";
-import FadeInWrapper from "@/components/animations/FadeInWrapper";
-import { motion } from "framer-motion";
+import configs from "@/configs";
 import Image from "next/image";
 import React from "react";
 
@@ -10,7 +9,7 @@ const TryNow = () => {
   return (
     <div className="w-full h-full relative overflow-hidden">
       <Image
-        src="/assets/images/try-now.png"
+        src={configs.home.tryNow}
         loading="eager"
         alt="Try Now"
         width={0}

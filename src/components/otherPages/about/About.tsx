@@ -1,4 +1,5 @@
 "use client";
+import configs from "@/configs";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 
@@ -134,7 +135,7 @@ export default function About() {
             className="tw-my-[3.875rem]"
           >
             <motion.img
-              src="/assets/images/about/about-centre.png"
+              src={configs.about_us.about_centre}
               alt="About Center"
               className="tw-h-[27.125rem] tw-w-[40.1875rem]"
               animate={{
@@ -316,7 +317,7 @@ export default function About() {
             }}
           >
             <img
-              src="/assets/images/about/about_com.jpg"
+              src={configs.about_us.about_com}
               alt="Double Fish Sports"
               className="tw-h-auto tw-w-full tw-rounded-lg"
             />

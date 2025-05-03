@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
 import useWindowSize from "@/hooks/useWindowSize";
+import configs from "@/configs";
 
 const HeroV1 = () => {
   const [translateX, setTranslateX] = React.useState(0);
@@ -22,7 +23,7 @@ const HeroV1 = () => {
         transition={{ duration: 1.5 }}
       >
         <Image
-          src="/assets/images/hero.png"
+          src={configs.home.hero}
           loading="eager"
           alt="Hero Image"
           width={0}
