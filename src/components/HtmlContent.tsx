@@ -18,11 +18,11 @@ const HtmlContent = ({ value }: Props) => {
         shadowRoot = containerRef.current.attachShadow({ mode: "open" });
       }
 
-      const rawHtml = (value || "Không có nội dung")
-        .replace(/\\/g, "")
-        .replace(/<\/?strong>/g, "")
-        .replace(/^(?:<p[^>]*><br\s*\/?><\/p>\s*)+/i, "")
-        .replace(/(?:<p[^>]*><br\s*\/?><\/p>\s*)+$/i, "");
+      const rawHtml = value || "Không có nội dung";
+      // .replace(/\\/g, "")
+      //.replace(/<\/?strong>/g, "");
+      //.replace(/^(?:<p[^>]*><br\s*\/?><\/p>\s*)+/i, "")
+      //.replace(/(?:<p[^>]*><br\s*\/?><\/p>\s*)+$/i, "");
 
       const cleanHtml = DOMPurify.sanitize(rawHtml, {
         USE_PROFILES: { html: true },
@@ -77,6 +77,37 @@ const HtmlContent = ({ value }: Props) => {
               font-size: 0.75rem;
             }
           }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 1rem;
+          font-size: 1em;
+        }
+
+        th, td {
+          border: 1px solid #ddd;
+          padding: 8px 12px;
+          vertical-align: top;
+          text-align: left;
+        }
+
+        tr:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+
+        tr:hover {
+          background-color: #f1f1f1;
+        }
+
+        th {
+          background-color: #f0f0f0;
+          font-weight: bold;
+        }
+
+        td div {
+          margin: 0;
+          padding: 0;
+        }
         </style>
         <div class="html-wrapper">
           <div class="html-content">${cleanHtml}</div>
@@ -103,7 +134,7 @@ const HtmlContent = ({ value }: Props) => {
 
     if (wrapper && contentHeight !== null) {
       if (expanded) {
-        wrapper.style.maxHeight = `${contentHeight}px`;
+        wrapper.style.maxHeight = `${contentHeight + 100}px`;
       } else {
         wrapper.style.maxHeight = `400px`;
       }

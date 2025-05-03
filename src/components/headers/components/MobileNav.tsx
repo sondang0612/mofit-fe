@@ -187,7 +187,7 @@ export default function MobileNav() {
           Tin tức
         </Link>
       </li> */}
-      <li className="navigation__item">
+      {/* <li className="navigation__item">
         <Link
           href="/contact"
           className={`navigation__link w-full ${
@@ -196,7 +196,7 @@ export default function MobileNav() {
         >
           Liên hệ
         </Link>
-      </li>
+      </li> */}
     </>
   );
 }

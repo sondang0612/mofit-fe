@@ -149,7 +149,7 @@ export default function Nav() {
           Tin tức
         </Link>
       </li> */}
-      <li className="navigation__item">
+      {/* <li className="navigation__item">
         <Link
           href="/contact"
           className={`navigation__link ${
@@ -158,7 +158,7 @@ export default function Nav() {
         >
           Liên hệ
         </Link>
-      </li>
+      </li> */}
       {isLoggedIn && (
         <li className="navigation__item">
           <Link

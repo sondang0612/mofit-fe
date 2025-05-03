@@ -223,7 +223,9 @@ const SingleProduct: React.FC<Props> = ({ slug }) => {
           {activeTab === "description" && (
             <HtmlContent value={product?.description} />
           )}
-          {activeTab === "specifications" && <HtmlContent value={"chao2"} />}
+          {activeTab === "specifications" && (
+            <HtmlContent value={product?.specifications} />
+          )}
         </div>
       </div>
     </>
