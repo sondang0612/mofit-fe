@@ -6,11 +6,8 @@ interface Props {
   value?: string;
 }
 
-const HtmlContent = ({ value }: Props) => {
+const HtmlContentWithoutReadmore = ({ value }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [expanded, setExpanded] = useState(false);
-  const [contentHeight, setContentHeight] = useState<number | null>(null);
-  const [shouldShowToggle, setShouldShowToggle] = useState(false);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -109,6 +106,9 @@ const HtmlContent = ({ value }: Props) => {
           margin: 0;
           padding: 0;
         }
+        img {
+          width: -webkit-fill-available;
+        }
         </style>
         <div class="html-wrapper">
           <div class="html-content">${cleanHtml}</div>
@@ -116,47 +116,14 @@ const HtmlContent = ({ value }: Props) => {
       `;
 
       shadowRoot.innerHTML = htmlTemplate;
-
-      const content = shadowRoot.querySelector(
-        ".html-content"
-      ) as HTMLDivElement;
-      if (content) {
-        const height = content.scrollHeight;
-        setContentHeight(height);
-        setShouldShowToggle(height > 400);
-      }
     }
   }, [value]);
-
-  useEffect(() => {
-    const wrapper = containerRef.current?.shadowRoot?.querySelector(
-      ".html-wrapper"
-    ) as HTMLDivElement;
-
-    if (wrapper && contentHeight !== null) {
-      if (expanded) {
-        wrapper.style.maxHeight = `${contentHeight + 100}px`;
-      } else {
-        wrapper.style.maxHeight = `400px`;
-      }
-    }
-  }, [expanded, contentHeight]);
 
   return (
     <div className="tw-min-h-[25rem] tw-relative">
       <div ref={containerRef} />
-      {shouldShowToggle && (
-        <div className="tw-w-full tw-text-center">
-          <button
-            onClick={() => setExpanded((prev) => !prev)}
-            className="tw-border tw-border-[#FF7700] tw-border-solid tw-px-6 tw-h-10 tw-rounded-md tw-text-base tw-text-[#FF7700] tw-mt-2"
-          >
-            {expanded ? "Thu gọn" : "Xem thêm"}
-          </button>
-        </div>
-      )}
     </div>
   );
 };
 
-export default React.memo(HtmlContent);
+export default React.memo(HtmlContentWithoutReadmore);

@@ -1,10 +1,9 @@
-import Blog2 from "@/components/blogs/Blog2";
+import Blog from "@/components/blogs/Blog";
 import Breadcrumb from "@/components/Breadcrumb";
 
 import Footer1 from "@/components/footers/Footer1";
 
 import Header1 from "@/components/headers/Header1";
-import React from "react";
 
 export const metadata = {
   title:
@@ -21,7 +20,7 @@ export default function BlogPage2() {
         <Breadcrumb />
         <div className="mb-2 pb-2"></div>
 
-        <Blog2 />
+        <Blog />
       </main>
       <Footer1 />
     </>

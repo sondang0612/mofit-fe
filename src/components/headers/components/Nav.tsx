@@ -139,7 +139,7 @@ export default function Nav() {
           Về Double Fish
         </Link>
       </li>
-      {/* <li className="navigation__item">
+      <li className="navigation__item">
         <Link
           href={pathNames.BLOGS}
           className={`navigation__link ${
@@ -148,7 +148,7 @@ export default function Nav() {
         >
           Tin tức
         </Link>
-      </li> */}
+      </li>
       {/* <li className="navigation__item">
         <Link
           href="/contact"
