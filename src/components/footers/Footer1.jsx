@@ -1,12 +1,13 @@
 "use client";
 import { footerLinks1, footerLinks2 } from "@/data/footer";
+import { pathNames } from "@/utils/constants/paths";
 import Link from "next/link";
 import React from "react";
 
 export default function Footer1() {
   return (
     <footer className="footer footer_type_1 !tw-bg-black">
-      <div className="footer-middle md:tw-px-24 tw-px-6">
+      <div className="footer-middle md:tw-px-24 tw-px-6 md:tw-pb-[1.625rem] !tw-pb-20">
         <div className="row row-cols-lg-5 row-cols-2">
           <div className="footer-column footer-store-info col-12 mb-4 mb-lg-0">
             <p className="!tw-text-base tw-text-white tw-font-semibold">
@@ -109,6 +110,25 @@ export default function Footer1() {
           {/* <!-- /.footer-column --> */}
         </div>
         {/* <!-- /.row-cols-5 --> */}
+        <div className="tw-h-[0.5px] tw-w-full tw-bg-white tw-mb-6 md:tw-mt-10 tw-mt-2"></div>
+        <div className="tw-flex tw-items-center tw-justify-between md:tw-flex-row tw-flex-col md:tw-pb-0">
+          <p className="tw-text-white">
+            © 2025 Double Fish VN . All Rights Reserved
+          </p>
+          <div className="tw-flex tw-flex-row tw-text-white tw-gap-6">
+            <Link href={pathNames.INSPECTION_POLICY}>
+              <p className="tw-underline tw-text-white">Chính sách DVKH</p>
+            </Link>
+            <Link href={pathNames.PRIVATE_POLICY}>
+              <p className="tw-underline tw-text-white">Chính sách bảo mật</p>
+            </Link>
+            <Link href={pathNames.VNPAY_PAYMENT_INSTRUCTION}>
+              <p className="tw-underline tw-text-white">
+                Hướng dẫn thanh toán VNPAY
+              </p>
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );

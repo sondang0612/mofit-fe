@@ -13,6 +13,7 @@ export const pathNames = {
   RETURN_AND_REFUND_POLICY: "/policies/return-refund",
   INSPECTION_POLICY: "/policies/inspection",
   PRIVATE_POLICY: "/policies/private",
+  VNPAY_PAYMENT_INSTRUCTION: "/policies/vnpay-payment-instructions",
 };
 
 export const pathNameLabel: any = {

@@ -123,15 +123,6 @@ const SingleProduct: React.FC<Props> = ({ slug }) => {
             </div>
 
             <div className="tw-flex tw-items-center tw-gap-4">
-              <div className="tw-text-gray-700">Xuất xứ</div>
-              <button
-                className={`tw-px-4 tw-py-1 tw-rounded-lg tw-border-[#0095FF] tw-border`}
-              >
-                {product?.origin}
-              </button>
-            </div>
-
-            <div className="tw-flex tw-items-center tw-gap-4">
               <div className="tw-text-gray-700">Số Lượng</div>
               <div className="tw-flex tw-items-center tw-gap-1">
                 <button
@@ -180,10 +171,10 @@ const SingleProduct: React.FC<Props> = ({ slug }) => {
                 <div className="tw-text-gray-600">SKU:</div>
                 <div className="tw-font-light">{product?.sku}</div>
               </div>
-              {/* <div className="tw-flex tw-gap-4">
-                <div className="tw-text-gray-600">Kho:</div>
-                <div className="tw-font-light">02</div>
-              </div> */}
+              <div className="tw-flex tw-gap-4">
+                <div className="tw-text-gray-600">Xuất xứ:</div>
+                <div className="tw-font-light">{product?.origin}</div>
+              </div>
             </div>
           </div>
         </div>

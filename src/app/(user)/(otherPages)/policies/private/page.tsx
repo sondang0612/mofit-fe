@@ -1,6 +1,11 @@
 import DoubleFishLink from "@/components/policies/DoubleFishLink";
 import React from "react";
-
+export const metadata = {
+  title:
+    "Chính sách Double Fish || Double Fish Sport Group,Sport Equipments Manufacturer-<DoubleFishLink />",
+  description:
+    "Double Fish Sport Group,Sport Equipments Manufacturer-<DoubleFishLink />",
+};
 const Page = () => {
   return (
     <div>

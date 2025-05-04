@@ -11,6 +11,7 @@ import React from "react";
 import { AiFillPlusSquare } from "react-icons/ai";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import NewArrivals from "./NewArrivals";
 
 interface Props {
   data: IProduct;
@@ -36,10 +37,21 @@ const Product = (props: Props) => {
     return formatPrice(getFinalPrice(data?.price, data?.discount));
   }, [data?.price, data?.discount]);
 
+  const isNewArrivals = React.useMemo(() => {
+    if (!data?.attributes) return false;
+
+    if (data?.attributes && data?.attributes?.length === 0) return false;
+
+    return (
+      data?.attributes?.findIndex((item) => item.value === "new_arrivals") !==
+      -1
+    );
+  }, [data?.attributes]);
+
   return (
     <div className="product-card-wrapper">
       <div className="product-card mb-3 mb-md-4 mb-xxl-5">
-        <div className="pc__img-wrapper">
+        <div className="pc__img-wrapper tw-relative">
           {data?.images ? (
             <Swiper
               className="swiper swiper-container swiper-initialized swiper-horizontal swiper-backface-hidden background-img js-swiper-slider"
@@ -103,6 +115,11 @@ const Product = (props: Props) => {
                 className="pc__img"
               />
             </Link>
+          )}
+          {isNewArrivals && (
+            <div className="tw-absolute tw-right-0 tw-top-0 tw-z-50">
+              <NewArrivals />
+            </div>
           )}
         </div>
 
