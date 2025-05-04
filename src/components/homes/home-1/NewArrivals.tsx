@@ -17,22 +17,7 @@ const NewArrivals = () => {
 
       <div className="position-relative grid grid-cols-3 gap-4">
         {siteSettings?.home?.news?.map?.((elm, i) => (
-          <div
-            className="pc__img-wrapper position-relative"
-            key={i}
-            style={{ paddingTop: "125%" }}
-          >
-            <Link href={`${pathNames.STORE}`}>
-              <Image
-                loading="lazy"
-                src={elm || EDefaultValue.IMAGE}
-                width="348"
-                height="348"
-                alt="Cropped Faux leather Jacket"
-                className="pc__img"
-              />
-            </Link>
-          </div>
+          <img src={elm} alt="#" className="tw-w-full tw-h-auto" />
         ))}
       </div>
     </div>

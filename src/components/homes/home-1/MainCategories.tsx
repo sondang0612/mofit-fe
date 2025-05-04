@@ -62,18 +62,13 @@ const MainCategories = () => {
         >
           {categories?.map((elm, i) => (
             <SwiperSlide key={i} className="swiper-slide product-card">
-              <div className="pc__img-wrapper">
-                <Link href={`${pathNames.STORE}?activeCategory=${elm.id}`}>
-                  <Image
-                    loading="lazy"
-                    src={elm.imgSrc || EDefaultValue.IMAGE}
-                    width="348"
-                    height="348"
-                    alt="Cropped Faux leather Jacket"
-                    className="pc__img"
-                  />
-                </Link>
-              </div>
+              <Link href={`${pathNames.STORE}?activeCategory=${elm.id}`}>
+                <img
+                  src={elm.imgSrc || EDefaultValue.IMAGE}
+                  alt="#"
+                  className="tw-w-full tw-h-full"
+                />
+              </Link>
 
               <div className="pc__info position-relative">
                 <h6 className="pc__title font-medium tw-font-anton">
