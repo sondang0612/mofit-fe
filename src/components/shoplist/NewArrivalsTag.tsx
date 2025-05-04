@@ -1,6 +1,6 @@
 import React from "react";
 
-const NewArrivals = () => {
+const NewArrivalsTag = () => {
   return (
     <div className="tw-w-full tw-p-4">
       <button className="tw-relative tw-w-full tw-h-10 tw-rounded tw-overflow-hidden">
@@ -109,4 +109,4 @@ const NewArrivals = () => {
   );
 };
 
-export default NewArrivals;
+export default NewArrivalsTag;

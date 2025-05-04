@@ -11,7 +11,7 @@ import React from "react";
 import { AiFillPlusSquare } from "react-icons/ai";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import NewArrivals from "./NewArrivals";
+import NewArrivalsTag from "./NewArrivalsTag";
 
 interface Props {
   data: IProduct;
@@ -118,7 +118,7 @@ const Product = (props: Props) => {
           )}
           {isNewArrivals && (
             <div className="tw-absolute tw-right-0 tw-top-0 tw-z-50">
-              <NewArrivals />
+              <NewArrivalsTag />
             </div>
           )}
         </div>
