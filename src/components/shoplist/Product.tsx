@@ -40,18 +40,18 @@ const Product = (props: Props) => {
     <div className="product-card-wrapper">
       <div className="product-card mb-3 mb-md-4 mb-xxl-5">
         <div className="pc__img-wrapper">
-          <Swiper
-            className="swiper swiper-container swiper-initialized swiper-horizontal swiper-backface-hidden background-img js-swiper-slider"
-            slidesPerView={1}
-            modules={[Navigation]}
-            navigation={{
-              prevEl: ".prev" + data?.id,
-              nextEl: ".next" + data?.id,
-            }}
-          >
-            {data?.images
-              ? [data?.images?.cover, ...(data?.images?.other as any)]
-              : [EDefaultValue.IMAGE].filter(Boolean).map((elm2, i) => (
+          {data?.images ? (
+            <Swiper
+              className="swiper swiper-container swiper-initialized swiper-horizontal swiper-backface-hidden background-img js-swiper-slider"
+              slidesPerView={1}
+              modules={[Navigation]}
+              navigation={{
+                prevEl: ".prev" + data?.id,
+                nextEl: ".next" + data?.id,
+              }}
+            >
+              {[data?.images?.cover, ...(data?.images?.other as any)].map(
+                (elm2, i) => (
                   <SwiperSlide key={i} className="swiper-slide w-inherit">
                     <Link href={`/product/${data?.slug}`}>
                       <Image
@@ -64,33 +64,46 @@ const Product = (props: Props) => {
                       />
                     </Link>
                   </SwiperSlide>
-                ))}
+                )
+              )}
 
-            <span
-              className={`cursor-pointer pc__img-prev ${"prev" + data?.id} `}
-            >
-              <svg
-                width="7"
-                height="11"
-                viewBox="0 0 7 11"
-                xmlns="http://www.w3.org/2000/svg"
+              <span
+                className={`cursor-pointer pc__img-prev ${"prev" + data?.id} `}
               >
-                <use href="#icon_prev_sm" />
-              </svg>
-            </span>
-            <span
-              className={`cursor-pointer pc__img-next ${"next" + data?.id} `}
-            >
-              <svg
-                width="7"
-                height="11"
-                viewBox="0 0 7 11"
-                xmlns="http://www.w3.org/2000/svg"
+                <svg
+                  width="7"
+                  height="11"
+                  viewBox="0 0 7 11"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <use href="#icon_prev_sm" />
+                </svg>
+              </span>
+              <span
+                className={`cursor-pointer pc__img-next ${"next" + data?.id} `}
               >
-                <use href="#icon_next_sm" />
-              </svg>
-            </span>
-          </Swiper>
+                <svg
+                  width="7"
+                  height="11"
+                  viewBox="0 0 7 11"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <use href="#icon_next_sm" />
+                </svg>
+              </span>
+            </Swiper>
+          ) : (
+            <Link href={`/product/${data?.slug}`}>
+              <Image
+                loading="lazy"
+                src={EDefaultValue.IMAGE}
+                width="330"
+                height="400"
+                alt="product image"
+                className="pc__img"
+              />
+            </Link>
+          )}
         </div>
 
         <div className="pc__info position-relative bg-white">
