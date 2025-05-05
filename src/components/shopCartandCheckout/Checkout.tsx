@@ -296,6 +296,22 @@ export default function Checkout() {
               ))}
             </div>
             <div className="tw-mt-4">
+              <div className="tw-flex tw-items-start tw-gap-2">
+                <div className="tw-text-sm tw-text-gray-600">
+                  Đồng ý với{" "}
+                  <a
+                    href="https://doublefish.com.vn/policies/private"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="tw-text-blue-500 hover:tw-underline"
+                  >
+                    điều khoản và quy định
+                  </a>{" "}
+                  của website
+                </div>
+              </div>
+            </div>
+            <div className="tw-mt-4">
               <button
                 onClick={handleCreateOrder}
                 className="tw-bg-[#EC1A23] tw-h-[40px] tw-text-center w-full tw-text-white tw-rounded hover:tw-bg-red-600 tw-transition-al"
