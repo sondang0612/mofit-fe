@@ -18,8 +18,8 @@ export default function Footer1() {
             </p>
 
             <p className="tw-text-sm tw-text-white">
-              Địa chỉ: Số 31B, Ngõ 226, Đường Cầu Giấy, Phường Quan Hoa, Quận
-              Cầu Giấy, TP. Hà Nội, Việt Nam
+              Địa chỉ văn phòng: Số nhà 15, Ngõ 1, đường Đồng Me, phường Mễ Trì,
+              Quận Nam Từ Liêm, TP.Hà Nội
             </p>
           </div>
           {/* <!-- /.footer-column --> */}
@@ -62,9 +62,9 @@ export default function Footer1() {
           {/* <!-- /.footer-column --> */}
           <div className="footer-column footer-newsletter col-12 mb-4 mb-lg-0 md:tw-pb-0 tw-pb-6">
             <h5 className="sub-menu__title text-uppercase !tw-font-semibold !tw-text-base">
-              Đăng ký nhận ngay ưu đã mới nhất
+              Liên hệ ngay để nhận những ưu đã mới nhất
             </h5>
-            <form
+            {/* <form
               onSubmit={(e) => e.preventDefault()}
               className="footer-newsletter__form position-relative bg-body !tw-bg-black"
             >
@@ -79,7 +79,7 @@ export default function Footer1() {
                 type="submit"
                 value="Tham gia"
               />
-            </form>
+            </form> */}
             <div className="tw-mt-5 tw-flex tw-gap-4">
               <a target="_blank" href="https://zalo.me/0923680808">
                 <img

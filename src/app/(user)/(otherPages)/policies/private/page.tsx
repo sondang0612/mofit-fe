@@ -110,8 +110,8 @@ const Page = () => {
             CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ THƯƠNG MẠI MODERN FARE VIỆT NAM
           </li>
           <li className="tw-list-disc">
-            <span className="tw-font-bold">Địa chỉ:</span> Số 31B, Ngõ 226,
-            Đường Cầu Giấy, Phường Quan Hoa, Quận Cầu Giấy, TP. Hà Nội, Việt Nam
+            <span className="tw-font-bold">Địa chỉ văn phòng:</span>Số nhà 15,
+            Ngõ 1, đường Đồng Me, phường Mễ Trì, Quận Nam Từ Liêm, TP.Hà Nội
           </li>
           <li className="tw-list-disc">
             <span className="tw-font-bold">Điện thoại:</span> +84 315 636 871

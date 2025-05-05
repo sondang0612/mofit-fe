@@ -7,6 +7,13 @@ import Header1 from "@/components/headers/Header1";
 import HtmlContentWithoutReadmore from "@/components/HtmlContentWithoutReadmore";
 import { postsData } from "@/data/posts";
 
+export const metadata = {
+  title:
+    "Tin tức || Double Fish Sport Group,Sport Equipments Manufacturer-doublefish.com.vn",
+  description:
+    "Double Fish Sport Group,Sport Equipments Manufacturer-doublefish.com.vn",
+};
+
 export default function BlogDetailsPage({ params }: { params?: any }) {
   const id = params.id;
   const blog = postsData?.find((item) => item.id == id);

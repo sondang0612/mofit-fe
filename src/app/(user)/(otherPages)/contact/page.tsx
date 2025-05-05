@@ -35,7 +35,9 @@ export default function ContactPage() {
                             <i className="bi bi-geo-alt fs-4 me-3"></i>
                           </div>
                           <div>
-                            <p className="text-muted small mb-0">Địa chỉ</p>
+                            <p className="text-muted small mb-0">
+                              Địa địa chỉ văn phòng :
+                            </p>
                             <p className="mb-0">{item.address}</p>
                           </div>
                         </div>

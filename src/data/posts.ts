@@ -17,7 +17,7 @@ const postsData = [
   {
     id: 2,
     coverImage:
-      "https://thethaovietnamplus.vn/uploads/images/2025/05/03/cac-vdv-su-dung-vot-trang-phuc-cua-double-fish-1746237418.jpg",
+      "https://thethaovietnamplus.vn/uploads/images/blog/nhuhuy/2025/05/03/double-fish-tai-tro-toan-bo-bong-thi-dau-cho-giai-1746237313.jpg",
     subDescription:
       "Giải Pickleball câu lạc bộ PHH mở rộng Tranh Cúp Bảy Phú Lâm lần thứ hai đã chính thức diễn ra tại thành phố Vĩnh Long, quy tụ gần 400 vận động viên từ khắp các tỉnh thành miền Tây.",
     title: "DoubleFish - Sân chơi lớn nhất miền Tây",

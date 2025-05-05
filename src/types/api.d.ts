@@ -162,5 +162,6 @@ export interface SiteSettings {
       about_com: string;
       about_centre: string;
     };
+    should_try_video: string;
   };
 }

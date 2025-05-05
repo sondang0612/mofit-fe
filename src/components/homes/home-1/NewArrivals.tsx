@@ -1,10 +1,5 @@
 "use client";
 import { useSiteSettings } from "@/hooks/react-query/useSiteSettings";
-import { EDefaultValue } from "@/utils/constants/default-value.enum";
-import { pathNames } from "@/utils/constants/paths";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
 
 const NewArrivals = () => {
   const { data: siteSettings } = useSiteSettings();

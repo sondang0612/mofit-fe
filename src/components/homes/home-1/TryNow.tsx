@@ -22,10 +22,10 @@ const TryNow = () => {
         Bạn đã <br /> thử chưa
       </h4>
       <button
-        className="try-now__play-video px-3 py-1 text-uppercase rounded-10"
+        className="try-now__play-video tw-px-3 tw-py-1 tw-text-uppercase tw-rounded-full tw-bg-white"
         onClick={() => setShowVideo(true)}
       >
-        Play video
+        Xem video
       </button>
 
       {showVideo && (
@@ -36,7 +36,7 @@ const TryNow = () => {
             </button>
             <iframe
               className="videoFrame"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+              src={siteSettings?.home.should_try_video}
               title="Video"
               frameBorder="0"
               allow="autoplay; encrypted-media"

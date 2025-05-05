@@ -43,7 +43,7 @@ export default function Checkout() {
   const router = useRouter();
   const { getParam } = useUrlParams();
   const { mutate: removeCartItem } = useRemoveCartItem();
-
+  const [isAcceptPolicy, setIsAcceptPolicy] = React.useState<boolean>(false);
   const txnRef = getParam("vnp_TxnRef");
   const transactionStatus = getParam("vnp_TransactionStatus");
   const responseCode = getParam("vnp_ResponseCode");
@@ -78,6 +78,10 @@ export default function Checkout() {
   }, [cart]);
 
   const checkValid = () => {
+    if (!isAcceptPolicy) {
+      toast.error("Vui lòng chấp nhận điều khoản thanh toán");
+      return;
+    }
     if (addresses?.length === 0 || !addresses) {
       toast.error("Vui lòng chọn địa chỉ nhận hàng");
       return false;
@@ -297,6 +301,12 @@ export default function Checkout() {
             </div>
             <div className="tw-mt-4">
               <div className="tw-flex tw-items-start tw-gap-2">
+                <input
+                  type="checkbox"
+                  className="tw-mt-1"
+                  checked={isAcceptPolicy}
+                  onChange={(e) => setIsAcceptPolicy(e.target.checked)}
+                />
                 <div className="tw-text-sm tw-text-gray-600">
                   Đồng ý với{" "}
                   <a
