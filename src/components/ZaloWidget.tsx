@@ -17,9 +17,20 @@ export default function ZaloWidget() {
       };
     }
   }, [siteSettings?.zaloWidget?.show]);
+  console.log(siteSettings);
 
   if (!siteSettings?.zaloWidget?.show) {
-    return null;
+    return (
+      <div className="tw-sticky tw-z-50 tw-bottom-[4.65rem] md:tw-bottom-10">
+        <a
+          href="https://zalo.me/0923680808"
+          target="_blank"
+          className="tw-flex tw-items-center tw-justify-end tw-mr-[4.5rem] md:tw-bottom-10"
+        >
+          <img src="/assets/svgs/zalo-color.svg" alt="#" />
+        </a>
+      </div>
+    );
   }
 
   return (
