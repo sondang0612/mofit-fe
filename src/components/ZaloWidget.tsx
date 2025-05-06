@@ -1,3 +1,4 @@
+"use client";
 import { useSiteSettings } from "@/hooks/react-query/useSiteSettings";
 import React from "react";
 

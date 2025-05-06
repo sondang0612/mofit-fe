@@ -72,9 +72,9 @@ const MainLayout = ({ children }: Props) => {
           />
           <div className="page-overlay" id="pageOverlay"></div>
           <ScrollTop />
+          <ZaloWidget />
         </QueryProvider>
       </AuthProvider>
-      <ZaloWidget />
     </>
   );
 };
