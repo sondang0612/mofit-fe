@@ -5,7 +5,7 @@ export default function ZaloWidget() {
   const { data: siteSettings } = useSiteSettings();
 
   React.useEffect(() => {
-    if (siteSettings?.zalo?.show) {
+    if (siteSettings?.zaloWidget?.show) {
       const script = document.createElement("script");
       script.src = "https://sp.zalo.me/plugins/sdk.js";
       script.async = true;
@@ -15,9 +15,9 @@ export default function ZaloWidget() {
         document.body.removeChild(script);
       };
     }
-  }, [siteSettings?.zalo?.show]);
+  }, [siteSettings?.zaloWidget?.show]);
 
-  if (!siteSettings?.zalo?.show) {
+  if (!siteSettings?.zaloWidget?.show) {
     return null;
   }
 
