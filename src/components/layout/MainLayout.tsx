@@ -74,7 +74,7 @@ const MainLayout = ({ children }: Props) => {
           <ScrollTop />
         </QueryProvider>
       </AuthProvider>
-      {/* <ZaloWidget /> */}
+      <ZaloWidget />
     </>
   );
 };

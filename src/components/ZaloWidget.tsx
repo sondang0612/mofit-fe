@@ -1,16 +1,25 @@
-import { useEffect } from "react";
+import { useSiteSettings } from "@/hooks/react-query/useSiteSettings";
+import React from "react";
 
 export default function ZaloWidget() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://sp.zalo.me/plugins/sdk.js";
-    script.async = true;
-    document.body.appendChild(script);
+  const { data: siteSettings } = useSiteSettings();
 
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+  React.useEffect(() => {
+    if (siteSettings?.zalo?.show) {
+      const script = document.createElement("script");
+      script.src = "https://sp.zalo.me/plugins/sdk.js";
+      script.async = true;
+      document.body.appendChild(script);
+
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
+  }, [siteSettings?.zalo?.show]);
+
+  if (!siteSettings?.zalo?.show) {
+    return null;
+  }
 
   return (
     <div

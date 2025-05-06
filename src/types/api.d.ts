@@ -164,4 +164,7 @@ export interface SiteSettings {
     };
     should_try_video: string;
   };
+  zalo: {
+    show: boolean;
+  };
 }
