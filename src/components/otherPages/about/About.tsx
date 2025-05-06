@@ -166,7 +166,7 @@ export default function About() {
               hidden: {},
             }}
           >
-            {`Vào những năm 1950, bên cạnh chùa Bồ Lô, thế hệ đầu tiên của Double Fish bắt đầu kinh doanh chỉ với ba kho báu. Lúc bấy giờ, người ta không thể tưởng tượng được rằng Double Fish sẽ vang danh khắp thế giới sau vài thập kỷ. Với hành trình gian khổ suốt nhiều thập kỷ, Double Fish nỗ lực tạo ra những sản phẩm tốt nhất và chinh phục vị trí vô địch. Từ những năm 1970, Double Fish đã được thế giới công nhận và thu hút sự chú ý, trở thành thương hiệu Trung Quốc quốc tế đầu tiên.`
+            {`Vào những năm 1950, bên cạnh chùa Bồ Lô, thế hệ đầu tiên của Double Fish bắt đầu kinh doanh. Lúc bấy giờ, người ta không thể tưởng tượng được rằng Double Fish sẽ vang danh khắp thế giới sau vài thập kỷ. Với hành trình gian khổ suốt nhiều thập kỷ, Double Fish nỗ lực tạo ra những sản phẩm tốt nhất và chinh phục vị trí vô địch. Từ những năm 1970, Double Fish đã được thế giới công nhận và thu hút sự chú ý, trở thành thương hiệu Trung Quốc quốc tế đầu tiên.`
               .split("")
               .map((char, index) => (
                 <motion.span
@@ -206,7 +206,7 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              Quy trình
+              Phát triển
             </motion.h3>
             <motion.p className="tw-text-lg tw-text-black" variants={fadeInUp}>
               Trong suốt hành trình phát triển, chúng tôi đảm bảo sự giao tiếp

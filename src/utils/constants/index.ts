@@ -5,7 +5,7 @@ export const ATTRIBUTE_LABEL: Record<string, string> = {
   top_rated: "Đánh giá cao",
   best_seller: "Hàng bán chạy",
   new_arrivals: "Hàng mới về",
-  featured: "Sản phẩm nổi bậc",
+  featured: "Sản phẩm nổi bật",
 };
 
 export const ATTRIBUTE_VALUE: Record<string, string> = {

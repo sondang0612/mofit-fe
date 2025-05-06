@@ -21,7 +21,7 @@ export default function ZaloWidget() {
 
   if (!siteSettings?.zaloWidget?.show) {
     return (
-      <div className="tw-sticky tw-z-50 tw-bottom-[4.65rem] md:tw-bottom-10">
+      <div className="tw-fixed tw-z-50 tw-bottom-[4.65rem] md:tw-bottom-10">
         <a
           href="https://zalo.me/0923680808"
           target="_blank"

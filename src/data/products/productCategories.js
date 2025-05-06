@@ -11,7 +11,7 @@ export const menuCategories = [
 
 export const sortingOptions = [
   { label: "Mặc định", value: "all", selected: true },
-  { label: "Sản phẩm nổi bậc", value: "featured" },
+  { label: "Sản phẩm nổi bật", value: "featured" },
   { label: "Bán chạy", value: "best_seller" },
   { label: "Hàng mới về", value: "new_arrivals" },
   { label: "Đánh giá cao", value: "top_rated" },
