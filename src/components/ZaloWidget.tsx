@@ -21,11 +21,11 @@ export default function ZaloWidget() {
 
   if (!siteSettings?.zaloWidget?.show) {
     return (
-      <div className="tw-fixed tw-z-50 tw-bottom-[4.65rem] md:tw-bottom-10">
+      <div className="tw-fixed tw-z-50 tw-bottom-[4.65rem] md:tw-bottom-10 tw-right-[4.5rem]">
         <a
           href="https://zalo.me/0923680808"
           target="_blank"
-          className="tw-flex tw-items-center tw-justify-end tw-mr-[4.5rem] md:tw-bottom-10"
+          className="tw-flex tw-items-center tw-justify-end md:tw-bottom-10"
         >
           <img src="/assets/svgs/zalo-color.svg" alt="#" />
         </a>
