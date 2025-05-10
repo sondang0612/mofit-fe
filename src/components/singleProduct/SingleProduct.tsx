@@ -14,16 +14,16 @@ import HtmlContent from "../HtmlContent";
 import ProductSlider1 from "./sliders/ProductSlider1";
 
 type Props = {
-  slug: string;
+  id: string;
 };
 
 type TabType = "description" | "specifications" | "reviews";
 
-const SingleProduct: React.FC<Props> = ({ slug }) => {
+const SingleProduct: React.FC<Props> = ({ id }) => {
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<TabType>("description");
   const { mutateAsync: createCartItem } = useCreateCartItem();
-  const { data: product } = useProduct({ slug });
+  const { data: product } = useProduct({ id });
   const { data: isLiked } = useCheckLike({ productId: product?.id });
   const { mutate: likeProduct } = useLikeProduct();
   const { mutate: unLikeProduct } = useUnLikeProduct();

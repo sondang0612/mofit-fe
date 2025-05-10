@@ -18,7 +18,6 @@ const CartItem: React.FC<Props> = ({ data, canEdit = true, onRemove }) => {
   const [quantity, setQuantity] = React.useState<number>(1);
 
   const handleQuantityChange = (newQuantity: number) => {
-    console.log("🚀 ~ handleQuantityChange ~ newQuantity:", newQuantity);
     setQuantity(newQuantity);
 
     if (data?.product?.id) {

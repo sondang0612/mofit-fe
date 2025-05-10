@@ -16,14 +16,14 @@ import { useUnLikeProduct } from "@/hooks/react-query/auth/favorite-products/use
 import Description from "./Description";
 
 interface Props {
-  slug?: string;
+  id?: string;
 }
 
 export default function SingleProduct12(props: Props) {
-  const { slug } = props;
+  const { id } = props;
   const { mutate: createCartItem } = useCreateCartItem();
   const [quantity, setQuantity] = React.useState<number>(1);
-  const { data: product } = useProduct({ slug });
+  const { data: product } = useProduct({ id });
   const { data: isLiked } = useCheckLike({ productId: product?.id });
   const { mutate: likeProduct } = useLikeProduct();
   const { mutate: unLikeProduct } = useUnLikeProduct();

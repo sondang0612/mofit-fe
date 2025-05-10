@@ -64,7 +64,7 @@ const Product = (props: Props) => {
               {[data?.images?.cover, ...(data?.images?.other as any)].map(
                 (elm2, i) => (
                   <SwiperSlide key={i} className="swiper-slide w-inherit">
-                    <Link href={`/product/${data?.slug}`}>
+                    <Link href={`/product/${data?.id}`}>
                       <Image
                         loading="lazy"
                         src={elm2 || EDefaultValue.IMAGE}
@@ -104,7 +104,7 @@ const Product = (props: Props) => {
               </span>
             </Swiper>
           ) : (
-            <Link href={`/product/${data?.slug}`}>
+            <Link href={`/product/${data?.id}`}>
               <Image
                 loading="lazy"
                 src={EDefaultValue.IMAGE}
@@ -139,7 +139,7 @@ const Product = (props: Props) => {
               overflow: "hidden",
             }}
           >
-            <Link href={`/product/${data?.slug}`}>{data?.title}</Link>
+            <Link href={`/product/${data?.id}`}>{data?.title}</Link>
           </h6>
           <div className="product-card__price  tw-font-jost">
             <div

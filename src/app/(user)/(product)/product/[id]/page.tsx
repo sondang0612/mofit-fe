@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function Product({ params }: Props) {
-  const { slug } = params;
+  const { id } = params;
   return (
     <>
       <Header1 showBreadcrumb />
@@ -22,7 +22,7 @@ export default function Product({ params }: Props) {
         <div className="tw-block lg:tw-hidden tw-mt-2">
           <Breadcrumb />
         </div>
-        <SingleProduct slug={slug as string} />
+        <SingleProduct id={id as string} />
       </main>
       <Footer1 />
     </>

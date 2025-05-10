@@ -4,7 +4,6 @@ import Product from "../shoplist/Product";
 
 export default function AccountWishlist() {
   const { data: products } = useFavoriteProducts();
-  console.log("🚀 ~ AccountWishlist ~ products:", products);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("vi-VN", {

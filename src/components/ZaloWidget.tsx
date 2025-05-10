@@ -17,7 +17,6 @@ export default function ZaloWidget() {
       };
     }
   }, [siteSettings?.zaloWidget?.show]);
-  console.log(siteSettings);
 
   if (!siteSettings?.zaloWidget?.show) {
     return (

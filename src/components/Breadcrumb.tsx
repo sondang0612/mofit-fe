@@ -8,7 +8,6 @@ import { IoReturnUpBack } from "react-icons/io5";
 
 const BreadcrumbWithoutSuspense = () => {
   const pathName = usePathname();
-  console.log("🚀 ~ BreadcrumbWithoutSuspense ~ pathName:", pathName);
   const { getParam } = useUrlParams();
   const items = React.useMemo(() => {
     let paths = pathName.split("/");
