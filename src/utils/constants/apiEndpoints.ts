@@ -3,4 +3,5 @@ export const apiEndpoints = {
   ORDERS: "orders",
   USERS: "users",
   ADDRESSES: "addresses",
+  POSTS: "posts",
 };

@@ -3,9 +3,10 @@ import { pathNames } from "@/utils/constants/paths";
 import { useRouter } from "next/navigation";
 import React from "react";
 import BlinkingHot from "./BlinkingHot";
+import { Post } from "@/types/api";
 
 interface Props {
-  data?: any;
+  data?: Post;
 }
 
 export const BlogItem = (props: Props) => {
@@ -14,7 +15,7 @@ export const BlogItem = (props: Props) => {
   return (
     <div>
       <img
-        src={data?.coverImage}
+        src={data?.images?.cover}
         alt="blog_image"
         className="tw-w-full tw-rounded-md tw-cursor-pointer"
         onClick={() => router.push(`${pathNames.BLOGS}/${data?.id}`)}
@@ -26,7 +27,7 @@ export const BlogItem = (props: Props) => {
               {data?.createdAt}
             </span>
             <span className="tw-text-sm tw-text-black">
-              {data?.categoryName}
+              {data?.category?.name}
             </span>
           </div>
           <BlinkingHot text="HOT!" />
@@ -37,7 +38,7 @@ export const BlogItem = (props: Props) => {
         >
           {data?.title}
         </div>
-        <div className="tw-line-clamp-3">{data?.subDescription}</div>
+        <div className="tw-line-clamp-3">{data?.shortDescription}</div>
       </div>
     </div>
   );

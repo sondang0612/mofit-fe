@@ -63,6 +63,10 @@ const Shop1 = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
 
+  React.useEffect(() => {
+    setParams([{ key: "page", value: 1 }]);
+  }, [sortingValue, activeCategory, brands, minPrice, maxPrice, searchQuery]);
+
   return (
     <div className="bg-layout pb-5">
       <section className="shop-main d-flex container">

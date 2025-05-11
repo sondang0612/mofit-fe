@@ -168,3 +168,20 @@ export interface SiteSettings {
     show: boolean;
   };
 }
+
+export interface Post {
+  id?: number | undefined;
+  title?: string | undefined;
+  images?: { cover?: string | undefined; other?: string[] };
+  category?: PostCategory | undefined;
+  shortDescription?: string | undefined;
+  description?: string | undefined;
+  isDeleted?: boolean | undefined;
+  referenceLink?: string | undefined;
+  createdAt?: string | undefined;
+}
+
+export interface PostCategory {
+  id?: number | undefined;
+  name?: string | undefined;
+}

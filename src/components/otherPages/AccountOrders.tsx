@@ -69,6 +69,10 @@ const AccountOrders = () => {
     setQueryText(searchTerm);
   };
 
+  React.useEffect(() => {
+    setPage(1);
+  }, [activeStatus, queryText]);
+
   return (
     <div className="col-lg-9">
       <div className="page-content my-account__order">
