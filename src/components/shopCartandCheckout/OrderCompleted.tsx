@@ -72,6 +72,61 @@ export default function OrderCompleted() {
     return <OrderSkeleton />;
   }
 
+  if (!order && txnRef) {
+    return (
+      <div className="tw-max-w-lg tw-mt-16 tw-mx-auto tw-bg-white tw-rounded-2xl tw-shadow-sm tw-overflow-hidden">
+        <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-py-10 tw-px-6">
+          <img src="/assets/images/mark.png" className="tw-w-10" />
+          <h2 className="tw-text-2xl tw-font-medium tw-text-gray-800 tw-mb-6 tw-mt-4">
+            Đặt hàng thất bại
+          </h2>
+
+          <div className="tw-w-full">
+            <div className="tw-flex tw-justify-between tw-py-3  tw-items-center">
+              <span className="tw-text-gray-500">Mã đơn hàng</span>
+              <span className="tw-font-medium tw-text-gray-800">{txnRef}</span>
+            </div>
+
+            <div className="tw-flex tw-justify-between tw-items-center tw-py-3">
+              <span className="tw-text-gray-500">Ngày đặt hàng</span>
+              <span className="tw-font-medium tw-text-gray-800">
+                {new Date(new Date())
+                  .toLocaleDateString("vi-VN", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                  })
+                  .replace(",", "")}
+              </span>
+            </div>
+          </div>
+
+          <div className="tw-w-full tw-mt-6">
+            <button
+              className="tw-w-full tw-bg-black tw-text-white tw-py-3 tw-rounded-md tw-font-medium tw-flex tw-items-center tw-justify-center tw-transition-colors hover:tw-bg-gray-800 "
+              onClick={() => router.push("/")}
+            >
+              Quay về trang chủ
+            </button>
+          </div>
+          <div className="tw-flex tw-mt-2 tw-items-center tw-gap-[1px]">
+            <a
+              className="tw-text-xs tw-text-blue-500 tw-underline tw-cursor-pointer"
+              href="https://zalo.me/0923680808"
+              target="_blank"
+            >
+              Vui lòng liên hệ và kèm với hình ảnh để biết thêm thông tin chi
+              tiết
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="tw-max-w-lg tw-mt-16 tw-mx-auto tw-bg-white tw-rounded-2xl tw-shadow-sm tw-overflow-hidden">
       <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-py-10 tw-px-6">
