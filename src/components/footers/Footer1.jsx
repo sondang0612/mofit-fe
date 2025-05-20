@@ -18,8 +18,8 @@ export default function Footer1() {
             </p>
 
             <p className="tw-text-sm tw-text-white">
-              Địa chỉ văn phòng: Số nhà 15, Ngõ 1, đường Đồng Me, phường Mễ Trì,
-              Quận Nam Từ Liêm, TP.Hà Nội
+              Địa chỉ văn phòng: Số 31B, ngõ 226 đường Cầu Giấy, Phường Quan
+              Hoa, Quận Cầu Giấy, Hà Nội
             </p>
           </div>
           {/* <!-- /.footer-column --> */}

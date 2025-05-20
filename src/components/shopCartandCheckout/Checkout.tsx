@@ -309,14 +309,14 @@ export default function Checkout() {
                 />
                 <div className="tw-text-sm tw-text-gray-600">
                   Đồng ý với{" "}
-                  <a
-                    href="https://doublefish.com.vn/policies/private"
+                  <Link
+                    href="/private"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="tw-text-blue-500 hover:tw-underline"
                   >
                     điều khoản và quy định
-                  </a>{" "}
+                  </Link>{" "}
                   của website
                 </div>
               </div>
