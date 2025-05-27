@@ -10,6 +10,15 @@ export default function Footer1() {
       <div className="footer-middle md:tw-px-24 tw-px-6 md:tw-pb-[1.625rem] !tw-pb-20">
         <div className="row row-cols-lg-5 row-cols-2">
           <div className="footer-column footer-store-info col-12 mb-4 mb-lg-0">
+            <a
+              href="http://online.gov.vn/Website/chi-tiet-131261?AspxAutoDetectCookieSupport=1"
+              target="_blank"
+            >
+              <img
+                src="/assets/images/logo-bc.webp"
+                className="tw-h-10 tw-mb-5"
+              />
+            </a>
             <p className="!tw-text-base tw-text-white tw-font-semibold">
               CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ THƯƠNG MẠI MODERN FARE VIỆT NAM.
             </p>
